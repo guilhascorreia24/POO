@@ -1,11 +1,7 @@
 {
-    "java.project.referencedLibraries": {
-        "include": [
-            "lib/**/*.jar",
-            "junit-4.13.jar"
-        ],
-        "exclude": [
-            "c:\\Users\\gui-2\\OneDrive\\Ambiente de Trabalho\\poo\\junit-4.13.jar"
-        ]
-    }
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "junit-4.13.jar",
+        "hamcrest-core-1.3.jar"
+    ]
 }

@@ -8,6 +8,5 @@ public class client{
         String s=sc.next();
         sc.close();
         Pirate p=new Pirate(s);
-        System.out.println(p.sum());
     }
 }

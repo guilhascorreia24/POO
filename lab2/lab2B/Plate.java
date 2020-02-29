@@ -1,5 +1,5 @@
 
-package lab2B;
+package lab2.lab2B;
 public class Plate {
     private int p1,p2,type=0;
     private String p3;
