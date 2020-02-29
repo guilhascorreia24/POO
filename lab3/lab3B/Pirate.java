@@ -1,4 +1,4 @@
-package lab3;
+package lab3.lab3B;
 
 public class Pirate {
     private int[] enimes,allies;
