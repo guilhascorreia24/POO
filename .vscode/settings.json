@@ -1,0 +1,10 @@
+{
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar"
+        ],
+        "exclude": [
+            "c:\\Users\\gui-2\\OneDrive\\Ambiente de Trabalho\\poo\\junit-4.13.jar"
+        ]
+    }
+}
