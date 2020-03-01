@@ -1,5 +1,5 @@
-package lab3.lab3A;
-/*
+/*package lab3.lab3A;
+
 import static org.junit.Assert.*;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
