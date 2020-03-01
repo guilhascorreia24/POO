@@ -10,7 +10,13 @@ public class Pirate {
         groups(a);
     }
 
+    private void groups(char[] s){
+        int a=0,e=0; 
+        for(int i=0;i<s.length;i++){
+            if(i%2==0) enimes[e++]=a; 
+            else allies[a++]=a;
+        }
+    }
 
     
-
 }
