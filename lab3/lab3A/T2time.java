@@ -1,3 +1,4 @@
+//package lab3A;
 package lab3.lab3A;
 
 public class T2time {
