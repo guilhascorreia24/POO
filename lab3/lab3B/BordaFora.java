@@ -33,24 +33,25 @@ public class BordaFora {
     public int steps(){
         BordaFora news=clone();
         List<Integer> o=p;
-        for(int i=step-1;i<o.size();){
+        int i=step-1;
+        while(o.contains(0)){
             System.out.println(o+" "+step+" "+i);
-            if(!o.contains(0)){break;}
             if(o.get(i)==1){
                 step++;
                 BordaFora t=clone();
                 o.clear();
                 o=news.p;
                 news=t;
-                i=step-1;
+                i=(step-1)%o.size();
             }else{
             o.remove(i);
-            i--;
+                i--;  
             i=(i+step)%o.size();}
         }
+
         return step;
-        
     }
 
 
 }
+//4444
