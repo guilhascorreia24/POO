@@ -1,5 +1,5 @@
-package lab3;
-
+package lab3.lab3B;
+//package lab3B;
 import java.util.Scanner;
 
 public class client{
@@ -7,7 +7,8 @@ public class client{
         Scanner sc=new Scanner(System.in);
         String s=sc.next();
         sc.close();
-        Pirate p=new Pirate(s);
-        System.out.println(p.sum());
+        BordaFora p=new BordaFora(s);
+        //System.out.println(p.list());
+        System.out.println(p.steps());
     }
 }

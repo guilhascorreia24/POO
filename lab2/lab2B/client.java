@@ -1,4 +1,4 @@
-package lab2B;
+package lab2.lab2B;
 import java.util.Scanner;
 
 public class client {

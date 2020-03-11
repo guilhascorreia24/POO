@@ -1,8 +1,15 @@
 {
+<<<<<<< HEAD
     "java.dependency.syncWithFolderExplorer": false,
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
         "hamcrest-core-1.3.jar",
         "junit-4.13.jar"
+=======
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "junit-4.13.jar",
+        "hamcrest-core-1.3.jar"
+>>>>>>> 61fea663d7e52550a70b015f15a5ea9b93766e76
     ]
 }
