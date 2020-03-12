@@ -8,12 +8,12 @@ public class Circunferencia {
 	private float raio;
 
 	public Circunferencia(final Ponto p1, final Ponto p2, final Ponto p3) {
-		Map<Ponto,Float> dists=new HashMap<Ponto,Float>();
-		dists.put(p1,p1.distancia(p2));
-		dists.put(p2,p2.distancia(p3));
-		dists.put(p3,p3.distancia(p1));
-		float max=Collections.max(dists.values());
-		dists.remove(dists.keySet().);
+		Map<Float,Ponto> dists=new HashMap<Float,Ponto>();
+		dists.put(p1.distancia(p2),p1);
+		dists.put(p2.distancia(p3),p2);
+		dists.put(p3.distancia(p1),p3);
+		float max=Collections.max(dists.keySet());
+		dists.remove(dists.get(max));
 		SegmentoReta r1=new SegmentoReta(, p2);
 	}
 

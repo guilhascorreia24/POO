@@ -1,35 +1,34 @@
-/*import static org.junit.Assert.*;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 public class Tests {
 
-	//bruno testes
 	@Test
-	public void testDistanceBetweenTwoPoints() {
+	public void testDistanceBetweenTwoPontos() {
 		
-		Point a = new Point(4,3);
-		Point b = new Point(3,-2);
+		Ponto a = new Ponto(4,3);
+		Ponto b = new Ponto(3,-2);
 		//a(4,3) b(3,-2)
 		assertEquals(5.0990195135927845,a.distancia(b));
 		
-		Point c = new Point(-2,4.7);
-		Point d = new Point(1,9.8);
+		Ponto c = new Ponto(-2,4.7f);
+		Ponto d = new Ponto(1,9.8f);
 		//a(-2,4.7) b(1,9.8)
 		assertEquals(5.916924876994806,c.distancia(d));
 		
-		Point e = new Point(18.3,2.3);
-		Point f = new Point(1.8,4.4);
+		Ponto e = new Ponto(18.3f,2.3f);
+		Ponto f = new Ponto(1.8f,4.4f);
 		//a(18.3,2.3) b(1.8,4.4)
 		assertEquals(16.633099530754933,e.distancia(f));
 		
-		Point g = new Point(12.1,23);
-		Point h = new Point(1.23,4.6);
+		Ponto g = new Ponto(12.1f,23f);
+		Ponto h = new Ponto(1.23f,4.6f);
 		//a(12.1,23) b(1.23,4.6)
 		assertEquals(21.370935870943974,g.distancia(h));
 		
-		Point i = new Point(-8,-2.3);
-		Point j = new Point(-8.8,-10.5);
+		Ponto i = new Ponto(-8f,-2.3f);
+		Ponto j = new Ponto(-8.8f,-10.5f);
 		//a(-8,-2.3) b(-8.8,-10.5)
 		assertEquals(8.238931969618392,i.distancia(j));
 		
@@ -38,28 +37,28 @@ public class Tests {
 	@Test
 	public void testSlope() {
 		
-		Point a = new Point(1.5,2.3);
-		Point b = new Point(5.6,-1);
+		Ponto a = new Ponto(1.5f,2.3f);
+		Ponto b = new Ponto(5.6f,-1f);
 		//a(1.5,2.3) b(5.6,-1)
 		assertEquals(-0.8048780487804879,a.slope(b));
 
-		Point c = new Point(3.4,2.2);
-		Point d = new Point(1.1,-9.8);
+		Ponto c = new Ponto(3.4f,2.2f);
+		Ponto d = new Ponto(1.1f,-9.8f);
 		//a(3.4,2.2) b(1.1,-0.5)
 		assertEquals(5.217391304347826,c.slope(d));
 
-		Point e = new Point(-0.4,0.0);
-		Point f = new Point(0.0,-2);
+		Ponto e = new Ponto(-0.4f,0.0f);
+		Ponto f = new Ponto(0.0f,-2f);
 		//a(-0.4,0) b(0,-2)
 		assertEquals(-5,e.slope(f),0);
 		
-		Point g = new Point(1,5);
-		Point h = new Point(9,4);
+		Ponto g = new Ponto(1,5);
+		Ponto h = new Ponto(9,4);
 		//a(1,5) b(9,4)
 		assertEquals(-0.125,g.slope(h));
 
-		Point i = new Point(-8,-1);
-		Point j = new Point(-3,-2.9);
+		Ponto i = new Ponto(-8,-1);
+		Ponto j = new Ponto(-3,-2.9);
 		//a(-8,-1) b(-3,-2.9)
 		assertEquals(-0.38,i.slope(j));
 	}
@@ -67,102 +66,112 @@ public class Tests {
 	@Test
 	public void testInversa() {
 		
-		Ponto a = new Point(0.0,0.0);
-		Ponto b = new Point(2.0,2.0);
+		Ponto a = new Ponto(0.0f,0.0f);
+		Ponto b = new Ponto(2.0f,2.0f);
 		SegmentoReta s1 = new SegmentoReta(a,b);
-		Reta r1 = new Reta(-1.0,2.0)
+		Reta r1 = new Reta(-1.0f,2.0f)
 		assertEquals(r1, s1.inversa());
 
-		Ponto b = new Point(3.0,-3.5);
-		Ponto b1 = new Point(2.0,2.5);
+		Ponto b = new Ponto(3.0f,-3.5f);
+		Ponto b1 = new Ponto(2.0f,2.5f);
 		SegmentoReta bs = new SegmentoReta(a,b);
-		Reta r1 = new Reta(,-3.0)
-		assertEquals(r1, s1.inversa());
-		
+		Reta r2 = new Reta((float)(1/6),(float)(11/12))
+		assertEquals(r2, bs.inversa());
+
+		Ponto c = new Ponto(1.0f,1.0f);
+		Ponto c1 = new Ponto(0.0f,2.5f);
+		SegmentoReta cs = new SegmentoReta(a,b);
+		Reta r3 = new Reta((2/3),(17/12))
+		assertEquals(r3, cs.inversa());
 	
 	}
 
 
 	@Test
 	public void testPontoMedio() {
-		Ponto a = new Point(0.0,0.0);
-		Ponto a1 = new Point(2.0,2.0);
+		Ponto a = new Ponto(0.0f,0.0f);
+		Ponto a1 = new Ponto(2.0f,2.0f);
 		SegmentoReta as = new SegmentoReta(a1,a1);
-		Ponto am = new Point(1.0,1.0);
-		assertEquals(am, as.pontomedio());
+		Ponto am = new Ponto(1.0f,1.0f);
+		assertEquals(am, as.pontoMedio());
 	
-		Ponto b = new Point(3.0,-3.5);
-		Ponto b1 = new Point(2.0,2.5);
+		Ponto b = new Ponto(3.0f,-3.5f);
+		Ponto b1 = new Ponto(2.0f,2.5f);
 		SegmentoReta bs = new SegmentoReta(a,b);
-		Ponto bm = new Point(2.5,-0.5);
+		Ponto bm = new Ponto(2.5f,-0.5f);
 		assertEquals(bm, bs.pontomedio());
+
+		Ponto c = new Ponto(1.0f,1.0f);
+		Ponto c1 = new Ponto(0.0f,2.5f);
+		SegmentoReta cs = new SegmentoReta(a,b);
+		Ponto cm = new Ponto(0.5f,1.75f);
+		assertEquals(cm, cs.pontomedio());
 
 
 
 	}
-	//fela tests
+
+
 	@Test
 	public void testdistancia1() {
-		Point p= new Point(0.0,0.0);
-		Point q= new Point(0.0,2.0);
-		Point r= new Point(2.0,2.0);
-		assertEquals(p.distancia(q),2.0);
-		assertEquals(q.distancia(r),2.0);
-		assertEquals(p.distancia(r),2.83);
+		Ponto p= new Ponto(0.0f,0.0f);
+		Ponto q= new Ponto(0.0f,2.0f);
+		Ponto r= new Ponto(2.0f,2.0f);
+		assertEquals(p.distancia(q),2.0f);
+		assertEquals(q.distancia(r),2.0f);
+		assertEquals(p.distancia(r),2.83f);
 	}
 	
 	public void testdistancia2() {
-		Point p= new Point(0.0,0.0);
-		Point q= new Point(0.0,4.0);
-		Point r= new Point(4.0,4.0);
-		assertEquals(p.distancia(q),4.0);
-		assertEquals(q.distancia(r),4.0);
-		assertEquals(p.distancia(r),5.66);
+		Ponto p= new Ponto(0.0f,0.0f);
+		Ponto q= new Ponto(0.0f,4.0f);
+		Ponto r= new Ponto(4.0f,4.0f);
+		assertEquals(p.distancia(q),4.0f);
+		assertEquals(q.distancia(r),4.0f);
+		assertEquals(p.distancia(r),5.66f);
 	}
 	
 	
 	public void testdistancia3() {
-		Point p= new Point(-2.0,2.0);
-		Point q= new Point(2.0,2.0);
-		Point r= new Point(2.0,-2.0);
-		assertEquals(p.distancia(q),4.0);
-		assertEquals(q.distancia(r),4.0);
-		assertEquals(p.distancia(r),5.66);
+		Ponto p= new Ponto(-2.0f,2.0f);
+		Ponto q= new Ponto(2.0f,2.0f);
+		Ponto r= new Ponto(2.0f,-2.0f);
+		assertEquals(p.distancia(q),4.0f);
+		assertEquals(q.distancia(r),4.0f);
+		assertEquals(p.distancia(r),5.66f);
 	}
-
-	//guilherme teste
 
 	@Test
 	public void intersecaoTests(){
-		Reta a=new Reta(1,0);
-		assertEquals(new Ponto(0,0),a.Intersecao(new Reta(-1,0)));
+		Reta a=new Reta(1f,0f);
+		assertEquals(new Ponto(0f,0f),a.Intersecao(new Reta(-1f,0f)));
 		
-		Reta a=new Reta(4,5);
-		assertEquals(new Ponto(1,9),a.Intersecao(new Reta(9,0)));
+		Reta a=new Reta(4f,5f);
+		assertEquals(new Ponto(1f,9f),a.Intersecao(new Reta(9f,0f)));
 
-		Reta a=new Reta(0,2);
-		assertEquals(new Ponto(-1,2),a.Intersecao(new Reta(-1,0)));
+		Reta a=new Reta(0f,2f);
+		assertEquals(new Ponto(-1f,2f),a.Intersecao(new Reta(-1f,0f)));
 
-		Reta a=new Reta("n",0);
-		assertEquals(new Ponto(2,2),a.Intersecao(new Reta(1,1)));
+		Reta a=new Reta(2f);
+		assertEquals(new Ponto(2f,2f),a.Intersecao(new Reta(1f,1f)));
 
 		Reta a=new Reta(-(1/8),8);
-		assertEquals(new Ponto(0.58536,7.9268),a.Intersecao(new Reta(5,5)));
+		assertEquals(new Ponto(0.58536f,7.9268f),a.Intersecao(new Reta(5f,5f)));
 
-		Reta a=new Reta(2,2);
-		assertEquals(new Ponto(-1,0),a.Intersecao(new Reta(-2,-2)));
+		Reta a=new Reta(2f,2f);
+		assertEquals(new Ponto(-1,0),a.Intersecao(new Reta(-2f,-2f)));
 
 	}
 
 	@Test
 	public void testdistanciaAcircunferencia(){
-		raio=5;
+		float raio=5;
 		Ponto c=new Ponto(0,0);
-		Circunferencia o=new Circunferencia(new Ponto(0,1),new Ponto())
+		Circunferencia o=new Circunferencia(new Ponto(0f,1f),new Ponto())
 		assertEquals(5,)
 	}
 
 
 
 
-}*/
+}
