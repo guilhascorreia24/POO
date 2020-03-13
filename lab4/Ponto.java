@@ -1,18 +1,18 @@
 public class Ponto {
-	private float x;
-	private float y;
-	public Ponto(float x, float y) {
+	private double x;
+	private double y;
+	public Ponto(double x, double y) {
 		
 		this.x = x;
 		this.y = y;
 	}
-	public float getX() {return x;}
-	public float getY() {return y;}
-	public float distancia(Ponto p) {
+	public double getX() {return x;}
+	public double getY() {return y;}
+	public double distancia(Ponto p) {
 		
-		float dx = x - p.x;
-		float dy = y - p.y;
+		double dx = x - p.x;
+		double dy = y - p.y;
 			
-			return (float)Math.sqrt(dx * dx + dy * dy);
+			return (double)Math.sqrt(dx * dx + dy * dy);
 		}
 }

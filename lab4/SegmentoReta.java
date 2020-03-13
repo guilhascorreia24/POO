@@ -1,4 +1,4 @@
-public class SegmentoReta {
+public class SegmentoReta{
 	
 	private Ponto p1;
 	private Ponto p2;
@@ -8,12 +8,12 @@ public class SegmentoReta {
 		this.p2 = p2;
 	}
 	
-	public Ponto getp1() {return p1;}
-	public Ponto getp2() {return p2;}
+	public Ponto getp1() {return new Ponto(p1.getX(),p1.getY());}
+	public Ponto getp2() {return new Ponto(p2.getX(),p2.getY());}
 
 	public Reta inversa() {
-		float m;
-		float b;
+		double m;
+		double b;
 		if(p2.getX()-p2.getY()==0){
 			m=p2.getX();
 			return new Reta(m);
@@ -23,13 +23,17 @@ public class SegmentoReta {
 		return new Reta(m,b);
 	}
 	
-	public float declive(){
+	public double declive(){
 		return (p2.getY()-p1.getY())/(p2.getX()-p1.getX());
+	}
+
+	public double Ordenada(){
+		return declive()*pontoMedio().getX()+pontoMedio().getY();
 	}
 	public Ponto pontoMedio(){
 
-		float xMedium = (p2.getX() + p1.getX()) / 2;
-		float yMedium = (p2.getY() + p1.getY()) / 2;
+		double xMedium = (p2.getX() + p1.getX()) / 2;
+		double yMedium = (p2.getY() + p1.getY()) / 2;
 		
 		Ponto pMedio = new Ponto(xMedium,yMedium);
 		
