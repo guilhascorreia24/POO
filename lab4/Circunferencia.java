@@ -18,14 +18,15 @@ public class Circunferencia {
 		pontos.put(p2,p2.distancia(p3));
 		pontos.put(p3,p3.distancia(p1));
 		double max=Collections.max(pontos.values());Ponto intermedio=new Ponto(0,0);
-		Ponto[] ps=new Ponto[3];int i=0;
+		Ponto[] ps=new Ponto[2];int i=0;
 		for(Ponto p:pontos.keySet()){
 			if(max==pontos.get(p)){
 				intermedio=p;
 			}
+			else{
 			ps[i++]=p;
+			}
 		}
-		System.out.println(ps);
 		SegmentoReta s1=new SegmentoReta(ps[0], intermedio);
 		SegmentoReta s2=new SegmentoReta(ps[1], intermedio);
 		if(s1.declive()==s2.declive()){System.out.println("invalid points");}

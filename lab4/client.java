@@ -12,6 +12,7 @@ public class client {
         Ponto p4 = new Ponto(sc.nextDouble(), sc.nextDouble());
 
         Circunferencia o = new Circunferencia(p1, p2, p3);
+        System.out.print(o.getRaio());
         DecimalFormatSymbols s = new DecimalFormatSymbols();
         s.setDecimalSeparator('.');
         DecimalFormat df = new DecimalFormat("0.00", s);
