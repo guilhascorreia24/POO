@@ -14,7 +14,7 @@ public class SegmentoReta{
 	public Reta inversa() {
 		double m;
 		double b;
-		if(p2.getX()-p2.getY()==0){
+		if(p1.getX()-p2.getX()==0){
 			m=p2.getX();
 			return new Reta(m);
 		}
@@ -38,5 +38,9 @@ public class SegmentoReta{
 		Ponto pMedio = new Ponto(xMedium,yMedium);
 		
 		return pMedio;
+	}
+
+	public String toString(){
+		return p1+" "+p2;
 	}
 }

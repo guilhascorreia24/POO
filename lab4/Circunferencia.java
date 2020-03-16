@@ -13,35 +13,38 @@ public class Circunferencia {
 	}
 
 	private void centro(Ponto p1,Ponto p2,Ponto p3){
-		Map<Ponto,Double> pontos=new HashMap<Ponto,Double>();
-		pontos.put(p1,p1.distancia(p2));
-		pontos.put(p2,p2.distancia(p3));
-		pontos.put(p3,p3.distancia(p1));
-		double max=Collections.max(pontos.values());Ponto intermedio=new Ponto(0,0);
-		Ponto[] ps=new Ponto[2];int i=0;
-		for(Ponto p:pontos.keySet()){
+		Map<SegmentoReta,Double> pontos=new HashMap<SegmentoReta,Double>();
+		pontos.put(new SegmentoReta(p1, p2),p1.distancia(p2));
+		pontos.put(new SegmentoReta(p2, p3),p2.distancia(p3));
+		pontos.put(new SegmentoReta(p3, p1),p3.distancia(p1));
+		double max=Collections.max(pontos.values());
+		SegmentoReta[] ps=new SegmentoReta[2];int i=0;
+
+		for(SegmentoReta p:pontos.keySet()){
 			if(max==pontos.get(p)){
-				intermedio=p;
 			}
 			else{
 			ps[i++]=p;
 			}
 		}
-		SegmentoReta s1=new SegmentoReta(ps[0], intermedio);
-		SegmentoReta s2=new SegmentoReta(ps[1], intermedio);
+		SegmentoReta s1=ps[0];
+		SegmentoReta s2=ps[1];
 		if(s1.declive()==s2.declive()){System.out.println("invalid points");}
-		Reta r1=new Reta(-1/s1.declive(), s1.Ordenada());
-		Reta r2=new Reta(-1/s2.declive(),s2.Ordenada());
+		Reta r1=s1.inversa();
+		Reta r2=s2.inversa();
+		System.out.println(r1+" "+r2);
 		centro=r1.intersecao(r2);
+		System.out.println(centro);
 	}
+
 
 	/**
 	 * 
 	 * @param Ponto
 	 */
 	public double distancia( Ponto p) {
-		double dx = 0 - p.getX();
-		double dy = 0 - p.getY();
+		double dx = centro.getX() - p.getX();
+		double dy = centro.getY() - p.getY();
 		double objetivo=(double)Math.sqrt(dx * dx + dy * dy);
 		if(objetivo<=raio){
 			System.out.println("invalid points"); 
