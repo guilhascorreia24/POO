@@ -8,6 +8,9 @@ public class Ponto {
 	}
 	public double getX() {return x;}
 	public double getY() {return y;}
+	public String toString(){
+		return x+" "+y;
+	}
 	public double distancia(Ponto p) {
 		
 		double dx = x - p.x;
