@@ -32,27 +32,7 @@ public class Tests {
 		//a(-8,-2.3) b(-8.8,-10.5)
 		assertEquals(8.238931969618392,i.distancia(j));
 
-		Ponto p= new Ponto(0.0f,0.0f);
-		Ponto q= new Ponto(0.0f,2.0f);
-		Ponto r= new Ponto(2.0f,2.0f);
-		assertEquals(p.distancia(q),2.0f);
-		assertEquals(q.distancia(r),2.0f);
-		assertEquals(p.distancia(r),2.83f);
-
-		Ponto p= new Ponto(0.0f,0.0f);
-		Ponto q= new Ponto(0.0f,4.0f);
-		Ponto r= new Ponto(4.0f,4.0f);
-		assertEquals(p.distancia(q),4.0f);
-		assertEquals(q.distancia(r),4.0f);
-		assertEquals(p.distancia(r),5.66f);
-
-		Ponto p= new Ponto(-2.0f,2.0f);
-		Ponto q= new Ponto(2.0f,2.0f);
-		Ponto r= new Ponto(2.0f,-2.0f);
-		assertEquals(p.distancia(q),4.0f);
-		assertEquals(q.distancia(r),4.0f);
-		assertEquals(p.distancia(r),5.66f);
-		
+	
 	}
 	
 	@Test
