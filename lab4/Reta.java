@@ -7,9 +7,6 @@ public class Reta {
         this.ordenada = b;
     }
 
-    public Reta(double x){
-        this.declive=x;
-    }
 
     public Ponto intersecao(Reta r1) {
 
@@ -17,6 +14,10 @@ public class Reta {
 	    double y = this.declive * x + this.ordenada;
 
 	    return new Ponto( x,  y);
+    }
+
+    public String toString(){
+        return declive+" "+ordenada;
     }
     
 }

@@ -31,11 +31,7 @@ public class SegmentoReta{
 	}
 	
 	public double declive(){
-		return (p2.getY()-p1.getY())/(p2.getX()-p1.getX());
-	}
-
-	public double Ordenada(){
-		return declive()*pontoMedio().getX()+pontoMedio().getY();
+		return (p1.getY()-p2.getY())/(p1.getX()-p2.getX());
 	}
 	public Ponto pontoMedio(){
 
