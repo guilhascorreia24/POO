@@ -1,4 +1,4 @@
-public class Ponto implements Comparable{
+public class Ponto implements Comparable<Ponto>{
 	private double x;
 	private double y;
 	public Ponto(double x, double y) {
@@ -20,7 +20,7 @@ public class Ponto implements Comparable{
 		}
 	
 	@Override
-	public int compareTo(Object b){
+	public int compareTo(Ponto b){
 		Ponto p=(Ponto)b;
 		if(this.x==p.x && this.y==p.y) {
 			return 1;
