@@ -1,12 +1,16 @@
 public class Reta {
     private double declive;
     private double ordenada=0;
+    private double vertical=0;
 
     public Reta(double m, double b) {
         this.declive = m;
         this.ordenada = b;
     }
 
+    public Reta(double vertical){
+        this.vertical=vertical;
+    }
 
     public Ponto intersecao(Reta r1) {
 

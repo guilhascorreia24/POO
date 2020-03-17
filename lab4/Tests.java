@@ -191,7 +191,8 @@ public class Tests {
 	@Test
 	public void intersecaoTests2() {
 		Reta a = new Reta(0, 2);
-		assertEquals(new Ponto(-1, 2).toString(), a.intersecao(new Reta(-1, 0)).toString());
+		System.out.println(a.intersecao(new Reta(-1, 0)).toString());
+		assertEquals(new Ponto(-2, 2).toString(), a.intersecao(new Reta(-1, 0)).toString());
 	}
 
 	@Test
@@ -222,7 +223,7 @@ public class Tests {
 	public void testdistanciaAcircunerencia2() {
 		Ponto c = new Ponto(10, 10);
 		Circunferencia o = new Circunferencia(new Ponto(-5, 0), new Ponto(5, 0), new Ponto(0, -5));
-		assertEquals(9.14213, o.distancia(c), 0);
+		assertEquals(9.142135623730951, o.distancia(c), 0);
 	}
 
 	@Test
@@ -236,6 +237,6 @@ public class Tests {
 	public void testdistanciaAcircunerencia4() {
 		Ponto c = new Ponto(2, 3);
 		Circunferencia o = new Circunferencia(new Ponto(0, -3), new Ponto(-3, 0), new Ponto(3, 0));
-		assertEquals(0.6056, o.distancia(c), 0);
+		assertEquals(0.6055512754639891, o.distancia(c), 0);
 	}
 }
