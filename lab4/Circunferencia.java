@@ -29,10 +29,10 @@ public class Circunferencia {
 		}
 		SegmentoReta s1=ps[0];
 		SegmentoReta s2=ps[1];
-		if(s1.declive()==s2.declive()){System.out.println("invalid points");}
+		if(s1.declive()==s2.declive()){System.out.println("invalid points");
+	System.exit(1);}
 		Reta r1=s1.inversa();
 		Reta r2=s2.inversa();
-		System.out.println(r1+" "+r2);
 		centro=r1.intersecao(r2);
 		System.out.println(centro);
 	}

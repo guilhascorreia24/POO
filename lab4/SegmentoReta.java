@@ -4,6 +4,9 @@ public class SegmentoReta{
 	private Ponto p2;
 
 	public SegmentoReta(Ponto p1,Ponto p2) {
+		if(p1.compareTo(p2)==1){
+			System.out.println("invalid points");
+			System.exit(1);}
 		this.p1 = p1;
 		this.p2 = p2;
 	}
@@ -15,10 +18,14 @@ public class SegmentoReta{
 		double m;
 		double b;
 		if(p1.getX()-p2.getX()==0){
-			m=p2.getX();
-			return new Reta(m);
+			b=p2.getY()/2;
+			return new Reta(Double.NEGATIVE_INFINITY,b);
 		}
-		m=declive();
+		if(p1.getY()-p2.getY()==0){
+			m=p2.getX()/2;
+			return new Reta(m,Double.NEGATIVE_INFINITY);
+		}
+		m=-1/declive();
 		b=-m*pontoMedio().getX()+pontoMedio().getY(); //B=y-mx
 		return new Reta(m,b);
 	}

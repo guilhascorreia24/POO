@@ -1,4 +1,4 @@
-public class Ponto {
+public class Ponto implements Comparable{
 	private double x;
 	private double y;
 	public Ponto(double x, double y) {
@@ -18,4 +18,14 @@ public class Ponto {
 			
 			return (double)Math.sqrt(dx * dx + dy * dy);
 		}
+	
+	@Override
+	public int compareTo(Object b){
+		Ponto p=(Ponto)b;
+		if(this.x==p.x && this.y==p.y) {
+			return 1;
+		}
+		return 0;
+	}
+	
 }
