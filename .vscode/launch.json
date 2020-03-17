@@ -4,7 +4,20 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Cliente",
+            "request": "launch",
+            "mainClass": "Cliente",
+            "projectName": "POO_59a428c6"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - client",
+            "request": "launch",
+            "mainClass": "client",
+            "projectName": "POO_59a428c6"
+        },
         {
             "type": "java",
             "name": "Debug (Launch) - Current File",
@@ -45,7 +58,7 @@
             "request": "launch",
             "mainClass": "lab3.lab3B.client",
             "projectName": "POO_59a428c6"
-        }
+        },
         {
             "type": "java",
             "name": "Debug (Launch)-client<POO_59a428c6>(2)",

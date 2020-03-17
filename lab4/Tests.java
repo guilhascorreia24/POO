@@ -10,27 +10,33 @@ public class Tests {
 		Ponto a = new Ponto(4,3);
 		Ponto b = new Ponto(3,-2);
 		//a(4,3) b(3,-2)
-		assertEquals(5.0990195135927845,a.distancia(b));
-		
-		Ponto c = new Ponto(-2,4.7f);
-		Ponto d = new Ponto(1,9.8f);
+		assertEquals(5.0990195135927845,a.distancia(b),0);}
+	@Test
+	public void testDistanceBetweenTwoPontos1() {
+		Ponto a= new Ponto(-2,4.7);
+		Ponto b = new Ponto(1,9.8);
 		//a(-2,4.7) b(1,9.8)
-		assertEquals(5.916924876994806,c.distancia(d));
-		
-		Ponto e = new Ponto(18.3f,2.3f);
-		Ponto f = new Ponto(1.8f,4.4f);
+		assertEquals(5.916924876994806,a.distancia(b),0);}
+	@Test
+	public void testDistanceBetweenTwoPontos2() {
+		Ponto a = new Ponto(18.3,2.3);
+		Ponto b = new Ponto(1.8,4.4);
 		//a(18.3,2.3) b(1.8,4.4)
-		assertEquals(16.633099530754933,e.distancia(f));
-		
-		Ponto g = new Ponto(12.1f,23f);
-		Ponto h = new Ponto(1.23f,4.6f);
+		assertEquals(16.633099530754933,a.distancia(b),0);}
+
+			@Test
+	public void testDistanceBetweenTwoPontos3() {
+		Ponto a = new Ponto(12.1,23);
+		Ponto b = new Ponto(1.23,4.6);
 		//a(12.1,23) b(1.23,4.6)
-		assertEquals(21.370935870943974,g.distancia(h));
+		assertEquals(21.370935870943974,a.distancia(b),0);}
 		
-		Ponto i = new Ponto(-8f,-2.3f);
-		Ponto j = new Ponto(-8.8f,-10.5f);
+		@Test
+		public void testDistanceBetweenTwoPontos4() {
+		Ponto a = new Ponto(-8,-2.3);
+		Ponto b = new Ponto(-8.8,-10.5);
 		//a(-8,-2.3) b(-8.8,-10.5)
-		assertEquals(8.238931969618392,i.distancia(j));
+		assertEquals(8.238931969618392,a.distancia(b),0);
 
 	
 	}
@@ -38,135 +44,158 @@ public class Tests {
 	@Test
 	public void testdeclive() {
 		
-		Ponto a = new Ponto(1.5f,2.3f);
-		Ponto b = new Ponto(5.6f,-1f);
+		Ponto a = new Ponto(1.5,2.3);
+		Ponto b = new Ponto(5.6,-1);
+		SegmentoReta r=new SegmentoReta(a, b);
 		//a(1.5,2.3) b(5.6,-1)
-		assertEquals(-0.8048780487804879,a.declive(b));
+		assertEquals(-0.8048780487804879,r.declive(),0);}
 
-		Ponto c = new Ponto(3.4f,2.2f);
-		Ponto d = new Ponto(1.1f,-9.8f);
+		@Test
+		public void testdeclive1() {
+			Ponto a= new Ponto(3.4,2.2);
+			Ponto b= new Ponto(1.1,-9.8);
+			SegmentoReta r=new SegmentoReta(a, b);
 		//a(3.4,2.2) b(1.1,-0.5)
-		assertEquals(5.217391304347826,c.declive(d));
+		assertEquals(5.217391304347826,r.declive(),0);}
 
-		Ponto e = new Ponto(-0.4f,0.0f);
-		Ponto f = new Ponto(0.0f,-2f);
+		@Test
+		public void testdeclive2() {
+			Ponto a= new Ponto(-0.4,0.0);
+			Ponto b = new Ponto(0.0,-2);
+			SegmentoReta r=new SegmentoReta(a, b);
 		//a(-0.4,0) b(0,-2)
-		assertEquals(-5,e.declive(f),0);
-		
-		Ponto g = new Ponto(1,5);
-		Ponto h = new Ponto(9,4);
+		assertEquals(-5,r.declive(),0);}
+		@Test
+		public void testdeclive3() {
+			Ponto a = new Ponto(1,5);
+			Ponto b = new Ponto(9,4);
+			SegmentoReta r=new SegmentoReta(a, b);
 		//a(1,5) b(9,4)
-		assertEquals(-0.125,g.declive(h));
-
-		Ponto i = new Ponto(-8,-1);
-		Ponto j = new Ponto(-3,-2.9);
+		assertEquals(-0.125,r.declive(),0);}
+		@Test
+		public void testdeclive4() {
+			Ponto a = new Ponto(-8,-1);
+			Ponto b = new Ponto(-3,-2.9);
+			SegmentoReta r=new SegmentoReta(a, b);
 		//a(-8,-1) b(-3,-2.9)
-		assertEquals(-0.38,i.declive(j));
-	}
+		assertEquals(-0.38,r.declive(),0);}
+	
 
 	@Test
 	public void testInversa() {
 		
-		Ponto a = new Ponto(0.0f,0.0f);
-		Ponto a1 = new Ponto(2.0f,2.0f);
+		Ponto a = new Ponto(0.0,0.0);
+		Ponto a1 = new Ponto(2.0,2.0);
 		SegmentoReta s1 = new SegmentoReta(a,a1);
-		Reta r1 = new Reta(-1.0f,2.0f);
-		assertEquals(r1, s1.inversa());
+		Reta r1 = new Reta(-1.0,2.0);
+		assertEquals(r1.toString(), s1.inversa().toString());
 
-		Ponto b = new Ponto(3.0f,-3.5f);
-		Ponto b1 = new Ponto(2.0f,2.5f);
+		Ponto b = new Ponto(3.0,-3.5);
+		Ponto b1 = new Ponto(2.0,2.5);
 		SegmentoReta bs = new SegmentoReta(b,b1);
-		Reta r2 = new Reta((float)(1/6),(float)(11/12));
-		assertEquals(r2, bs.inversa());
+		Reta r2 = new Reta((1/6),(11/12));
+		assertEquals(r2.toString(), bs.inversa().toString());
 
-		Ponto c = new Ponto(1.0f,1.0f);
-		Ponto c1 = new Ponto(0.0f,2.5f);
+		Ponto c = new Ponto(1.0,1.0);
+		Ponto c1 = new Ponto(0.0,2.5);
 		SegmentoReta cs = new SegmentoReta(c,c1);
 		Reta r3 = new Reta((2/3),(17/12));
-		assertEquals(r3, cs.inversa());
+		assertEquals(r3.toString(), cs.inversa().toString());
 
 		
-		Ponto d = new Ponto(-1.0f,-1.0f);
-		Ponto d1 = new Ponto(2.0f,2.0f);
+		Ponto d = new Ponto(-1.0,-1.0);
+		Ponto d1 = new Ponto(2.0,2.0);
 		SegmentoReta ds = new SegmentoReta(d,d1);
-		Reta r4 = new Reta(-1.0f,1.0f);
-		assertEquals(r4, ds.inversa());
+		Reta r4 = new Reta(-1.0,1.0);
+		assertEquals(r4.toString(), ds.inversa().toString());
 	
 	}
 
 
 	@Test
 	public void testPontoMedio() {
-		Ponto a = new Ponto(0.0f,0.0f);
-		Ponto a1 = new Ponto(2.0f,2.0f);
+		Ponto a = new Ponto(0.0,0.0);
+		Ponto a1 = new Ponto(2.0,2.0);
 		SegmentoReta as = new SegmentoReta(a,a1);
-		Ponto am = new Ponto(1.0f,1.0f);
-		assertEquals(am, as.pontoMedio());
+		Ponto am = new Ponto(1.0,1.0);
+		assertEquals(am.toString(), as.pontoMedio().toString());
+	}
 	
-		Ponto b = new Ponto(3.0f,-3.5f);
-		Ponto b1 = new Ponto(2.0f,2.5f);
+	@Test
+	public void testPontoMedio1() {
+		Ponto b = new Ponto(3.0,-3.5);
+		Ponto b1 = new Ponto(2.0,2.5);
 		SegmentoReta bs = new SegmentoReta(b,b1);
-		Ponto bm = new Ponto(2.5f,-0.5f);
-		assertEquals(bm, bs.pontomedio());
-
-		Ponto c = new Ponto(1.0f,1.0f);
-		Ponto c1 = new Ponto(0.0f,2.5f);
+		Ponto bm = new Ponto(2.5,-0.5);
+		assertEquals(bm.toString(), bs.pontoMedio().toString());}
+	
+	@Test
+	public void testPontoMedio2() {
+		Ponto c = new Ponto(1.0,1.0);
+		Ponto c1 = new Ponto(0.0,2.5);
 		SegmentoReta cs = new SegmentoReta(c,c1);
-		Ponto cm = new Ponto(0.5f,1.75f);
-		assertEquals(cm, cs.pontomedio());
+		Ponto cm = new Ponto(0.5,1.75);
+		assertEquals(cm.toString(), cs.pontoMedio().toString());}
 
-		Ponto d = new Ponto(-1.0f,-1.0f);
-		Ponto d1 = new Ponto(2.0f,2.0f);
+	@Test
+	public void testPontoMedio3() {
+		Ponto d = new Ponto(-1.0,-1.0);
+		Ponto d1 = new Ponto(2.0,2.0);
 		SegmentoReta ds = new SegmentoReta(d,d1);
-		Ponto dm = new Ponto(0.5f,0.5f);
-		assertEquals(dm, ds.pontoMedio());
+		Ponto dm = new Ponto(0.5,0.5);
+		assertEquals(dm.toString(), ds.pontoMedio().toString());
 
 
 	}
 
 
 	@Test
-	public void intersecaoTests(){
-		Reta a=new Reta(1f,0f);
-		assertEquals(new Ponto(0f,0f),a.Intersecao(new Reta(-1f,0f)));
-		
-		 a=new Reta(4f,5f);
-		assertEquals(new Ponto(1f,9f),a.Intersecao(new Reta(9f,0f)));
-
-		 a=new Reta(0f,2f);
-		assertEquals(new Ponto(-1f,2f),a.Intersecao(new Reta(-1f,0f)));
-
-		 a=new Reta(2f);
-		assertEquals(new Ponto(2f,2f),a.Intersecao(new Reta(1f,1f)));
-
-		 a=new Reta(-(1/8),8);
-		assertEquals(new Ponto(0.58536f,7.9268f),a.Intersecao(new Reta(5f,5f)));
-
-		 a=new Reta(2f,2f);
-		assertEquals(new Ponto(-1,0),a.Intersecao(new Reta(-2f,-2f)));
-
+	public void intersecaoTests0(){
+		Reta a=new Reta(1,0);
+		assertEquals(new Ponto(0,0).toString(),a.intersecao(new Reta(-1,0)).toString());
+	}
+	@Test
+	public void intersecaoTests1(){
+		 Reta a=new Reta(4,5);
+		assertEquals(new Ponto(1,9).toString(),a.intersecao(new Reta(9,0)).toString());
+	}
+	@Test
+	public void intersecaoTests2(){
+		Reta a=new Reta(0,2);
+		assertEquals(new Ponto(-1,2).toString(),a.intersecao(new Reta(-1,0)).toString());
+	}
+	@Test
+	public void intersecaoTests3(){
+		Reta a=new Reta(1,10);
+		assertEquals(new Ponto(-4.5,5.5).toString(),a.intersecao(new Reta(-1,1)).toString());
+	}
+	@Test
+	public void intersecaoTests4(){
+		Reta a=new Reta(-(1/8),8);
+		assertEquals(new Ponto(0.58536,7.9268).toString(),a.intersecao(new Reta(5,5)));
+	}
+	@Test
+	public void intersecaoTests5(){
+		Reta a=new Reta(2,2);
+		assertEquals(new Ponto(-1,0).toString(),a.intersecao(new Reta(-2,-2)).toString());
 	}
 
 	@Test
-	public void testdistanciaAcircunferencia(){
-		float raio=5;
-		Ponto c=new Ponto(0f,0f);
-		Circunferencia o=new Circunferencia(new Ponto(0f,1f),new Ponto(1f,1f),new Ponto(-1f,0f));
+	public void testdistanciaAcircunerencia(){;
+		Ponto c=new Ponto(0,0);
+		Circunferencia o=new Circunferencia(new Ponto(0,1),new Ponto(1,1),new Ponto(-1,0));
 		assertEquals("error",o.distancia(c));
 
-		raio=10;
-		c=new Ponto(10f,10f);
-		o=new Circunferencia(new Ponto(-5f,0f),new Ponto(5f,0f), new Ponto(0f,-5f));
-		assertEquals(9.14213f,o.distancia(c));
+		c=new Ponto(10,10);
+		o=new Circunferencia(new Ponto(-5,0),new Ponto(5,0), new Ponto(0,-5));
+		assertEquals(9.14213,o.distancia(c),0);
 
-		raio = 2;
-		c=new Ponto(0f,20f);
-		o=new Circunferencia(new Ponto(2f,0f), new Ponto(0f,2f), new Ponto(-2f,0f));
-		assertEquals(18f,o.distancia(c));
+		c=new Ponto(0,20);
+		o=new Circunferencia(new Ponto(2,0), new Ponto(0,2), new Ponto(-2,0));
+		assertEquals(18,o.distancia(c),0);
 
-		raio = 3;
-		c=new Ponto(2f,3f);
+		c=new Ponto(2,3);
 		o=new Circunferencia(new Ponto(0,-3) ,new Ponto(-3,0), new Ponto(3,0));
-		assertEquals(0.6056f,o.distancia(c));
+		assertEquals(0.6056,o.distancia(c),0);
 	}
 }

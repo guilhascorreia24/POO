@@ -1,6 +1,4 @@
 package lab1;
-
-
 public class Ponto {
 public double x, y;
 public Ponto(double x,double y){
