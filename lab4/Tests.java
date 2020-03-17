@@ -1,4 +1,4 @@
-/*import static org.junit.Assert.*;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
@@ -169,4 +169,4 @@ public class Tests {
 		o=new Circunferencia(new Ponto(0,-3) ,new Ponto(-3,0), new Ponto(3,0));
 		assertEquals(0.6056f,o.distancia(c));
 	}
-}*/
+}

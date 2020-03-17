@@ -4,6 +4,7 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "type": "java",
             "name": "Debug (Launch) - Current File",
@@ -43,6 +44,13 @@
             "name": "Debug (Launch)-client<POO_59a428c6>(2)",
             "request": "launch",
             "mainClass": "lab3.lab3B.client",
+            "projectName": "POO_59a428c6"
+        }
+        {
+            "type": "java",
+            "name": "Debug (Launch)-client<POO_59a428c6>(2)",
+            "request": "launch",
+            "mainClass": "lab4.client",
             "projectName": "POO_59a428c6"
         }
     ]
