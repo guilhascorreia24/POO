@@ -18,6 +18,5 @@ public class client {
         DecimalFormat df = new DecimalFormat("0.00", s);
         System.out.println(df.format(o.distancia(p4)));
         sc.close();
-
     }
 }

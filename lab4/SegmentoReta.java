@@ -18,12 +18,12 @@ public class SegmentoReta{
 		double m;
 		double b;
 		if(p1.getX()-p2.getX()==0){
-			b=p2.getY()/2;
-			return new Reta(Double.NEGATIVE_INFINITY,b);
+			m=p2.getX();
+			return new Reta(m);
 		}
 		if(p1.getY()-p2.getY()==0){
-			m=p2.getX()/2;
-			return new Reta(m,Double.NEGATIVE_INFINITY);
+			b=p2.getY();
+			return new Reta(Double.NEGATIVE_INFINITY,b);
 		}
 		m=-1/declive();
 		b=-m*pontoMedio().getX()+pontoMedio().getY(); //B=y-mx
@@ -31,11 +31,7 @@ public class SegmentoReta{
 	}
 	
 	public double declive(){
-		return (p2.getY()-p1.getY())/(p2.getX()-p1.getX());
-	}
-
-	public double Ordenada(){
-		return declive()*pontoMedio().getX()+pontoMedio().getY();
+		return (p1.getY()-p2.getY())/(p1.getX()-p2.getX());
 	}
 	public Ponto pontoMedio(){
 
