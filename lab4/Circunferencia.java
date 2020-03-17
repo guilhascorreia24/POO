@@ -27,6 +27,7 @@ public class Circunferencia {
 			ps[i++]=p;
 			}
 		}
+		pontos.clear();
 		SegmentoReta s1=ps[0];
 		SegmentoReta s2=ps[1];
 		if(s1.declive()==s2.declive()){System.out.println("invalid points");
