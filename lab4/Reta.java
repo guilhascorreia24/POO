@@ -1,33 +1,45 @@
 public class Reta {
-    private double declive;
-    private double ordenada=0;
-    private double vertical=Double.NEGATIVE_INFINITY;
+	private double declive ;
+	private double ordenada;
+	private double ver;
+	private boolean check = false;
 
-    public Reta(double m, double b) {
-        this.declive = m;
-        this.ordenada = b;
-    }
+	public Reta(double m, double b) {
+		this.check = false;
+		this.declive = m;
+		this.ordenada = b;
+		System.out.println("Reta= " + this);
+	}
 
-    public Reta(double vertical){
-        this.vertical=vertical;
-    }
+	public Reta(double ver) {
+		this.check = true;
+		this.ver = ver;
+		System.out.println("Reta Vertical= " + this);
+	}
 
-    public Ponto intersecao(Reta r1) {
-        if(!Double.isInfinite(vertical)){
-            ordenada=vertical;
-        }
-	    double x = (r1.ordenada - this.ordenada) / (this.declive - r1.declive);
-        double y = this.declive * x + this.ordenada;
-        if(!Double.isInfinite(vertical)){
-            double s=x;
-            y=x;
-            x=s;
-        }
-	    return new Ponto( x,  y);
-    }
+	public Ponto intersecao(Reta r1) {
+		double x = 0;
+		double y = 0;
+		System.out.println("Check= "+ this.check+" "+r1.check );
+		if (!this.check && !r1.check) {
+			x = (r1.ordenada - this.ordenada) / (this.declive - r1.declive);
+			y = this.declive * x + this.ordenada;
+		} 
+		else if (this.check) {
+			x = this.ver;
+			y = r1.declive * x + r1.ordenada;
+		} 
+		else if (r1.check) {
+			x = r1.ver;
+			y = this.declive * x + this.ordenada;
+		}
+		System.out.println("X= " + x +" Y= "+ y);
+		return new Ponto(x, y);
+		
+	}
 
-    public String toString(){
-        return declive+" "+ordenada;
-    }
-    
+	public String toString() {
+		return declive + " " + ordenada + " " + ver;
+	}
+
 }

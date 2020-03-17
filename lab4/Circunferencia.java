@@ -1,4 +1,3 @@
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,7 +35,7 @@ public class Circunferencia {
 		Reta r1=s1.inversa();
 		Reta r2=s2.inversa();
 		centro=r1.intersecao(r2);
-		System.out.println(centro);
+		System.out.println("Centro= "+centro);
 	}
 
 
@@ -48,11 +47,12 @@ public class Circunferencia {
 		double dx = centro.getX() - p.getX();
 		double dy = centro.getY() - p.getY();
 		double objetivo=(double)Math.sqrt(dx * dx + dy * dy);
+		System.out.println("Objetivo= "+ objetivo);
 		if(objetivo<=raio){
 			System.out.println("invalid points"); 
 			System.exit(1);
 		}
-		objetivo= objetivo-raio;
+		objetivo= objetivo-raio; 
 		return objetivo;
 	}
 
