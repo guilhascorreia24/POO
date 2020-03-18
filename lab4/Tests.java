@@ -1,4 +1,4 @@
-import static org.junit.Assert.*;
+/*import static org.junit.Assert.*;
 
 import org.junit.Test;
 
@@ -9,7 +9,6 @@ public class Tests {
 
 		Ponto a = new Ponto(4, 3);
 		Ponto b = new Ponto(3, -2);
-		// a(4,3) b(3,-2)
 		assertEquals(5.0990195135927845, a.distancia(b), 0);
 	}
 
@@ -17,7 +16,6 @@ public class Tests {
 	public void testDistanceBetweenTwoPontos1() {
 		Ponto a = new Ponto(-2, 4.7);
 		Ponto b = new Ponto(1, 9.8);
-		// a(-2,4.7) b(1,9.8)
 		assertEquals(5.916924876994806, a.distancia(b), 0);
 	}
 
@@ -25,7 +23,6 @@ public class Tests {
 	public void testDistanceBetweenTwoPontos2() {
 		Ponto a = new Ponto(18.3, 2.3);
 		Ponto b = new Ponto(1.8, 4.4);
-		// a(18.3,2.3) b(1.8,4.4)
 		assertEquals(16.633099530754933, a.distancia(b), 0);
 	}
 
@@ -33,7 +30,6 @@ public class Tests {
 	public void testDistanceBetweenTwoPontos3() {
 		Ponto a = new Ponto(12.1, 23);
 		Ponto b = new Ponto(1.23, 4.6);
-		// a(12.1,23) b(1.23,4.6)
 		assertEquals(21.370935870943974, a.distancia(b), 0);
 	}
 
@@ -41,7 +37,6 @@ public class Tests {
 	public void testDistanceBetweenTwoPontos4() {
 		Ponto a = new Ponto(-8, -2.3);
 		Ponto b = new Ponto(-8.8, -10.5);
-		// a(-8,-2.3) b(-8.8,-10.5)
 		assertEquals(8.238931969618392, a.distancia(b), 0);
 	}
 
@@ -51,7 +46,6 @@ public class Tests {
 		Ponto a = new Ponto(1.5, 2.3);
 		Ponto b = new Ponto(5.6, -1);
 		SegmentoReta r = new SegmentoReta(a, b);
-		// a(1.5,2.3) b(5.6,-1)
 		assertEquals(-0.8048780487804879, r.declive(), 0);
 	}
 
@@ -60,7 +54,6 @@ public class Tests {
 		Ponto a = new Ponto(3.4, 2.2);
 		Ponto b = new Ponto(1.1, -9.8);
 		SegmentoReta r = new SegmentoReta(a, b);
-		// a(3.4,2.2) b(1.1,-0.5)
 		assertEquals(5.217391304347826, r.declive(), 0);
 	}
 
@@ -69,7 +62,6 @@ public class Tests {
 		Ponto a = new Ponto(-0.4, 0.0);
 		Ponto b = new Ponto(0.0, -2);
 		SegmentoReta r = new SegmentoReta(a, b);
-		// a(-0.4,0) b(0,-2)
 		assertEquals(-5, r.declive(), 0);
 	}
 
@@ -213,12 +205,6 @@ public class Tests {
 		assertEquals(new Ponto(-1, 0).toString(), a.intersecao(new Reta(-2, -2)).toString());
 	}
 
-	/*
-	 * @Test public void testdistanciaAcircunerencia(){ Ponto c=new Ponto(0,0);
-	 * Circunferencia o=new Circunferencia(new Ponto(0,1),new Ponto(1,1),new
-	 * Ponto(-1,0)); assertEquals("invalid points",o.distancia(c));}
-	 */
-
 	@Test
 	public void testdistanciaAcircunerencia2() {
 		Ponto c = new Ponto(10, 10);
@@ -239,4 +225,4 @@ public class Tests {
 		Circunferencia o = new Circunferencia(new Ponto(0, -3), new Ponto(-3, 0), new Ponto(3, 0));
 		assertEquals(0.6055512754639891, o.distancia(c), 0);
 	}
-}
+}*/

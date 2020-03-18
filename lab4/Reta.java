@@ -8,19 +8,18 @@ public class Reta {
 		this.check = false;
 		this.declive = m;
 		this.ordenada = b;
-		System.out.println("Reta= " + this);
+
 	}
 
 	public Reta(double ver) {
 		this.check = true;
 		this.ver = ver;
-		System.out.println("Reta Vertical= " + this);
+
 	}
 
 	public Ponto intersecao(Reta r1) {
 		double x = 0;
 		double y = 0;
-		System.out.println("Check= "+ this.check+" "+r1.check );
 		if (!this.check && !r1.check) {
 			x = (r1.ordenada - this.ordenada) / (this.declive - r1.declive);
 			y = this.declive * x + this.ordenada;
@@ -33,7 +32,6 @@ public class Reta {
 			x = r1.ver;
 			y = this.declive * x + this.ordenada;
 		}
-		System.out.println("X= " + x +" Y= "+ y);
 		return new Ponto(x, y);
 		
 	}
