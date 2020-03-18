@@ -61,6 +61,10 @@ public class Tests {
 	public void testSegmento3(){
 		new SegmentoReta(new Ponto(10,1),new Ponto(0,3));
 	}
+	@Test
+	public void testSegmento4(){
+		new SegmentoReta(new Ponto(10,1),new Ponto(10,1));
+	}
 
 //-----------------------------------------teste Contrutor Circunferencia --------------------------------------
 
@@ -186,6 +190,14 @@ public class Tests {
 		// a(-8,-1) b(-3,-2.9)
 		assertEquals(-6, r.declive(), 0);
 	}
+	@Test
+	public void testdeclive6() {
+		Ponto a = new Ponto(3, -3.5);
+		Ponto b = new Ponto(3, -3.5);
+		SegmentoReta r = new SegmentoReta(a, b);
+		// a(-8,-1) b(-3,-2.9)
+		assertEquals("invalid points", r.declive());
+	}
 
 ///---------------------------------------------Teste a funcao Inversa------------------------
 	@Test
@@ -205,7 +217,7 @@ public class Tests {
 		SegmentoReta bs = new SegmentoReta(b, b1);
 		double t = (double)1 / 6;
 		double t1 =-(double)11 / 12;
-		Reta r2 = new Reta(t, t1);//System.out.println(t+" "+t1);
+		Reta r2 = new Reta(t, t1);
 		assertEquals(r2.toString(), bs.inversa().toString());
 	}
 
@@ -323,5 +335,18 @@ public class Tests {
 		Ponto c = new Ponto(2, 3);
 		Circunferencia o = new Circunferencia(new Ponto(0, -3), new Ponto(-3, 0), new Ponto(3, 0));
 		assertEquals(0.6055512754639891, o.distancia(c), 0);
+	}
+
+	@Test
+	public void testdistanciaAcircunerencia5() {
+		Ponto c = new Ponto(0, 0);
+		Circunferencia o = new Circunferencia(new Ponto(0, -3), new Ponto(-3, 0), new Ponto(3, 0));
+		assertEquals("invalid points", o.distancia(c));
+	}
+	@Test
+	public void testdistanciaAcircunerencia6() {
+		Ponto c = new Ponto(0, 0);
+		Circunferencia o = new Circunferencia(new Ponto(0, 0), new Ponto(1, 1), new Ponto(2, 2));
+		assertEquals("invalid points", o.distancia(c));
 	}
 }
