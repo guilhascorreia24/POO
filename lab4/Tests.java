@@ -1,9 +1,96 @@
-/*import static org.junit.Assert.*;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 public class Tests {
 
+	//-----------------------Teste connstrutor Ponto------------------------------
+	@Test
+	public void testPonto(){
+		new Ponto(0,1);
+	}
+	
+	@Test
+	public void testPonto1(){
+		new Ponto(1,11);
+	}
+
+	@Test
+	public void TestPonto2(){
+		new Ponto(0,0);
+	}
+	
+	@Test
+	public void TestPonto3(){
+		new Ponto(321,213);
+	}
+
+//---------------------------------Teste Contrutor Reta-------------------------------------
+	@Test
+	public void TestReta1(){
+		new Reta(2.2,27);
+	}
+	@Test
+	public void TestReta2(){
+		new Reta(1,0);
+	}
+	@Test
+	public void TestReta3(){
+		new Reta(24);
+	}
+	@Test
+	public void TestReta4(){
+		new Reta(0,24);
+	}
+
+//---------------------------------------Teste Contrutor SegemntoReta-------------------------
+	@Test
+	public void testSegmento(){
+		new SegmentoReta(new Ponto(0,1),new Ponto(321,213));
+	}
+	@Test
+	public void testSegmento1(){
+		new SegmentoReta(new Ponto(7,1),new Ponto(3,2));
+	}
+
+	@Test
+	public void testSegmento2(){
+		new SegmentoReta(new Ponto(660,1),new Ponto(0,1));
+	}
+	@Test
+	public void testSegmento3(){
+		new SegmentoReta(new Ponto(10,1),new Ponto(0,3));
+	}
+
+//-----------------------------------------teste Contrutor Circunferencia --------------------------------------
+
+	@Test
+	public void TestCircunferencia(){
+		new Circunferencia(new Ponto(0,0), new Ponto(1,1), new Ponto(2,2));
+	}
+
+	@Test
+	public void TestCircunferencia1(){
+		new Circunferencia(new Ponto(20,1), new Ponto(20,1), new Ponto(10,1));
+	}
+
+	@Test
+	public void TestCircunferencia2(){
+		new Circunferencia(new Ponto(9,1), new Ponto(-1,1), new Ponto(0,1));
+	}
+
+	@Test
+	public void TestCircunferencia3(){
+		new Circunferencia(new Ponto(10,1), new Ponto(9,11), new Ponto(10,9));
+	}
+
+	@Test
+	public void TestCircunferencia4(){
+		new Circunferencia(new Ponto(10,10), new Ponto(0,10), new Ponto(10,0));
+	}
+
+
+//------------------------------------------teste distancia entre 2 pontos---------------------------
 	@Test
 	public void testDistanceBetweenTwoPontos() {
 
@@ -40,6 +127,14 @@ public class Tests {
 		assertEquals(8.238931969618392, a.distancia(b), 0);
 	}
 
+	@Test
+	public void testDistanceBetweenTwoPontos5(){
+		Ponto a = new Ponto(5,2);
+		Ponto b = new Ponto(5,2);
+		assertEquals(0, a.distancia(b), 0);
+	}
+
+//--------------------------------------------Teste declive--------------------------------------
 	@Test
 	public void testdeclive() {
 
@@ -92,6 +187,7 @@ public class Tests {
 		assertEquals(-6, r.declive(), 0);
 	}
 
+///---------------------------------------------Teste a funcao Inversa------------------------
 	@Test
 	public void testInversa() {
 
@@ -131,6 +227,7 @@ public class Tests {
 		assertEquals(r4.toString(), ds.inversa().toString());
 	}
 
+//---------------------------------teste ao ponto medio de um segemnto de Reta------------------------
 	@Test
 	public void testPontoMedio() {
 		Ponto a = new Ponto(0.0, 0.0);
@@ -168,6 +265,7 @@ public class Tests {
 
 	}
 
+//--------------------------------------------teste a funcao da intersecao de 2 retas----------------------
 	@Test
 	public void intersecaoTests0() {
 		Reta a = new Reta(1, 0);
@@ -205,6 +303,7 @@ public class Tests {
 		assertEquals(new Ponto(-1, 0).toString(), a.intersecao(new Reta(-2, -2)).toString());
 	}
 
+//-----------------------------------------teste a distancia da circunferencia ao ponto-----------------------------
 	@Test
 	public void testdistanciaAcircunerencia2() {
 		Ponto c = new Ponto(10, 10);
@@ -225,4 +324,4 @@ public class Tests {
 		Circunferencia o = new Circunferencia(new Ponto(0, -3), new Ponto(-3, 0), new Ponto(3, 0));
 		assertEquals(0.6055512754639891, o.distancia(c), 0);
 	}
-}*/
+}
