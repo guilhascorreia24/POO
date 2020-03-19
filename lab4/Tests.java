@@ -190,6 +190,7 @@ public class Tests {
 		// a(-8,-1) b(-3,-2.9)
 		assertEquals(-6, r.declive(), 0);
 	}
+	
 	@Test
 	public void testdeclive6() {
 		Ponto a = new Ponto(3, -3.5);
@@ -336,7 +337,7 @@ public class Tests {
 		Circunferencia o = new Circunferencia(new Ponto(0, -3), new Ponto(-3, 0), new Ponto(3, 0));
 		assertEquals(0.6055512754639891, o.distancia(c), 0);
 	}
-
+	
 	@Test
 	public void testdistanciaAcircunerencia5() {
 		Ponto c = new Ponto(0, 0);
