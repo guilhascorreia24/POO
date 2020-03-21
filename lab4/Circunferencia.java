@@ -30,8 +30,7 @@ public class Circunferencia {
 		SegmentoReta s1 = ps[0];
 		SegmentoReta s2 = ps[1];
 		if (s1.declive() == s2.declive()) {
-			System.out.println("invalid points");
-			System.exit(1);
+			throw new IllegalArgumentException("invalid points");
 		}
 		Reta r1 = s1.inversa();
 		Reta r2 = s2.inversa();
@@ -47,8 +46,7 @@ public class Circunferencia {
 		double dy = centro.getY() - p.getY();
 		double objetivo = (double) Math.sqrt(dx * dx + dy * dy);
 		if (objetivo <= raio) {
-			System.out.println("invalid points");
-			System.exit(1);
+			throw new IllegalArgumentException("invalid points");
 		}
 		objetivo = objetivo - raio;
 		return objetivo;

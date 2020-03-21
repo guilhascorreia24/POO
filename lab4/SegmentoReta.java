@@ -5,8 +5,7 @@ public class SegmentoReta{
 
 	public SegmentoReta(Ponto p1,Ponto p2) {
 		if(p1.compareTo(p2)==1){
-			System.out.println("invalid points");
-			System.exit(1);}
+			throw new IllegalArgumentException("invalid points");}
 		this.p1 = p1;
 		this.p2 = p2;
 	}

@@ -1,4 +1,4 @@
-/*import static org.junit.Assert.*;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
@@ -61,24 +61,24 @@ public class Tests {
 	public void testSegmento3(){
 		new SegmentoReta(new Ponto(10,1),new Ponto(0,3));
 	}
-	@Test
+	@Test (expected = IllegalArgumentException.class)
 	public void testSegmento4(){
 		new SegmentoReta(new Ponto(10,1),new Ponto(10,1));
 	}
 
 //-----------------------------------------teste Contrutor Circunferencia --------------------------------------
 
-	@Test
+	@Test (expected = IllegalArgumentException.class)
 	public void TestCircunferencia(){
 		new Circunferencia(new Ponto(0,0), new Ponto(1,1), new Ponto(2,2));
 	}
 
-	@Test
+	@Test (expected = IllegalArgumentException.class)
 	public void TestCircunferencia1(){
 		new Circunferencia(new Ponto(20,1), new Ponto(20,1), new Ponto(10,1));
 	}
 
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void TestCircunferencia2(){
 		new Circunferencia(new Ponto(9,1), new Ponto(-1,1), new Ponto(0,1));
 	}
@@ -190,15 +190,7 @@ public class Tests {
 		// a(-8,-1) b(-3,-2.9)
 		assertEquals(-6, r.declive(), 0);
 	}
-	
-	@Test
-	public void testdeclive6() {
-		Ponto a = new Ponto(3, -3.5);
-		Ponto b = new Ponto(3, -3.5);
-		SegmentoReta r = new SegmentoReta(a, b);
-		// a(-8,-1) b(-3,-2.9)
-		assertEquals("invalid points", r.declive());
-	}
+
 
 ///---------------------------------------------Teste a funcao Inversa------------------------
 	@Test
@@ -338,16 +330,16 @@ public class Tests {
 		assertEquals(0.6055512754639891, o.distancia(c), 0);
 	}
 	
-	@Test
+	@Test (expected = IllegalArgumentException.class)
 	public void testdistanciaAcircunerencia5() {
 		Ponto c = new Ponto(0, 0);
 		Circunferencia o = new Circunferencia(new Ponto(0, -3), new Ponto(-3, 0), new Ponto(3, 0));
 		assertEquals("invalid points", o.distancia(c));
 	}
-	@Test
+	@Test (expected = IllegalArgumentException.class)
 	public void testdistanciaAcircunerencia6() {
 		Ponto c = new Ponto(0, 0);
 		Circunferencia o = new Circunferencia(new Ponto(0, 0), new Ponto(1, 1), new Ponto(2, 2));
 		assertEquals("invalid points", o.distancia(c));
 	}
-}*/
+}
