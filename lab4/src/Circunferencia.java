@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,7 +31,12 @@ public class Circunferencia {
 		SegmentoReta s1 = ps[0];
 		SegmentoReta s2 = ps[1];
 		if (s1.declive() == s2.declive()) {
-			throw new IllegalArgumentException("invalid points");
+			try{
+				if(s1.declive() == s2.declive()) throw new IOException();
+			}catch (IOException e){
+				System.out.println("invalid points");
+				System.exit(1);
+			}
 		}
 		Reta r1 = s1.inversa();
 		Reta r2 = s2.inversa();
@@ -45,8 +51,11 @@ public class Circunferencia {
 		double dx = centro.getX() - p.getX();
 		double dy = centro.getY() - p.getY();
 		double objetivo = (double) Math.sqrt(dx * dx + dy * dy);
-		if (objetivo <= raio) {
-			throw new IllegalArgumentException("invalid points");
+		try{
+			if(objetivo <= raio)throw new IOException();
+		}catch (IOException e){
+			System.out.println("invalid points");
+			System.exit(1);
 		}
 		objetivo = objetivo - raio;
 		return objetivo;

@@ -1,11 +1,17 @@
+import java.io.IOException;
+
 public class SegmentoReta{
 	
 	private Ponto p1;
 	private Ponto p2;
 
 	public SegmentoReta(Ponto p1,Ponto p2) {
-		if(p1.compareTo(p2)==1){
-			throw new IllegalArgumentException("invalid points");}
+			try{
+				if(p1.compareTo(p2)==1)throw new IOException();
+			}catch (IOException e){
+				System.out.println("invalid points");
+				System.exit(1);
+			}
 		this.p1 = p1;
 		this.p2 = p2;
 	}
