@@ -1,11 +1,13 @@
 import java.util.Scanner;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 public class Client {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        sc.useLocale(Locale.US);
         Ponto p1 = new Ponto(sc.nextDouble(), sc.nextDouble());
         Ponto p2 = new Ponto(sc.nextDouble(), sc.nextDouble());
         Ponto p3 = new Ponto(sc.nextDouble(), sc.nextDouble());
