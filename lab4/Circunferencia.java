@@ -30,14 +30,12 @@ public class Circunferencia {
 		pontos.clear();
 		SegmentoReta s1 = ps[0];
 		SegmentoReta s2 = ps[1];
-		if (s1.declive() == s2.declive()) {
 			try{
 				if(s1.declive() == s2.declive()) throw new IOException();
 			}catch (IOException e){
 				System.out.println("invalid points");
-				System.exit(1);
+				System.exit(0);
 			}
-		}
 		Reta r1 = s1.inversa();
 		Reta r2 = s2.inversa();
 		return r1.intersecao(r2);
@@ -55,7 +53,7 @@ public class Circunferencia {
 			if(objetivo <= raio)throw new IOException();
 		}catch (IOException e){
 			System.out.println("invalid points");
-			System.exit(1);
+			System.exit(0);
 		}
 		objetivo = objetivo - raio;
 		return objetivo;

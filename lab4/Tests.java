@@ -268,7 +268,6 @@ public class Tests {
 	@Test
 	public void intersecaoTests2() {
 		Reta a = new Reta(0, 2);
-		System.out.println(a.intersecao(new Reta(-1, 0)).toString());
 		assertEquals(new Ponto(-2, 2).toString(), a.intersecao(new Reta(-1, 0)).toString());
 	}
 

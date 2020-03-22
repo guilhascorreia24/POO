@@ -10,7 +10,7 @@ public class SegmentoReta{
 				if(p1.compareTo(p2)==1)throw new IOException();
 			}catch (IOException e){
 				System.out.println("invalid points");
-				System.exit(1);
+				System.exit(0);
 			}
 		this.p1 = p1;
 		this.p2 = p2;
