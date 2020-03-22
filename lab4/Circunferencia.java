@@ -8,11 +8,28 @@ public class Circunferencia {
 	private double raio;
 	private Ponto centro;
 
+	/**
+	 * 
+	 * @param p1 primeiro ponto da circunferencia
+	 * @param p2 segundo ponto da circunferencia
+	 * @param p3 terceiro ponto da circunferencia
+	 * @inv centro ponto que representa a circunferencia sem condicoes previas
+	 * @inv raio e a distancia do centro a um dos pontos(p1,p2,p3) se condicoes previas
+	 */
 	public Circunferencia(Ponto p1, Ponto p2, Ponto p3) {
 		this.centro=centro(p1, p2, p3);
 		this.raio = p1.distancia(centro);
 	}
 
+	
+	/** 
+	 * @param p1 primeiro ponto da circunferencia
+	 * @param p2 segundo ponto da circunferencia
+	 * @param p3 terceiro ponto da circunferencia
+	 * elabora os 2 segementos de reta que passa nos 3 pontos, deseguida encontra as inversas 
+	 * desses 2 segementos reta e por fim calcula o ponto de intersecao dessas 2 retas  
+	 * @return Ponto devolve um ponto de intersecao das 2 retas que é o centro
+	 */
 	private Ponto centro(Ponto p1, Ponto p2, Ponto p3) {
 		Map<SegmentoReta, Double> pontos = new HashMap<SegmentoReta, Double>();
 		pontos.put(new SegmentoReta(p1, p2), p1.distancia(p2));
@@ -43,7 +60,11 @@ public class Circunferencia {
 
 	/**
 	 * 
-	 * @param Ponto
+	 * @param Ponto p encontra-se fora da circunferencia
+	 * calcula a distancia do ponto p ao centro da circunferencia e deppois subtrai pelo raio
+	 * @return double devolve a distancia do ponto p a circunferencia pela formula 
+	 * @throws new IOException() sai do sistema com um mensagem "invalid points" se o raio for maior que a distancia entre os
+	 * pontos p e centro
 	 */
 	public double distancia(Ponto p) {
 		double dx = centro.getX() - p.getX();
@@ -59,10 +80,19 @@ public class Circunferencia {
 		return objetivo;
 	}
 
+	
+	/** 
+	 * @
+	 * @return double devolve o raio da circunferencia
+	 */
 	public double getRaio() {
 		return raio;
 	}
 
+	
+	/** 
+	 * @return Ponto devolve o ponto do centro
+	 */
 	public Ponto getCentro() {
 		return new Ponto(centro.getX(), centro.getY());
 	}
