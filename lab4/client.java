@@ -9,7 +9,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
-public class client {
+public class Client {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

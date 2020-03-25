@@ -13,11 +13,11 @@ public class SegmentoReta{
 
 	/**
 	 * @pre pontos nao podem ser iguais
-	 * @param p1 ponto que faz o segmento de reta
-	 * @param p2 ponto que faz o segmento de reta
+	 * @param p1 ponto extremidade do segmento de reta
+	 * @param p2 ponto extremidade do segmento de reta
 	 * @throws new IOException() apresenta uma mensagem "invalid points" e encerra o programa caso os pontos sejam iguais
-	 * @inv this.p1 ponto que faz parte do segmento
-	 * @inv this.p2 ponto que faz parte do segmento 
+	 * @inv this.p1 ponto extremidade do segmento de reta
+	 * @inv this.p2 ponto extremidade do segmento de reta
 	 */
 	public SegmentoReta(Ponto p1,Ponto p2) {
 			try{
@@ -33,19 +33,19 @@ public class SegmentoReta{
 	
 	/** 
 	 * 
-	 * @return Ponto devolve o ponto que controi o segmento
+	 * @return Ponto devolve o ponto de uma extremidade do segmento de reta
 	 */
 	public Ponto getp1() {return new Ponto(p1.getX(),p1.getY());}
 	
 	/** 
 	 * 
-	 * @return Ponto devolve o ponto que controi o segmento
+	 * @return Ponto devolve o ponto de uma extremidade do segmento de reta
 	 */
 	public Ponto getp2() {return new Ponto(p2.getX(),p2.getY());}
 
 	
-	/** 
-	 * @return Reta devolve a reta que é inversa ao segmento que passa no ponto medio do segmento
+	/**
+	 * @return Reta devolve a reta que e inversa ao segmento que passa no ponto medio do segmento
 	 */
 	public Reta inversa() {
 		double m;
@@ -65,14 +65,14 @@ public class SegmentoReta{
 	
 	
 	/** 
-	 * @return double devolve o declive do segmento do segmento atraves da formula
+	 * @return double devolve o declive do segmento do segmento atraves da formula do declive
 	 */
 	public double declive(){
 		return (p1.getY()-p2.getY())/(p1.getX()-p2.getX());
 	}
 	
 	/** 
-	 * @return Ponto devolve o ponto medio do segmento atraves da formula
+	 * @return Ponto devolve o ponto medio do segmento atraves da formula do ponto medio
 	 */
 	public Ponto pontoMedio(){
 

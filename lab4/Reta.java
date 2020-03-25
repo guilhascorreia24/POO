@@ -16,7 +16,7 @@ public class Reta {
 	 * @param b ordenada da reta
 	 * @inv this.declive declive da reta
 	 * @inv this.ordenada ordenada da reta
-	 * @inv this.check verifica se é uma reta que passa no eixo do y
+	 * @inv this.check afirma que a reta nao e paralela ao eixo y
 	 */
 	public Reta(double m, double b) {
 		this.check = false;
@@ -26,10 +26,9 @@ public class Reta {
 	}
 
 	/**
-	 * 
 	 * @param ver abcissa da reta em caso dela ser vertical
 	 * @inv this.ver abcissa da reta, caso seja vertical
-	 * @inv this.check verifica se é uma reta que passa no eixo do y
+	 * @inv this.check afirma que a reta nao e paralela ao eixo y
 	 */
 	public Reta(double ver) {
 		this.check = true;
@@ -39,7 +38,7 @@ public class Reta {
 
 	
 	/** 
-	 * @param r1 reta de intersecao
+	 * @param r1 reta reta que interseta o objeto presente
 	 * @return Ponto devolve o ponto em que as 2 retas se intersetam
 	 * 
 	 */
@@ -64,7 +63,7 @@ public class Reta {
 
 	
 	/** 
-	 * @return String devolve o formato de impresao da reta
+	 * @return String devolve o formato de impressao da reta
 	 */
 	public String toString() {
 		return declive + " " + ordenada + " " + ver;
