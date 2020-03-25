@@ -12,7 +12,7 @@ public class SegmentoReta{
 	private Ponto p2;
 
 	/**
-	 * 
+	 * @pre pontos nao podem ser iguais
 	 * @param p1 ponto que faz o segmento de reta
 	 * @param p2 ponto que faz o segmento de reta
 	 * @throws new IOException() apresenta uma mensagem "invalid points" e encerra o programa caso os pontos sejam iguais

@@ -16,7 +16,6 @@ public class Ponto implements Comparable<Ponto>{
 	 * @inv this.y e a ordenada do ponto
 	 */
 	public Ponto(double x, double y) {
-		
 		this.x = x;
 		this.y = y;
 	}

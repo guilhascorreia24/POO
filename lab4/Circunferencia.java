@@ -33,7 +33,8 @@ public class Circunferencia {
 	 * @param p2 segundo ponto da circunferencia
 	 * @param p3 terceiro ponto da circunferencia
 	 * elabora os 2 segementos de reta que passa nos 3 pontos, deseguida encontra as inversas 
-	 * desses 2 segementos reta e por fim calcula o ponto de intersecao dessas 2 retas  
+	 * desses 2 segementos reta e por fim calcula o ponto de intersecao dessas 2 retas 
+	 * @pos declive das retas nao pode ser igual 
 	 * @return Ponto devolve um ponto de intersecao das 2 retas que é o centro
 	 */
 	private Ponto centro(Ponto p1, Ponto p2, Ponto p3) {
@@ -65,7 +66,7 @@ public class Circunferencia {
 	}
 
 	/**
-	 * 
+	 * @pre ponto tem estar fora da circunferencia
 	 * @param Ponto p encontra-se fora da circunferencia
 	 * calcula a distancia do ponto p ao centro da circunferencia e deppois subtrai pelo raio
 	 * @return double devolve a distancia do ponto p a circunferencia pela formula 
