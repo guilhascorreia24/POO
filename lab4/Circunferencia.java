@@ -29,11 +29,11 @@ public class Circunferencia {
 
 	
 	/** 
+	 * elabora os 2 segmentos de reta com um ponto central e os outros dois, como extremos de cada uma dos segmentos, de seguida 	 * encontra as inversas 
+	 * desses 2 segmentos de reta e por fim calcula o ponto de intersecao dessas 2 retas 
 	 * @param p1 primeiro ponto da circunferencia
 	 * @param p2 segundo ponto da circunferencia
 	 * @param p3 terceiro ponto da circunferencia
-	 * elabora os 2 segmentos de reta com um ponto central e os outros dois, como extremos de cada uma dos segmentos, de seguida encontra as inversas 
-	 * desses 2 segmentos de reta e por fim calcula o ponto de intersecao dessas 2 retas 
 	 * @pos declive das retas nao pode ser igual 
 	 * @return Ponto devolve o ponto de intersecao das 2 retas que sera o centro da cirncuferencia
 	 */
@@ -66,9 +66,9 @@ public class Circunferencia {
 	}
 
 	/**
+	 * calcula a distancia do ponto p ao centro da circunferencia e depois subtrai pelo raio
 	 * @pre ponto tem  de estar fora da circunferencia
 	 * @param Ponto p encontra se fora da circunferencia
-	 * calcula a distancia do ponto p ao centro da circunferencia e depois subtrai pelo raio
 	 * @return double devolve a distancia do ponto p a circunferencia pela formula 
 	 * @throws new IOException() sai do sistema com um mensagem "invalid points" se o raio for maior que a distancia entre os
 	 * pontos p e o centro
