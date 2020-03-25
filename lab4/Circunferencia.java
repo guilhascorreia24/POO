@@ -3,7 +3,6 @@
  * @author Guilherme Correia 61098  
  * @author David Fernandes 58604
  * @author Bruno Susana 61024
- * @since Problem for lab groups: The Point and the Circumference
  */
 import java.io.IOException;
 import java.util.Collections;
