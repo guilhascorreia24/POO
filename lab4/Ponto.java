@@ -1,3 +1,10 @@
+/**
+ * @version 1.2 
+ * @author Guilherme Correia 61098  
+ * @author David Fernandes 58604
+ * @author Bruno Susana 61024
+ * @since Problem for lab groups: The Point and the Circumference
+ */
 public class Ponto implements Comparable<Ponto>{
 	private double x;
 	private double y;
