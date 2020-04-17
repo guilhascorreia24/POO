@@ -1,9 +1,15 @@
+/**
+ * @version 1.2 
+ * @author Guilherme Correia 61098  
+ * @author David Fernandes 58604
+ * @author Bruno Susana 61024
+ */
 import java.util.Scanner;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
-public class client {
+public class Client {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
