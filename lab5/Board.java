@@ -6,12 +6,15 @@ public class Board implements iMatrix {
 
 	@Override
 	public void set() {
-		
-		
+			
 	}
 
 	@Override
 	public void get() {
+
 	}
 
+	public void child(){
+
+	}
 }
