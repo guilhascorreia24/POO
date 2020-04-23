@@ -10,7 +10,7 @@ public int getCell() {
     return STATE;
   }
 
-  public void seCell(int newValue) {
+  public void setCell(int newValue) {
     this.STATE = newValue;
   }
 
@@ -30,13 +30,13 @@ public int isDead(){
     return 1;
 }
 
-public int isBorn(Cell c){
+public int isBorn(){
 
     if(this.getCell() == 0){
+        this.setCell(1);
 
+        return 1;
     }
-    
-    
     return 0;
 }
 }
