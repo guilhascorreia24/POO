@@ -1,13 +1,10 @@
-import java.util.Iterator;
-
-public class LinkedListCircular<T> implements Iterable<T> {
+public class LinkedListCircular{
     private SentinelNode head, last;
     private int i = 0;
 
     /*-----------------------------------------Nodes----------------------*/
     public static class Node {
         private Node E, S;
-        private int i;
         public Node(Node E, Node S) {
             this.E = E;
             this.S = S;
@@ -28,29 +25,13 @@ public class LinkedListCircular<T> implements Iterable<T> {
         public void setS(Node s) {
             this.S = s;
         }
-
-        public String toString() {
-            return E + ":" + S;
-        }
-
-        public void setindex(int i){
-            this.i=i;
-        }
-
-        protected int getindex(){
-            return i;
-        }
     }
 
     public static class SentinelNode extends Node {
         private SentinelNode next;
-        public SentinelNode(Node E, Node S, SentinelNode next) {
-            super(E, S);
+        public SentinelNode(Node E,Node s,SentinelNode next) {
+            super(E,s);
             this.next = next;
-        }
-
-        public String toString() {
-            return getE() + ":" + getS() + ":" + next;
         }
 
         public SentinelNode getnext() {
@@ -58,16 +39,12 @@ public class LinkedListCircular<T> implements Iterable<T> {
         }
 
         @Override
-        public void setindex(int i) {
-            super.setindex(i);
+        public void setE(Node e) {
+            super.setE(e);
         }
-
-        @Override
-        protected int getindex() {
-            // TODO Auto-generated method stub
-            return super.getindex();
+        public String toString(){
+            return "sent";
         }
-
         @Override
         public Node getE() {
             return super.E;
@@ -87,6 +64,10 @@ public class LinkedListCircular<T> implements Iterable<T> {
             this.value = value;
         }
 
+        public String toString(){
+            return String.valueOf(value);
+        }
+
         public T getvalue() {
             return this.value;
         }
@@ -104,8 +85,8 @@ public class LinkedListCircular<T> implements Iterable<T> {
     }
     /*---------------------------------------------end Nodes-----------------------------------*/
 
-    public void add(Node SN) {
-        SentinelNode l = new SentinelNode(SN.E, SN.S, null);
+    public void add(SentinelNode SN) {
+        SentinelNode l = SN;
         if (head == null) {
             head = l;
         } else {
@@ -114,11 +95,10 @@ public class LinkedListCircular<T> implements Iterable<T> {
         last = l;
         last.next = head;
         i++;
-        last.setindex(i-1);
     }
 
-    public void addfirst(Node SN) {
-        SentinelNode l = new SentinelNode(SN.E, SN.S, null);
+    public void addfirst(SentinelNode SN) {
+        SentinelNode l = SN;
         last.next = l;
         l.next = head;
         head = l;
@@ -134,8 +114,19 @@ public class LinkedListCircular<T> implements Iterable<T> {
         return last;
     }
 
+
     public Node getfirstNode() {
         return head;
+    }
+
+    public int getindex(Node s){{}
+        last=head;
+        int i=0;
+        while(last!=s){
+            i++;
+            last=last.next;
+        }
+        return i;
     }
 
     public Node get(int index) {
@@ -156,9 +147,61 @@ public class LinkedListCircular<T> implements Iterable<T> {
     }
     /*------------------------------------------------------end size-------------------------------------------*/
 
-    @Override
-    public Iterator<T> iterator() {
-        return new ListCircularIterator<T>(this);
+    public void clear(){
+        SentinelNode g=(SentinelNode) head.getnext();
+        while(g!=head){
+            g=null;
+        }
+        head=null;
     }
+
+    public void removeNode(Node s){
+        last=head.next;
+        SentinelNode prev=head;
+        while(last!=s){
+            last=last.next;
+            prev=prev.next;
+        }
+        prev.next=last.next;
+
+    }
+
+    //----------------------------------------------remove-----------------------------------------------------*/
+
+    public void printDataNodes(){
+        Node g=last.getE();
+        System.out.print("[ ");
+        while(g instanceof DataNode){
+            System.out.print(g+" ");
+            g=g.getE();}
+        System.out.print(" ]");
+    }
+    public void printList() 
+    { 
+        last = head; 
+   
+        System.out.print("LinkedList: ");
+            
+        System.out.print(last+" ");
+        if(last.getE() instanceof DataNode){
+            printDataNodes();
+        } 
+        System.out.println();
+        last=last.next;
+        // Traverse through the LinkedList 
+        while (last != head) { 
+            // Print the data at current node 
+            System.out.print(last+ " ");
+            if(last.getE() instanceof DataNode){
+                printDataNodes();
+            } 
+            // Go to next node 
+            last = last.next; 
+            System.out.println();
+        } 
+          
+        System.out.println(); 
+    } 
+    /*------------------------------------------------------------print---------------------------------------*/
 
 }
