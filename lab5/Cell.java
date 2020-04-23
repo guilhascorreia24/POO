@@ -33,7 +33,7 @@ public int isDead(){
 public int isBorn(Cell c){
 
     if(this.getCell() == 0){
-
+        return 1;
     }
     
     

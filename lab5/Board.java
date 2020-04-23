@@ -6,7 +6,7 @@ public class Board implements iMatrix {
 
 	@Override
 	public void set() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
