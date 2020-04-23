@@ -1,103 +1,168 @@
-public class LinkedListCircular{
-    private SentinelNode head;
-    public class Node implements Comparable<Node>{
-        private Node E,S;
-        public Node(Node E,Node S){
-            this.E=E;
-            this.S=S;
-        } 
+import java.util.Iterator;
 
-        @Override
-        public int compareTo(Node o) {
-            if(this.E.equals(o.E) && this.S.equals(o.S)){
-                return 0;
-            }
-            else{
-                return 1;
-            }
+public class LinkedListCircular<T> implements Iterable<T> {
+    private SentinelNode head, last;
+    private int i = 0;
+
+    /*-----------------------------------------Nodes----------------------*/
+    public static class Node {
+        private Node E, S;
+        private int i;
+        public Node(Node E, Node S) {
+            this.E = E;
+            this.S = S;
         }
 
-        public Node E(){
+        public Node getE() {
             return this.E;
         }
 
-        public Node S(){
+        public Node getS() {
             return this.S;
         }
 
+        public void setE(Node e) {
+            this.E = e;
+        }
+
+        public void setS(Node s) {
+            this.S = s;
+        }
+
+        public String toString() {
+            return E + ":" + S;
+        }
+
+        public void setindex(int i){
+            this.i=i;
+        }
+
+        protected int getindex(){
+            return i;
+        }
     }
-    public class SentinelNode extends Node{
+
+    public static class SentinelNode extends Node {
         private SentinelNode next;
-        public SentinelNode(Node E, Node S,SentinelNode next){
-            super(E,S);
-            this.next=next;
+        public SentinelNode(Node E, Node S, SentinelNode next) {
+            super(E, S);
+            this.next = next;
         }
 
-        public String toString(){
-            return E()+":"+S()+":"+next;
+        public String toString() {
+            return getE() + ":" + getS() + ":" + next;
         }
 
-        public SentinelNode getnext(){
+        public SentinelNode getnext() {
             return this.next;
         }
+
+        @Override
+        public void setindex(int i) {
+            super.setindex(i);
+        }
+
+        @Override
+        protected int getindex() {
+            // TODO Auto-generated method stub
+            return super.getindex();
+        }
+
+        @Override
+        public Node getE() {
+            return super.E;
+        }
+
+        @Override
+        public Node getS() {
+            return super.S;
+        }
     }
 
-
-    public class DataNode<T> extends Node{
+    public static class DataNode<T> extends Node {
         private T value;
-        public DataNode(Node E, Node S,T value) {
+
+        public DataNode(Node E, Node S, T value) {
             super(E, S);
-            this.value=value;
+            this.value = value;
         }
 
-        public String toString(){
-            return E()+":"+S()+":"+value;
-        }
-
-        public T getvalue(){
+        public T getvalue() {
             return this.value;
         }
 
-    }   
-    public void push(Node SN){
-        SentinelNode new_node=new SentinelNode(SN.E,SN.S,null);
-        if(head==null){
-            head=new_node;
+        @Override
+        public Node getE() {
+            return super.E;
         }
-        SentinelNode last=head;
-        while(last.next!=null){
-            last=last.next;
+
+        @Override
+        public Node getS() {
+            return super.S;
         }
-        last.next=new_node;
-        new_node.next=head;
-        return ;
+
+    }
+    /*---------------------------------------------end Nodes-----------------------------------*/
+
+    public void add(Node SN) {
+        SentinelNode l = new SentinelNode(SN.E, SN.S, null);
+        if (head == null) {
+            head = l;
+        } else {
+            last.next = l;
+        }
+        last = l;
+        last.next = head;
+        i++;
+        last.setindex(i-1);
     }
 
-    public int getIndex(SentinelNode n){
-        SentinelNode last=head;
-        int index=0;
-        while(!last.equals(n)){
-            index++;
-        }
-        return index;
+    public void addfirst(Node SN) {
+        SentinelNode l = new SentinelNode(SN.E, SN.S, null);
+        last.next = l;
+        l.next = head;
+        head = l;
     }
 
-    public SentinelNode getlastNode(){
-        SentinelNode last=head;
-        while(last.next!=head){
-            last=last.next;
+    /*---------------------------------------------end add----------------------------------------------------*/
+
+    public Node getlastNode() {
+        SentinelNode last = head;
+        while (last.next != head) {
+            last = last.next;
         }
         return last;
     }
 
-    public SentinelNode getfirstNode(){
+    public Node getfirstNode() {
         return head;
     }
 
-    public void addfirst(SentinelNode n){
-        SentinelNode last=getlastNode();
-        last.next=n;
-        n.next=head;
-        head=n;
+    public Node get(int index) {
+        if (index >= size())
+            throw new IndexOutOfBoundsException();
+        int o = 0;
+        SentinelNode curr = head;
+        while (o < index) {
+            curr = curr.next;
+            o++;
+        }
+        return curr;
     }
+
+    public int getindex(Node n){
+        return n.getindex();
+    }
+
+    /*----------------------------------------------------end gets------------------------------------------------*/
+    public int size() {
+        return i;
+    }
+    /*------------------------------------------------------end size-------------------------------------------*/
+
+    @Override
+    public Iterator<T> iterator() {
+        return new ListCircularIterator<T>(this);
+    }
+
 }
