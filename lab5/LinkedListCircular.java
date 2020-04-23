@@ -150,10 +150,6 @@ public class LinkedListCircular<T> implements Iterable<T> {
         return curr;
     }
 
-    public int getindex(Node n){
-        return n.getindex();
-    }
-
     /*----------------------------------------------------end gets------------------------------------------------*/
     public int size() {
         return i;

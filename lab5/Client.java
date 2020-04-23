@@ -11,11 +11,11 @@ public class Client{
         n.setE(g);
 
         for(LinkedListCircular.SentinelNode p:lk){
-            System.out.println(lk.getindex(p)+" "+lk.size());
-            if(lk.getindex(p)<lk.size()){
-                System.out.println(lk.getindex(p));
+            if(p.getnext()!=lk.getfirstNode()){
+                System.out.println(p.getindex());
             }
             else{
+                System.out.println(p.getindex());
                 break;
             }
         }
