@@ -2,7 +2,9 @@ import java.util.List;
 
 public class GOL{
     private int[][] m;
+    private int times;
 	public GOL(List<String> l,int times) {
+        this.times=times;
         int n=l.get(0).split("").length;
         //System.out.println(n+":"+l.size());
         m=new int[l.size()][n];
@@ -12,8 +14,30 @@ public class GOL{
                 m[i][j]=Integer.parseInt(s);
             }
         }
-        Board board=new Board();
-        board.set(m);
-	}
+    }
+    public void start(){
+        Board g=new Board();
+        int i=0;
+        while(i<times){
+         //   System.out.println("itA:"+m.length+":"+m[0].length);
+            g.set(m);
+            m=g.get();
+           // System.out.println("itB:"+m.length+":"+m[0].length);
+            printBoards(m);
+            i++;
+        }
+    }
+
+    private void printBoards(int[][] g1) {
+            for(int i=0;i<g1.length;i++){
+                for(int j=0;j<g1[i].length;j++){
+                        System.out.print(g1[i][j]); 
+                }
+                System.out.println();
+            }
+            System.out.println();
+    }
+    
+
 
 }

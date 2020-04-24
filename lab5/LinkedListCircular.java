@@ -1,4 +1,4 @@
-public class LinkedListCircular{
+public class LinkedListCircular<T> {
     private SentinelNode head, last;
     private int i = 0;
 
@@ -152,9 +152,13 @@ public class LinkedListCircular{
     public void clear(){
         SentinelNode g=(SentinelNode) head.getnext();
         while(g!=head){
+            SentinelNode h=g;
             g=null;
+            i--;
+            g=h.getnext(); 
         }
         head=null;
+        i--;
     }
 
     public void removeNode(Node s){
@@ -167,25 +171,37 @@ public class LinkedListCircular{
         prev.next=last.next;
     }
 
-    public void associateTo(int i,Ponto p,boolean row){
+    public void associateTo(int i,T p,boolean row){
         Node s=get(i);
         Node h=s;
         if(row){
             while(h.getE()!=s){
                 h=h.getE();
             }
-            h.setE(new DataNode<Ponto>(s,null,p));
+            h.setE(new DataNode<T>(s,null,p));
         }else{
             while(h.getS()!=s){
                 h=h.getS();
             }
-            h.setE(new DataNode<Ponto>(null,s,p));
+            h.setE(new DataNode<T>(null,s,p));
         }
+    }
+
+    public boolean contains(T p,int lineIndex){
+        SentinelNode n=(SentinelNode) get(lineIndex);
+        Node n1=n.getE();
+        while(n1!=n){
+                if(p.equals(n1)){
+                    return true;
+                }
+            n1=n1.getE();
+        }
+        return false;
     }
 
     //----------------------------------------------remove-----------------------------------------------------*/
 
-    public void printDataNodes(){
+    private void printDataNodes(){
         Node g=last.getE();
         System.out.print("[ ");
         while(g instanceof DataNode){

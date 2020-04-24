@@ -12,7 +12,7 @@ public class Client {
             l.add(s);
         }
         sc.close();
-        System.out.println(l);
         GOL gol=new GOL(l,times);
+        gol.start();
     }
 }

@@ -1,8 +1,8 @@
 
 
 public class Board implements iMatrix {
-	private LinkedListCircular row = new LinkedListCircular();
-	private LinkedListCircular col = new LinkedListCircular();
+	private LinkedListCircular<Ponto> row=new LinkedListCircular<Ponto>();
+	private LinkedListCircular<Ponto> col=new LinkedListCircular<Ponto>();
 
 	public void child() {
 
@@ -20,20 +20,39 @@ public class Board implements iMatrix {
 		}
 	}
 	
-
 	@Override
 	public void set(int[][] m) {
-		int cols = m[0].length, rows = m.length, i = 0, j = 0;
+		if(row.size()>0)row.clear();
+		if(col.size()>0)col.clear();
+		int cols = m[0].length, rows = m.length;
 		createsentinels(rows,cols);
-		while (i < rows || j < cols) {
-			while(i < cols) {
-				
+		//System.out.println("set:"+row.size()+":"+col.size());
+		for(int i=0;i<rows;i++){
+			for(int j=0;j<cols;j++){
+				if(m[i][j]==1){
+					row.associateTo(i,new Ponto(i,j),true);
+					col.associateTo(j,new Ponto(i,j), false);
+				}
 			}
 		}
+		//row.printList();
 	}
 
 	@Override
 	public int[][] get() {
-		return null;
+		int [][] m=new int[row.size()][col.size()];
+		//System.out.println("get:"+row.size()+":"+col.size());
+		for(int i=0;i<row.size();i++){
+			for(int j=0;j<col.size();j++){
+				if(row.contains(new Ponto(i,j),i))
+					m[i][j]=1;
+				else{
+					m[i][j]=0;
+				}
+			}
+		}
+		//System.out.println("get before:"+m.length+":"+m[0].length);
+		//System.out.println(m.length);
+		return m;
 	}
 }
