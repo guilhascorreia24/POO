@@ -1,7 +1,11 @@
 public class Cell {
 
+<<<<<<< HEAD
     private int STATE = 1;
     private Ponto p;
+=======
+private int STATE;
+>>>>>>> 176b052848d029fbaef070872430ec2681cf0988
 
     public Cell(int state, Ponto p) {
         this.STATE = state;

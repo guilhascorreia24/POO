@@ -13,6 +13,6 @@ public class Client {
         }
         sc.close();
         GOL gol=new GOL(l,times);
-        gol.start();
+        gol.run();
     }
 }

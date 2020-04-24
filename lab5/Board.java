@@ -6,7 +6,7 @@ public class Board implements iMatrix {
 
 	public void child() {
 		for(int i=0;i<row.size();i++){
-			
+			while()
 		}
 	}
 

@@ -15,7 +15,7 @@ public class GOL{
             }
         }
     }
-    public void start(){
+    public void run(){
         Board g=new Board();
         int i=0;
         while(i<times){
