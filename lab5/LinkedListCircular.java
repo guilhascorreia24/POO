@@ -1,4 +1,4 @@
-public class LinkedListCircular<T> {
+public class LinkedListCircular {
     private SentinelNode head, last;
     private int i = 0;
 
@@ -171,27 +171,27 @@ public class LinkedListCircular<T> {
         prev.next=last.next;
     }
 
-    public void associateTo(int i,T p,boolean row){
+    public void associateTo(int i,Cell p,boolean row){
         Node s=get(i);
         Node h=s;
         if(row){
             while(h.getE()!=s){
                 h=h.getE();
             }
-            h.setE(new DataNode<T>(s,null,p));
+            h.setE(new DataNode<Ponto>(s,null,p.getPonto()));
         }else{
             while(h.getS()!=s){
                 h=h.getS();
             }
-            h.setE(new DataNode<T>(null,s,p));
+            h.setE(new DataNode<Ponto>(null,s,p.getPonto()));
         }
     }
 
-    public boolean contains(T p,int lineIndex){
+    public boolean contains(Cell p,int lineIndex){
         SentinelNode n=(SentinelNode) get(lineIndex);
         Node n1=n.getE();
         while(n1!=n){
-                if(p.equals(n1)){
+                if(p.getPonto().toString().equals(n1.toString())){
                     return true;
                 }
             n1=n1.getE();

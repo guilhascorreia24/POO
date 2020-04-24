@@ -1,11 +1,13 @@
 
 
 public class Board implements iMatrix {
-	private LinkedListCircular<Ponto> row=new LinkedListCircular<Ponto>();
-	private LinkedListCircular<Ponto> col=new LinkedListCircular<Ponto>();
+	private LinkedListCircular row=new LinkedListCircular();
+	private LinkedListCircular col=new LinkedListCircular();
 
 	public void child() {
-
+		for(int i=0;i<row.size();i++){
+			
+		}
 	}
 
 	private void createsentinels(int x,int y){
@@ -30,8 +32,9 @@ public class Board implements iMatrix {
 		for(int i=0;i<rows;i++){
 			for(int j=0;j<cols;j++){
 				if(m[i][j]==1){
-					row.associateTo(i,new Ponto(i,j),true);
-					col.associateTo(j,new Ponto(i,j), false);
+					Cell c=new Cell(1,new Ponto(i,j));
+					row.associateTo(i,c,true);
+					col.associateTo(j,c, false);
 				}
 			}
 		}
@@ -44,7 +47,7 @@ public class Board implements iMatrix {
 		//System.out.println("get:"+row.size()+":"+col.size());
 		for(int i=0;i<row.size();i++){
 			for(int j=0;j<col.size();j++){
-				if(row.contains(new Ponto(i,j),i))
+				if(row.contains(new Cell(m[i][j],new Ponto(i,j)),i))
 					m[i][j]=1;
 				else{
 					m[i][j]=0;
