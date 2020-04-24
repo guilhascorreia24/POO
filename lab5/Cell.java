@@ -34,8 +34,6 @@ public int isBorn(){
 
     if(this.getCell() == 0){
         this.setCell(1);
-
-        return 1;
     }
     return 0;
 }
