@@ -1,6 +1,6 @@
 public class Cell{
 
-private int STATE = 1;
+private int STATE;
 
 public Cell(int state){
     this.STATE = state;
