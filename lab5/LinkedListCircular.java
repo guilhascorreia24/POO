@@ -1,4 +1,4 @@
-public class LinkedListCircular{
+public class LinkedListCircular<T>{
     private SentinelNode head, last;
     private int i = 0;
 
@@ -119,7 +119,7 @@ public class LinkedListCircular{
         return head;
     }
 
-    public int getindex(Node s){{}
+    public int getindex(Node s){
         last=head;
         int i=0;
         while(last!=s){
