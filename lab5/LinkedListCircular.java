@@ -180,7 +180,7 @@ public class LinkedListCircular{
     { 
         last = head; 
    
-        System.out.print("LinkedList: ");
+        System.out.print("LinkedList:\n");
             
         System.out.print(last+" ");
         if(last.getE() instanceof DataNode){
