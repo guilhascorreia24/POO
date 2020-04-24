@@ -1,4 +1,4 @@
-public class LinkedListCircular<T>{
+public class LinkedListCircular{
     private SentinelNode head, last;
     private int i = 0;
 
@@ -85,8 +85,10 @@ public class LinkedListCircular<T>{
     }
     /*---------------------------------------------end Nodes-----------------------------------*/
 
-    public void add(SentinelNode SN) {
-        SentinelNode l = SN;
+    public void add(boolean row) {
+        SentinelNode l = new SentinelNode(null,null,null);
+        if(row) l.setE(l);
+        else l.setS(l);
         if (head == null) {
             head = l;
         } else {
@@ -163,7 +165,22 @@ public class LinkedListCircular<T>{
             prev=prev.next;
         }
         prev.next=last.next;
+    }
 
+    public void associateTo(int i,Ponto p,boolean row){
+        Node s=get(i);
+        Node h=s;
+        if(row){
+            while(h.getE()!=s){
+                h=h.getE();
+            }
+            h.setE(new DataNode<Ponto>(s,null,p));
+        }else{
+            while(h.getS()!=s){
+                h=h.getS();
+            }
+            h.setE(new DataNode<Ponto>(null,s,p));
+        }
     }
 
     //----------------------------------------------remove-----------------------------------------------------*/
