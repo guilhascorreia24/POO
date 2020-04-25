@@ -172,7 +172,7 @@ public class LinkedListCircular {
         return null;
      }
 
-    @SuppressWarnings("rawtypes") 
+   /* @SuppressWarnings("rawtypes") 
     public Cell nextCellE(Cell c,int i){
         Node n=get(i).getE();
         Cell r=null;
@@ -245,7 +245,7 @@ public class LinkedListCircular {
         }
     }
         return r;
-    }
+    }*/
 
 
     /*----------------------------------------------------end gets------------------------------------------------*/
