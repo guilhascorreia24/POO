@@ -91,6 +91,7 @@ public class Cell {
                 if (o.getvalue().equals(this.getPonto()) && n.getE() instanceof LinkedListCircular.DataNode) {
                     o = (LinkedListCircular.DataNode) o.getE();
                     r = new Cell(1, (Ponto) o.getvalue());
+                    break;
                 }
                 n = n.getE();
             }
@@ -109,6 +110,7 @@ public class Cell {
                 if (o.getvalue().equals(this.getPonto()) && n.getS() instanceof LinkedListCircular.DataNode) {
                     o = (LinkedListCircular.DataNode) o.getS();
                     r = new Cell(1, (Ponto) o.getvalue());
+                    break;
                 }
                 n = n.getS();
             }
@@ -127,6 +129,7 @@ public class Cell {
                 if (o.getvalue().equals(this.getPonto()) && m instanceof LinkedListCircular.DataNode) {
                     o = (LinkedListCircular.DataNode) m;
                     r = new Cell(1, (Ponto) o.getvalue());
+                    break;
                 }
                 m = (LinkedListCircular.Node) n;
                 n = n.getS();
@@ -146,6 +149,7 @@ public class Cell {
                 if (o.getvalue().equals(this.getPonto()) && m instanceof LinkedListCircular.DataNode) {
                     o = (LinkedListCircular.DataNode) m;
                     r = new Cell(1, (Ponto) o.getvalue());
+                    break;
                 }
                 m = (LinkedListCircular.Node) n;
                 n = n.getE();
