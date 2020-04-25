@@ -13,6 +13,7 @@ public class Cell{
         return STATE;
     }
 
+
     public void setState(int i){
         this.STATE=i;
     }

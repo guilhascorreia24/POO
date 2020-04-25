@@ -3,19 +3,24 @@ public class Board implements iMatrix {
 	private LinkedListCircular col = new LinkedListCircular();
 
 	public void child() {
+		Cell O=null,N=null,E=null,S=null,NE=null,NO=null,SE=null,SO=null,NE1=null,NO1=null;
 		for (int i = 0; i < row.size(); i++) {
 			Cell c =row.getfirstCellE(i);
-			/*while(c!=null){
-				Cell nextE=row.nextCellE(c, i);
+			//System.out.println(c);
+			while(c!=null){
+				E=row.nextCellE(c, i);
 				int icol=c.getPonto().getY();
-				Cell nextS=col.nextCellS(c, icol);
-				Cell beforeE=row.beforeCellE(c, i);
-				Cell beforeS=col.nextCellS(c, icol);
-				System.out.println(i+":"+nextE+" "+nextS+" "+beforeE+" "+beforeS);
-				c=nextE;
-			}*/
+				S=col.nextCellS(c, icol);
+				N=col.northCell(c, icol);
+				O=row.Ocell(c, i);
+				System.out.println("N: "+(N!=null)+" E:"+(E!=null));
+				if(N!=null && E!=null && col.northCell(E,E.getPonto().getY()).equals(row.nextCellE(N,N.getPonto().getX()))){
+					NE=row.nextCellE(N,N.getPonto().getX());
+				}
+				//System.out.println(i+" @ "+E+" "+S+" "+O+" "+N+" "+NE);
+				c=E;
+			}
 		}
-		col.printList();
 	}
 
 	private void createsentinels(int x,int y){
@@ -41,7 +46,7 @@ public class Board implements iMatrix {
 		for(int i=0;i<rows;i++){
 			for(int j=0;j<cols;j++){
 				if(m[i][j]==1){
-					Cell c=new Cell(1,new Ponto(i,j));
+					Ponto c=new Ponto(i,j);
 					row.associateTo(i,c,true);
 					col.associateTo(j,c, false);
 				}

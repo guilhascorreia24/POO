@@ -172,39 +172,21 @@ public class LinkedListCircular {
         return null;
      }
 
-     @SuppressWarnings("rawtypes") 
+    @SuppressWarnings("rawtypes") 
     public Cell nextCellE(Cell c,int i){
         Node n=get(i).getE();
         Cell r=null;
         DataNode o=null;
-        if (n instanceof DataNode){
-            o= (DataNode) get(i).getE();
-            r=new Cell(1,(Ponto)o.getvalue());}
-        while(n instanceof DataNode && !o.getvalue().toString().equals(c.getPonto().toString())){
-            o= (DataNode) o.getE();
-            n=n.getE();
-            if(n instanceof DataNode)
+        if(c!=null){
+        while(n instanceof DataNode){
+            o=(DataNode)n;
+            if(o.getvalue().equals(c.getPonto()) && n.getE() instanceof DataNode){
+                o=(DataNode) o.getE();
                 r=new Cell(1,(Ponto)o.getvalue());
-        }
-        return r;
-    }
-
-    @SuppressWarnings("rawtypes") 
-    public Cell beforeCellE(Cell c,int i){
-        Node n=get(i).getE();
-        Cell r=null;
-        DataNode o=null,o1=null;
-        if(n instanceof DataNode && n.getE() instanceof DataNode){
-             o=(DataNode) get(i).getE();
-             o1=(DataNode)get(i).getE().getE();
-             r=new Cell(1,(Ponto)o.getvalue());
             }
-        while((n instanceof DataNode && n.getE() instanceof DataNode) && !o1.getvalue().toString().equals(c.getPonto().toString())){
-            if(n instanceof DataNode)
-                r=new Cell(1,(Ponto)o.getvalue());
-            o1=(DataNode)o.getE();
-            o=(DataNode)o.getE();
+            n=n.getE();
         }
+    }
         return r;
     }
 
@@ -213,34 +195,55 @@ public class LinkedListCircular {
         Node n=get(i).getS();
         Cell r=null;
         DataNode o=null;
-        if(n instanceof DataNode){
-            o= (DataNode) get(i).getS();
-            r=new Cell(1,(Ponto)o.getvalue());}
-        while(n instanceof DataNode && !o.getvalue().toString().equals(c.getPonto().toString())){
-            o= (DataNode) o.getS();
-            n=n.getS();
-            if(n instanceof DataNode)
+        if(c!=null){
+        while(n instanceof DataNode){
+            o=(DataNode)n;
+            if(o.getvalue().equals(c.getPonto()) && n.getS() instanceof DataNode){
+                o=(DataNode) o.getS();
                 r=new Cell(1,(Ponto)o.getvalue());
+            }
+            n=n.getS();
         }
+    }
         return r;
     }
 
     @SuppressWarnings("rawtypes")
-    public Cell beforeCellS(Cell c,int i){
-        Node n=get(i).getS();
+    public Cell northCell(Cell c,int i){
+        Node n=get(i).getS(),m=get(i);
         Cell r=null;
         DataNode o=null;
-        DataNode o1=null;;
-        if (n instanceof DataNode && n.getS() instanceof DataNode) {
-            o=(DataNode) get(i).getS();
-            o1=(DataNode)get(i).getS().getS();
-            r=new Cell(1,(Ponto)o.getvalue());}
-        while((n instanceof DataNode && n.getS() instanceof DataNode) && !o1.getvalue().toString().equals(c.getPonto().toString())){
-            if(n instanceof DataNode)
+        if(c!=null){
+        while(n instanceof DataNode){
+            o=(DataNode)n;
+            if(o.getvalue().equals(c.getPonto()) && m instanceof DataNode){
+                o=(DataNode) m;
                 r=new Cell(1,(Ponto)o.getvalue());
-            o1=(DataNode)o.getS();
-            o=(DataNode)o.getS();
+            }
+            m=(Node)n;
+            n=n.getS();
         }
+    }
+        return r;
+    }
+
+    
+    @SuppressWarnings("rawtypes")
+    public Cell Ocell(Cell c,int i){
+        Node n=get(i).getE(),m=get(i);
+        Cell r=null;
+        DataNode o=null;
+        if(c!=null){
+        while(n instanceof DataNode){
+            o=(DataNode)n;
+            if(o.getvalue().equals(c.getPonto()) && m instanceof DataNode){
+                o=(DataNode) m;
+                r=new Cell(1,(Ponto)o.getvalue());
+            }
+            m=(Node)n;
+            n=n.getE();
+        }
+    }
         return r;
     }
 
@@ -273,19 +276,19 @@ public class LinkedListCircular {
         prev.next=last.next;
     }
 
-    public void associateTo(int i,Cell p,boolean row){
+    public void associateTo(int i,Ponto p,boolean row){
         Node s=get(i);
         Node h=s;
         if(row){
             while(h.getE()!=s){
                 h=h.getE();
             }
-            h.setE(new DataNode<Ponto>(s,null,p.getPonto()));
+            h.setE(new DataNode<Ponto>(s,null,p));
         }else{
             while(h.getS()!=s){
                 h=h.getS();
             }
-            h.setS(new DataNode<Ponto>(null,s,p.getPonto()));
+            h.setS(new DataNode<Ponto>(null,s,p));
         }
     }
 
@@ -303,7 +306,7 @@ public class LinkedListCircular {
 
     //----------------------------------------------remove-----------------------------------------------------*/
 
-    private void printDataNodes(){
+    private void printDataNodesrow(){
         Node g=last.getE();
         System.out.print("[ ");
         while(g instanceof DataNode){
@@ -311,7 +314,7 @@ public class LinkedListCircular {
             g=g.getE();}
         System.out.print(" ]");
     }
-    public void printList() 
+    public void printListrow() 
     { 
         last = head; 
    
@@ -319,7 +322,7 @@ public class LinkedListCircular {
             
         System.out.print(last+" ");
         if(last.getE() instanceof DataNode){
-            printDataNodes();
+            printDataNodesrow();
         } 
         System.out.println();
         last=last.next;
@@ -328,7 +331,41 @@ public class LinkedListCircular {
             // Print the data at current node 
             System.out.print(last+ " ");
             if(last.getE() instanceof DataNode){
-                printDataNodes();
+                printDataNodesrow();
+            } 
+            // Go to next node 
+            last = last.next; 
+            System.out.println();
+        } 
+          
+        System.out.println(); 
+    } 
+    private void printDataNodescol(){
+        Node g=last.getS();
+        System.out.print("[ ");
+        while(g instanceof DataNode){
+            System.out.print(g+" ");
+            g=g.getS();}
+        System.out.print(" ]");
+    }
+    public void printListcol() 
+    { 
+        last = head; 
+   
+        System.out.print("LinkedList:\n");
+            
+        System.out.print(last+" ");
+        if(last.getS() instanceof DataNode){
+            printDataNodescol();
+        } 
+        System.out.println();
+        last=last.next;
+        // Traverse through the LinkedList 
+        while (last != head) { 
+            // Print the data at current node 
+            System.out.print(last+ " ");
+            if(last.getS() instanceof DataNode){
+                printDataNodescol();
             } 
             // Go to next node 
             last = last.next; 
