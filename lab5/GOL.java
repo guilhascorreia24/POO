@@ -21,9 +21,10 @@ public class GOL{
         while(i<times){
          //   System.out.println("itA:"+m.length+":"+m[0].length);
             g.set(m);
+            g.child();
             m=g.get();
            // System.out.println("itB:"+m.length+":"+m[0].length);
-            printBoards(m);
+            //printBoards(m);
             i++;
         }
     }
@@ -37,7 +38,4 @@ public class GOL{
             }
             System.out.println();
     }
-    
-
-
 }

@@ -1,6 +1,9 @@
+import javax.xml.crypto.Data;
+
 public class LinkedListCircular {
     private SentinelNode head, last;
     private int i = 0;
+    private Cell Scell,eCell;
 
     /*-----------------------------------------Nodes----------------------*/
     public static class Node {
@@ -143,6 +146,105 @@ public class LinkedListCircular {
         return curr;
     }
 
+    public boolean hasnextCell(Node i){
+        return i instanceof DataNode;
+    }
+    
+    @SuppressWarnings("rawtypes")
+    public Cell getfirstCellE(int i) {
+        Node n=get(i);
+        if(n.getE() instanceof DataNode){
+            DataNode o= (DataNode) get(i).getE();
+            Scell=new Cell(1,(Ponto)o.getvalue());
+            return Scell;
+        }
+        return null;
+    }
+
+    @SuppressWarnings("rawtypes") 
+    public Cell getfirstCellS(int i) {
+        Node n=get(i);
+            if(n.getS() instanceof DataNode){
+                DataNode o= (DataNode) get(i).getS();
+                eCell = new Cell(1, (Ponto) o.getvalue());
+                return eCell;
+            }
+        return null;
+     }
+
+     @SuppressWarnings("rawtypes") 
+    public Cell nextCellE(Cell c,int i){
+        Node n=get(i).getE();
+        Cell r=null;
+        DataNode o=null;
+        if (n instanceof DataNode){
+            o= (DataNode) get(i).getE();
+            r=new Cell(1,(Ponto)o.getvalue());}
+        while(n instanceof DataNode && !o.getvalue().toString().equals(c.getPonto().toString())){
+            o= (DataNode) o.getE();
+            n=n.getE();
+            if(n instanceof DataNode)
+                r=new Cell(1,(Ponto)o.getvalue());
+        }
+        return r;
+    }
+
+    @SuppressWarnings("rawtypes") 
+    public Cell beforeCellE(Cell c,int i){
+        Node n=get(i).getE();
+        Cell r=null;
+        DataNode o=null,o1=null;
+        if(n instanceof DataNode && n.getE() instanceof DataNode){
+             o=(DataNode) get(i).getE();
+             o1=(DataNode)get(i).getE().getE();
+             r=new Cell(1,(Ponto)o.getvalue());
+            }
+        while((n instanceof DataNode && n.getE() instanceof DataNode) && !o1.getvalue().toString().equals(c.getPonto().toString())){
+            if(n instanceof DataNode)
+                r=new Cell(1,(Ponto)o.getvalue());
+            o1=(DataNode)o.getE();
+            o=(DataNode)o.getE();
+        }
+        return r;
+    }
+
+    @SuppressWarnings("rawtypes")
+    public Cell nextCellS(Cell c,int i){
+        Node n=get(i).getS();
+        Cell r=null;
+        DataNode o=null;
+        if(n instanceof DataNode){
+            o= (DataNode) get(i).getS();
+            r=new Cell(1,(Ponto)o.getvalue());}
+        while(n instanceof DataNode && !o.getvalue().toString().equals(c.getPonto().toString())){
+            o= (DataNode) o.getS();
+            n=n.getS();
+            if(n instanceof DataNode)
+                r=new Cell(1,(Ponto)o.getvalue());
+        }
+        return r;
+    }
+
+    @SuppressWarnings("rawtypes")
+    public Cell beforeCellS(Cell c,int i){
+        Node n=get(i).getS();
+        Cell r=null;
+        DataNode o=null;
+        DataNode o1=null;;
+        if (n instanceof DataNode && n.getS() instanceof DataNode) {
+            o=(DataNode) get(i).getS();
+            o1=(DataNode)get(i).getS().getS();
+            r=new Cell(1,(Ponto)o.getvalue());}
+        while((n instanceof DataNode && n.getS() instanceof DataNode) && !o1.getvalue().toString().equals(c.getPonto().toString())){
+            if(n instanceof DataNode)
+                r=new Cell(1,(Ponto)o.getvalue());
+            o1=(DataNode)o.getS();
+            o=(DataNode)o.getS();
+        }
+        return r;
+    }
+
+
     /*----------------------------------------------------end gets------------------------------------------------*/
     public int size() {
         return i;
@@ -183,7 +285,7 @@ public class LinkedListCircular {
             while(h.getS()!=s){
                 h=h.getS();
             }
-            h.setE(new DataNode<Ponto>(null,s,p.getPonto()));
+            h.setS(new DataNode<Ponto>(null,s,p.getPonto()));
         }
     }
 
