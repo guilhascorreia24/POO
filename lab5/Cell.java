@@ -1,3 +1,5 @@
+
+
 public class Cell {
 
     private int STATE;
@@ -44,48 +46,78 @@ public class Cell {
         return p.toString();
     }
 
-    public Cell NE(Cell E, Cell N, LinkedListCircular row, LinkedListCircular col) {
-        if (N != null && E != null) {
-            if (E.N(col, E.getPonto().getY()).getPonto() == N.E(row, N.getPonto().getX()).getPonto()) {
-                return N.E(row, N.getPonto().getX());
-            }
+    public boolean equals(Cell c) {
+        // System.out.println(c.STATE + " " + STATE);
+        if (c == null || this == null) {
+            return false;
+        } else if (STATE == c.STATE && p.equals(c.p)) {
+            return true;
         }
-        return null;
+        return false;
     }
 
-    public Cell NO(Cell O, Cell N, LinkedListCircular row, LinkedListCircular col) {
-        if (N != null && O != null) {
-            if (O.N(col, O.getPonto().getY()).getPonto() == N.O(row, N.getPonto().getX()).getPonto()) {
-                return O.N(col, O.getPonto().getY());
+    @SuppressWarnings("rawtypes")
+    public Cell diagonalE(LinkedListCircular a, LinkedListCircular b, int i) {
+        Cell r = new Cell(-1, new Ponto(-1, -1));
+        if(i>0 && i<a.size()){
+        LinkedListCircular.Node n = a.get(i).getE();
+        LinkedListCircular.Node o = null;
+        if (this != new Cell(-1, new Ponto(-1, -1))) {
+            while (n instanceof LinkedListCircular.DataNode) {
+                o = (LinkedListCircular.DataNode) n;
+                LinkedListCircular.DataNode o2 = (LinkedListCircular.DataNode) o;
+                while(o.getS() instanceof LinkedListCircular.DataNode){
+                    o=(LinkedListCircular.DataNode) o.getS();
+                }
+                o=(LinkedListCircular.SentinelNode)o.getS();
+                i=b.getindex(o);
+                if (this.getPonto().getY()+1==i && n.getE() instanceof LinkedListCircular.DataNode) {
+                    LinkedListCircular.DataNode o1 = (LinkedListCircular.DataNode) o2.getE();
+                    r = new Cell(1, (Ponto) o1.getvalue());
+                }
+                n = n.getE();
             }
         }
-        return null;
+    }
+        return r;
+    }
+    @SuppressWarnings("rawtypes")
+    public Cell diagonalO(LinkedListCircular a, LinkedListCircular b, int i) {
+        Cell r = new Cell(-1, new Ponto(-1, -1));
+        if(i>0 && i<a.size()){
+        LinkedListCircular.Node n = a.get(i).getE();
+        LinkedListCircular.Node o = null;
+        if (this != new Cell(-1, new Ponto(-1, -1))) {
+            while (n instanceof LinkedListCircular.DataNode) {
+                o = (LinkedListCircular.DataNode) n;
+                LinkedListCircular.DataNode o2 = (LinkedListCircular.DataNode) o;
+                while(o.getS() instanceof LinkedListCircular.DataNode){
+                    o=(LinkedListCircular.DataNode) o.getS();
+                }
+                o=(LinkedListCircular.SentinelNode)o.getS();
+                i=b.getindex(o);
+                if (this.getPonto().getY()-1==i && n.getE() instanceof LinkedListCircular.DataNode) {
+                    LinkedListCircular.DataNode o1 = (LinkedListCircular.DataNode) o2.getE();
+                    r = new Cell(1, (Ponto) o1.getvalue());
+                }
+                n = n.getE();
+            }
+        }
+    }
+        return r;
     }
 
-    public Cell SE(Cell E, Cell S, LinkedListCircular row, LinkedListCircular col) {
-        if (S != null && E != null) {
-            if (E.S(col, E.getPonto().getY()).getPonto() == S.E(row, S.getPonto().getX()).getPonto()) {
-                return S.E(row, S.getPonto().getX());
-            }
-        }
-        return null;
-    }
 
-    public Cell SO(Cell O, Cell S, LinkedListCircular row, LinkedListCircular col) {
-        if (S != null && O != null) {
-            if (O.S(col, O.getPonto().getY()).getPonto() == S.O(row, S.getPonto().getX()).getPonto()) {
-                return S.O(row, S.getPonto().getX());
-            }
-        }
-        return null;
-    }
+
+
+
 
     @SuppressWarnings("rawtypes")
     public Cell E(LinkedListCircular row, int i) {
         LinkedListCircular.Node n = row.get(i).getE();
-        Cell r = null;
+        Cell r = new Cell(-1,new Ponto(-1,-1));
         LinkedListCircular.DataNode o = null;
-        if (this != null) {
+        if (this != new Cell(-1,new Ponto(-1,-1))) {
             while (n instanceof LinkedListCircular.DataNode) {
                 o = (LinkedListCircular.DataNode) n;
                 if (o.getvalue().equals(this.getPonto()) && n.getE() instanceof LinkedListCircular.DataNode) {
@@ -102,9 +134,9 @@ public class Cell {
     @SuppressWarnings("rawtypes")
     public Cell S(LinkedListCircular col, int i) {
         LinkedListCircular.Node n = col.get(i).getS();
-        Cell r = null;
+        Cell r = new Cell(-1,new Ponto(-1,-1));
         LinkedListCircular.DataNode o = null;
-        if (this != null) {
+        if (this != new Cell(-1,new Ponto(-1,-1))) {
             while (n instanceof LinkedListCircular.DataNode) {
                 o = (LinkedListCircular.DataNode) n;
                 if (o.getvalue().equals(this.getPonto()) && n.getS() instanceof LinkedListCircular.DataNode) {
@@ -121,9 +153,9 @@ public class Cell {
     @SuppressWarnings("rawtypes")
     public Cell N(LinkedListCircular col, int i) {
         LinkedListCircular.Node n = col.get(i).getS(), m = col.get(i);
-        Cell r = null;
+        Cell r = new Cell(-1,new Ponto(-1,-1));
         LinkedListCircular.DataNode o = null;
-        if (this != null) {
+        if (this != new Cell(-1,new Ponto(-1,-1))) {
             while (n instanceof LinkedListCircular.DataNode) {
                 o = (LinkedListCircular.DataNode) n;
                 if (o.getvalue().equals(this.getPonto()) && m instanceof LinkedListCircular.DataNode) {
@@ -141,9 +173,9 @@ public class Cell {
     @SuppressWarnings("rawtypes")
     public Cell O(LinkedListCircular row, int i) {
         LinkedListCircular.Node n = row.get(i).getE(), m = row.get(i);
-        Cell r = null;
+        Cell r = new Cell(-1,new Ponto(-1,-1));
         LinkedListCircular.DataNode o = null;
-        if (this != null) {
+        if (this != new Cell(-1,new Ponto(-1,-1))) {
             while (n instanceof LinkedListCircular.DataNode) {
                 o = (LinkedListCircular.DataNode) n;
                 if (o.getvalue().equals(this.getPonto()) && m instanceof LinkedListCircular.DataNode) {

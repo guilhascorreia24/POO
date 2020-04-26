@@ -10,60 +10,63 @@ public class Board implements iMatrix {
 		createsentinels(row.size(),col.size(),row1,col1);
 		for (int i = 0; i < row.size(); i++) {
 			Cell c =row.getfirstCellE(i);
-			while(c!=null){
+			while(!c.equals(new Cell(-1,new Ponto(-1,-1)))){
 				int neighboors=0;
 				Cell E=c.E(row, i);
 				int icol=c.getPonto().getY();
 				Cell S=c.S(col, icol);
 				Cell N=c.N(col, icol);
 				Cell O=c.O(row, i);
-				Cell NE=c.NE(E,N,row,col);
-				Cell NO=c.NO(O, N, row, col);
-				Cell SE=c.SE(E, S, row, col);
-				Cell SO=c.SO(O, S, row, col);
+				Cell NE=c.diagonalE(row,col,i-1);
+				Cell NO=c.diagonalO(row, col,i-1);
+				Cell SE=c.diagonalE(row, col,i+1);
+				Cell SO=c.diagonalO(row, col,i+1);
 				System.out.print(i+" @ E:"+E+" S:"+S+" O:"+O+" N:"+N+" NE:"+NE+" NO:"+NO+" SE:"+SE+" SO:"+SO+" ");
-				if(E!=null && c.getPonto().dist(E.getPonto())<DISTANCE_CELLS){
+				//System.out.print(i+" @ E:"+E.getPonto()+" S:"+S.getPonto()+" O:"+O.getPonto()+" N:"+N.getPonto()+" NE:"+NE.getPonto()+" NO:"+NO.getPonto()+" SE:"+SE.getPonto()+" SO:"+SO.getPonto()+" ");
+				if(E!=new Cell(-1,new Ponto(-1,-1)) && c.getPonto().dist(E.getPonto())<DISTANCE_CELLS){
 					neighboors++;
-					System.out.print("E ");
+					//System.out.print("E ");
 				}
-				if(S!=null && c.getPonto().dist(S.getPonto())<DISTANCE_CELLS){
+				if(S!=new Cell(-1,new Ponto(-1,-1)) && c.getPonto().dist(S.getPonto())<DISTANCE_CELLS){
 					neighboors++;
-					System.out.print("S ");
+					//System.out.print("S ");
 				}
-				if(N!=null && c.getPonto().dist(N.getPonto())<DISTANCE_CELLS){
+				if(N!=new Cell(-1,new Ponto(-1,-1)) && c.getPonto().dist(N.getPonto())<DISTANCE_CELLS){
 					neighboors++;
-					System.out.print("N ");
+					//System.out.print("N ");
 				}
-				if(O!=null && c.getPonto().dist(O.getPonto())<DISTANCE_CELLS){
+				if(O!=new Cell(-1,new Ponto(-1,-1)) && c.getPonto().dist(O.getPonto())<DISTANCE_CELLS){
 					neighboors++;
-					System.out.print("O ");
+					//System.out.print("O ");
 				}
-				if(SE!=null && c.getPonto().dist(SE.getPonto())<DISTANCE_CELLS){
+				if(SE!=new Cell(-1,new Ponto(-1,-1)) && c.getPonto().dist(SE.getPonto())<DISTANCE_CELLS){
 					neighboors++;
-					System.out.print("SE ");
+					//System.out.print("SE ");
 				}
-				if(SO!=null && c.getPonto().dist(SO.getPonto())<DISTANCE_CELLS){
+				if(SO!=new Cell(-1,new Ponto(-1,-1)) && c.getPonto().dist(SO.getPonto())<DISTANCE_CELLS){
 					neighboors++;
-					System.out.print("SO ");
+					//System.out.print("SO ");
 				}
-				if(NE!=null && c.getPonto().dist(NE.getPonto())<DISTANCE_CELLS){
+				if(NE!=new Cell(-1,new Ponto(-1,-1)) && c.getPonto().dist(NE.getPonto())<DISTANCE_CELLS){
 					neighboors++;
-					System.out.print("NE ");
+					//System.out.print("NE ");
 				}
-				if(NO!=null && c.getPonto().dist(NO.getPonto())<DISTANCE_CELLS){
+				if(NO!=new Cell(-1,new Ponto(-1,-1)) && c.getPonto().dist(NO.getPonto())<DISTANCE_CELLS){
 					neighboors++;
-					System.out.print("NO ");
+					//System.out.print("NO ");
 				}
 				System.out.println("vizi:"+neighboors);
 				if(neighboors>1 && neighboors<4){
-					row1.associateTo(i, c.getPonto(), true);
-					col1.associateTo(c.getPonto().getY(), c.getPonto(), false);
+					row1.associateTo(c.getPonto(),col1);
 				}
 				c=E;
 			}
 		}
 		row=row1;
 		col=col1;
+		//row.printListrow();
+		//col.printListcol();
+		//System.out.println(col.getfirstNode().getS().getE()+" "+col.getfirstNode().getS().getS());
 	}
 
 	private void createsentinels(int x,int y,LinkedListCircular a,LinkedListCircular b){
@@ -90,8 +93,7 @@ public class Board implements iMatrix {
 			for(int j=0;j<cols;j++){
 				if(m[i][j]==1){
 					Ponto c=new Ponto(i,j);
-					row.associateTo(i,c,true);
-					col.associateTo(j,c, false);
+					row.associateTo(c,col);
 				}
 			}
 		}

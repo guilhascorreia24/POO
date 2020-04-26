@@ -1,5 +1,3 @@
-import javax.xml.crypto.Data;
-
 public class LinkedListCircular {
     private SentinelNode head, last;
     private int i = 0;
@@ -158,7 +156,7 @@ public class LinkedListCircular {
             Scell=new Cell(1,(Ponto)o.getvalue());
             return Scell;
         }
-        return null;
+        return new Cell(-1,new Ponto(-1,-1));
     }
 
     @SuppressWarnings("rawtypes") 
@@ -169,7 +167,7 @@ public class LinkedListCircular {
                 eCell = new Cell(1, (Ponto) o.getvalue());
                 return eCell;
             }
-        return null;
+        return new Cell(-1,new Ponto(-1,-1));
      }
 
    /* @SuppressWarnings("rawtypes") 
@@ -276,20 +274,23 @@ public class LinkedListCircular {
         prev.next=last.next;
     }
 
-    public void associateTo(int i,Ponto p,boolean row){
+    public void associateTo(Ponto p,LinkedListCircular col){
+        int i=p.getX(),j=p.getY();
         Node s=get(i);
         Node h=s;
-        if(row){
             while(h.getE()!=s){
                 h=h.getE();
             }
-            h.setE(new DataNode<Ponto>(s,null,p));
-        }else{
+            Node o=new DataNode<Ponto>(get(i), null, p);
+            h.setE(o);
+        s=col.get(j);
+        h=s;
             while(h.getS()!=s){
                 h=h.getS();
             }
-            h.setS(new DataNode<Ponto>(null,s,p));
-        }
+            o.setS(col.get(j));
+            h.setS(o);
+        
     }
 
     public boolean contains(Cell p,int lineIndex){

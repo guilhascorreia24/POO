@@ -5,10 +5,6 @@ public class Ponto {
     public Ponto(int x, int y) {
         this.x = x;
         this.y = y;
-        if (x < 0 || y < 0) {
-            System.out.println("iv");
-            System.exit(1);
-        }
     }
 
     public int getX(){
