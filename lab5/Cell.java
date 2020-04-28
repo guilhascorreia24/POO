@@ -48,9 +48,7 @@ public class Cell {
 
     public boolean equals(Cell c) {
         // System.out.println(c.STATE + " " + STATE);
-        if (c == null || this == null) {
-            return false;
-        } else if (STATE == c.STATE && p.equals(c.p)) {
+        if (STATE == c.STATE && p.equals(c.p)) {
             return true;
         }
         return false;
@@ -58,7 +56,7 @@ public class Cell {
 
     //@SuppressWarnings("rawtypes")
     public Cell diagonalE(LinkedListCircular a, LinkedListCircular b, int i) {
-        Cell r = new Cell(-1, new Ponto(-1, -1));
+        Cell r = new Cell(0, new Ponto(i,this.getPonto().getY()+1));
         if(this.getPonto().getY()+1<b.size() && i>=0 && i<a.size()){
             LinkedListCircular.Node E=a.get(i).getE();
             while(E instanceof LinkedListCircular.DataNode){
@@ -68,7 +66,7 @@ public class Cell {
                 }
                // System.out.println(b.getindex(o)+" "+(this.getPonto().getY()+1));
                 if(b.getindex(o)==this.getPonto().getY()+1){
-                    r=new Cell(1,new Ponto(i,this.getPonto().getY()+1));
+                    r.setState(1);
                     break;
                 }
                 E=E.getE();
@@ -79,7 +77,7 @@ public class Cell {
 
     //@SuppressWarnings("rawtypes")
     public Cell diagonalO(LinkedListCircular a, LinkedListCircular b, int i) {
-        Cell r = new Cell(-1, new Ponto(-1, -1));
+        Cell r = new Cell(-1, new Ponto(i, this.getPonto().getY()-1));
         if(this.getPonto().getY()>0 && i>=0 && i<a.size()){
             LinkedListCircular.Node E=a.get(i).getE();
             while(E instanceof LinkedListCircular.DataNode){
@@ -89,7 +87,7 @@ public class Cell {
                 }
                 //System.out.println(b.getindex(o)+" "+(this.getPonto().getY()-1));
                 if(b.getindex(o)==this.getPonto().getY()-1){
-                    r=new Cell(1,new Ponto(i,this.getPonto().getY()-1));
+                    r.setState(1);
                     break;
                 }
                 E=E.getE();

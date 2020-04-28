@@ -105,6 +105,7 @@ public class LinkedListCircular {
         last.next = l;
         l.next = head;
         head = l;
+        i++;
     }
 
     /*---------------------------------------------end add----------------------------------------------------*/
