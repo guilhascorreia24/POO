@@ -71,7 +71,8 @@ public class Cell {
                 }
                 o=(LinkedListCircular.SentinelNode)o.getS();
                 i=b.getindex(o);
-                if (this.getPonto().getY()+1==i && n.getE() instanceof LinkedListCircular.DataNode) {
+                System.out.println(i==this.getPonto().getY()+1);
+                if (this.getPonto().getY()+1==i && o2.getE() instanceof LinkedListCircular.DataNode) {
                     LinkedListCircular.DataNode o1 = (LinkedListCircular.DataNode) o2.getE();
                     r = new Cell(1, (Ponto) o1.getvalue());
                 }
@@ -96,7 +97,7 @@ public class Cell {
                 }
                 o=(LinkedListCircular.SentinelNode)o.getS();
                 i=b.getindex(o);
-                if (this.getPonto().getY()-1==i && n.getE() instanceof LinkedListCircular.DataNode) {
+                if (this.getPonto().getY()-1==i && o2.getE() instanceof LinkedListCircular.DataNode) {
                     LinkedListCircular.DataNode o1 = (LinkedListCircular.DataNode) o2.getE();
                     r = new Cell(1, (Ponto) o1.getvalue());
                 }
