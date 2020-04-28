@@ -17,10 +17,10 @@ public class Board implements iMatrix {
 				Cell S=c.S(col, icol);
 				Cell N=c.N(col, icol);
 				Cell O=c.O(row, i);
-				Cell NE=c.diagonalE(row,col,i+1);
-				Cell NO=c.diagonalO(row, col,i-1);
-				Cell SE=c.diagonalE(row, col,i+1);
-				Cell SO=c.diagonalO(row, col,i-1);
+				Cell NE=c.diagonalE(row,col,i-1);
+				Cell NO=c.diagonalO(row,col,i-1);
+				Cell SE=c.diagonalE(row,col,i+1);
+				Cell SO=c.diagonalO(row,col,i+1);
 				System.out.print(i+" @ E:"+E+" S:"+S+" O:"+O+" N:"+N+" NE:"+NE+" NO:"+NO+" SE:"+SE+" SO:"+SO+" ");
 				//System.out.print(i+" @ E:"+E.getPonto()+" S:"+S.getPonto()+" O:"+O.getPonto()+" N:"+N.getPonto()+" NE:"+NE.getPonto()+" NO:"+NO.getPonto()+" SE:"+SE.getPonto()+" SO:"+SO.getPonto()+" ");
 				if(E!=new Cell(-1,new Ponto(-1,-1)) && c.getPonto().dist(E.getPonto())<DISTANCE_CELLS){
@@ -39,19 +39,19 @@ public class Board implements iMatrix {
 					neighboors++;
 					//System.out.print("O ");
 				}
-				if(SE!=new Cell(-1,new Ponto(-1,-1)) && c.getPonto().dist(SE.getPonto())<DISTANCE_CELLS){
+				if(!SE.equals(new Cell(-1,new Ponto(-1,-1)))){
 					neighboors++;
 					//System.out.print("SE ");
 				}
-				if(SO!=new Cell(-1,new Ponto(-1,-1)) && c.getPonto().dist(SO.getPonto())<DISTANCE_CELLS){
+				if(!SO.equals(new Cell(-1,new Ponto(-1,-1)))){
 					neighboors++;
 					//System.out.print("SO ");
 				}
-				if(NE!=new Cell(-1,new Ponto(-1,-1)) && c.getPonto().dist(NE.getPonto())<DISTANCE_CELLS){
+				if(!NE.equals(new Cell(-1,new Ponto(-1,-1)) )){
 					neighboors++;
 					//System.out.print("NE ");
 				}
-				if(NO!=new Cell(-1,new Ponto(-1,-1)) && c.getPonto().dist(NO.getPonto())<DISTANCE_CELLS){
+				if(!NO.equals(new Cell(-1,new Ponto(-1,-1)))){
 					neighboors++;
 					//System.out.print("NO ");
 				}
