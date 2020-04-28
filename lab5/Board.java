@@ -21,7 +21,7 @@ public class Board implements iMatrix {
 				Cell NO=c.diagonalO(row,col,i-1);
 				Cell SE=c.diagonalE(row,col,i+1);
 				Cell SO=c.diagonalO(row,col,i+1);
-				System.out.print(i+" @ E:"+E+" S:"+S+" O:"+O+" N:"+N+" NE:"+NE+" NO:"+NO+" SE:"+SE+" SO:"+SO+" ");
+				//System.out.println(i+" @ E:"+E+" S:"+S+" O:"+O+" N:"+N+" NE:"+NE+" NO:"+NO+" SE:"+SE+" SO:"+SO+" ");
 				//System.out.print(i+" @ E:"+E.getPonto()+" S:"+S.getPonto()+" O:"+O.getPonto()+" N:"+N.getPonto()+" NE:"+NE.getPonto()+" NO:"+NO.getPonto()+" SE:"+SE.getPonto()+" SO:"+SO.getPonto()+" ");
 				if(E!=new Cell(-1,new Ponto(-1,-1)) && c.getPonto().dist(E.getPonto())<DISTANCE_CELLS){
 					neighboors++;
@@ -55,10 +55,47 @@ public class Board implements iMatrix {
 					neighboors++;
 					//System.out.print("NO ");
 				}
-				System.out.println("vizi:"+neighboors);
+				//System.out.println("vizi:"+neighboors);
+				//System.out.println(i+" @ E:"+E.isAlive()+" S:"+S.isAlive()+" O:"+O.isAlive()+" N:"+N.isAlive()+" NE:"+NE.isAlive()+" NO:"+NO.isAlive()+" SE:"+SE.isAlive()+" SO:"+SO.isAlive()+" ");
 				if(neighboors>1 && neighboors<4){
 					row1.associateTo(c.getPonto(),col1);
 				}
+				if(N.isAlive() && E.isAlive()){
+					System.out.println("NE alive");
+					row1.associateTo(new Ponto(E.getPonto().getX(),N.getPonto().getY()), col1);
+				}
+				if(N.isAlive() && O.isAlive()){
+					System.out.println("NO alive");
+					row1.associateTo(new Ponto(O.getPonto().getX(),N.getPonto().getY()), col1);
+				}
+				if(S.isAlive() && E.isAlive()){
+					System.out.println("SE alive");
+					row1.associateTo(new Ponto(E.getPonto().getX(),S.getPonto().getY()), col1);
+				}
+				if(S.isAlive() && O.isAlive()){
+					System.out.println("SO alive");
+					row1.associateTo(new Ponto(O.getPonto().getX(),S.getPonto().getY()), col1);
+				}
+				/*if(NE.isAlive() && SE.isAlive()){
+					row1.associateTo(new Ponto(E.getPonto().getX(),c.getPonto().getY()), col1);
+				}
+				if(NE.isAlive() && NO.isAlive()){
+					row1.associateTo(new Ponto(c.getPonto().getX(),N.getPonto().getY()),col1);
+				}
+				if(NO.isAlive() && SO.isAlive()){
+					row1.associateTo(new Ponto(O.getPonto().getY(),c.getPonto().getY()), col1);
+				}
+				if(SO.isAlive() && SE.isAlive()){
+					row1.associateTo(new Ponto(S.getPonto().getX(),c.getPonto().getY()), col1);
+				}
+				if(N.isAlive() && S.isAlive()){
+					row1.associateTo(new Ponto(c.getPonto().getX(),c.getPonto().getY()+1),col1);
+					row1.associateTo(new Ponto(c.getPonto().getX(),c.getPonto().getY()-1), col1);
+				}
+				if(E.isAlive() && O.isAlive()){
+					row1.associateTo(new Ponto(c.getPonto().getX()-1,c.getPonto().getY()), col1);
+					row1.associateTo(new Ponto(c.getPonto().getX()+1,c.getPonto().getY()),col1);
+				}*/
 				c=E;
 			}
 		}

@@ -24,7 +24,7 @@ public class GOL{
             g.child();
             m=g.get();
            // System.out.println("itB:"+m.length+":"+m[0].length);
-            //printBoards(m);
+            printBoards(m);
             i++;
         }
     }
