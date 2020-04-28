@@ -157,7 +157,7 @@ public class LinkedListCircular {
             Scell=new Cell(1,(Ponto)o.getvalue());
             return Scell;
         }
-        return new Cell(-1,new Ponto(-1,-1));
+        return new Cell(0,new Ponto(-1,-1));
     }
 
     @SuppressWarnings("rawtypes") 
@@ -168,7 +168,7 @@ public class LinkedListCircular {
                 eCell = new Cell(1, (Ponto) o.getvalue());
                 return eCell;
             }
-        return new Cell(-1,new Ponto(-1,-1));
+        return new Cell(0,new Ponto(-1,-1));
      }
 
    /* @SuppressWarnings("rawtypes") 
@@ -293,15 +293,34 @@ public class LinkedListCircular {
             h.setS(o);
         
     }
+    @SuppressWarnings("rawtypes")
+    public Ponto nextcellHorizon(Ponto x,int i){
+        Node n=get(i).getE();
+        while(n instanceof DataNode){
+            DataNode n1= (DataNode) n;
+            if(n1.getvalue().equals(x) && n1.getE() instanceof DataNode){
+                n1=(DataNode)n1.getE();
+                return (Ponto)n1.getvalue();
+            }
+            n=n.getE();
+        }
+        return null; 
+    }
 
-    public boolean contains(Cell p,int lineIndex){
+    public boolean contains(Ponto p,int lineIndex){
+        //System.out.println(lineIndex);
+        if(lineIndex<0 || lineIndex>=i){
+            return false;
+        }
         SentinelNode n=(SentinelNode) get(lineIndex);
-        Node n1=n.getE();
-        while(n1!=n){
-                if(p.getPonto().toString().equals(n1.toString())){
+        Node n1=n.getS();
+      // System.out.println(n1 instanceof DataNode);
+        while(n1 instanceof DataNode){
+            //System.out.println(n1.toString());
+                if(p.toString().equals(n1.toString())){
                     return true;
                 }
-            n1=n1.getE();
+            n1=n1.getS();
         }
         return false;
     }
