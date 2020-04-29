@@ -14,6 +14,13 @@ public class Ponto {
         return y;
     }
 
+    public void setX(int x){
+        this.x=x;
+    }
+
+    public void setY(int y){
+        this.y=y;
+    }
     public double dist(Ponto p) {
         double dx = x - p.x;
         double dy = y - p.y;

@@ -160,92 +160,6 @@ public class LinkedListCircular {
         return new Cell(0,new Ponto(-1,-1));
     }
 
-    @SuppressWarnings("rawtypes") 
-    public Cell getfirstCellS(int i) {
-        Node n=get(i);
-            if(n.getS() instanceof DataNode){
-                DataNode o= (DataNode) get(i).getS();
-                eCell = new Cell(1, (Ponto) o.getvalue());
-                return eCell;
-            }
-        return new Cell(0,new Ponto(-1,-1));
-     }
-
-   /* @SuppressWarnings("rawtypes") 
-    public Cell nextCellE(Cell c,int i){
-        Node n=get(i).getE();
-        Cell r=null;
-        DataNode o=null;
-        if(c!=null){
-        while(n instanceof DataNode){
-            o=(DataNode)n;
-            if(o.getvalue().equals(c.getPonto()) && n.getE() instanceof DataNode){
-                o=(DataNode) o.getE();
-                r=new Cell(1,(Ponto)o.getvalue());
-            }
-            n=n.getE();
-        }
-    }
-        return r;
-    }
-
-    @SuppressWarnings("rawtypes")
-    public Cell nextCellS(Cell c,int i){
-        Node n=get(i).getS();
-        Cell r=null;
-        DataNode o=null;
-        if(c!=null){
-        while(n instanceof DataNode){
-            o=(DataNode)n;
-            if(o.getvalue().equals(c.getPonto()) && n.getS() instanceof DataNode){
-                o=(DataNode) o.getS();
-                r=new Cell(1,(Ponto)o.getvalue());
-            }
-            n=n.getS();
-        }
-    }
-        return r;
-    }
-
-    @SuppressWarnings("rawtypes")
-    public Cell northCell(Cell c,int i){
-        Node n=get(i).getS(),m=get(i);
-        Cell r=null;
-        DataNode o=null;
-        if(c!=null){
-        while(n instanceof DataNode){
-            o=(DataNode)n;
-            if(o.getvalue().equals(c.getPonto()) && m instanceof DataNode){
-                o=(DataNode) m;
-                r=new Cell(1,(Ponto)o.getvalue());
-            }
-            m=(Node)n;
-            n=n.getS();
-        }
-    }
-        return r;
-    }
-
-    
-    @SuppressWarnings("rawtypes")
-    public Cell Ocell(Cell c,int i){
-        Node n=get(i).getE(),m=get(i);
-        Cell r=null;
-        DataNode o=null;
-        if(c!=null){
-        while(n instanceof DataNode){
-            o=(DataNode)n;
-            if(o.getvalue().equals(c.getPonto()) && m instanceof DataNode){
-                o=(DataNode) m;
-                r=new Cell(1,(Ponto)o.getvalue());
-            }
-            m=(Node)n;
-            n=n.getE();
-        }
-    }
-        return r;
-    }*/
-
 
     /*----------------------------------------------------end gets------------------------------------------------*/
     public int size() {
@@ -290,9 +204,9 @@ public class LinkedListCircular {
                 h=h.getS();
             }
             o.setS(col.get(j));
-            h.setS(o);
-        
+            h.setS(o);  
     }
+
     @SuppressWarnings("rawtypes")
     public Ponto nextcellHorizon(Ponto x,int i){
         Node n=get(i).getE();
@@ -308,14 +222,15 @@ public class LinkedListCircular {
     }
 
     public boolean contains(Ponto p,int lineIndex){
-        //System.out.println(lineIndex);
+       // System.out.println(lineIndex);
         if(lineIndex<0 || lineIndex>=i){
             return false;
         }
         SentinelNode n=(SentinelNode) get(lineIndex);
         Node n1=n.getS();
-      // System.out.println(n1 instanceof DataNode);
+       //System.out.println(n1 instanceof DataNode);
         while(n1 instanceof DataNode){
+            //System.out.println(p.toString().equals(n1.toString()));
             //System.out.println(n1.toString());
                 if(p.toString().equals(n1.toString())){
                     return true;
@@ -339,7 +254,7 @@ public class LinkedListCircular {
     { 
         last = head; 
    
-        System.out.print("LinkedList:\n");
+        System.out.print("LinkedListRow:\n");
             
         System.out.print(last+" ");
         if(last.getE() instanceof DataNode){
@@ -373,7 +288,7 @@ public class LinkedListCircular {
     { 
         last = head; 
    
-        System.out.print("LinkedList:\n");
+        System.out.print("LinkedListCol:\n");
             
         System.out.print(last+" ");
         if(last.getS() instanceof DataNode){

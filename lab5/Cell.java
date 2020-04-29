@@ -32,9 +32,8 @@ public class Cell {
         return false;
     }
 
-    public Cell isBorn(Ponto p) {
-
-        if (this.getState() == 0) {
+    public Cell isBorn(Cell a,Cell b) {
+        if (this.isAlive() && a && b) {
             return new Cell(1, p);
         }
         return null;
@@ -51,4 +50,18 @@ public class Cell {
         }
 		return false;
     }
+
+    public boolean isSurvive(boolean[] vizinhos){
+        int r=0;
+        for(boolean t:vizinhos){
+            if(t){
+                r++;
+            }
+        }
+        if(r>1 && r<4){
+            return true;
+        }
+        return false;
+    }
+
 }
