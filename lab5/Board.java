@@ -104,21 +104,13 @@ public class Board implements iMatrix {
 		p.setX(x+1);p.setY(y-1);//SO
 		vizinhos[i++]=check_cell_in_board(col.contains(p, y-1),p);
 		p.setX(x);p.setY(y-1);//O
-		if(col.contains(p,y-1)){
-			vizinhos[i++]=new Cell(1,p);
-		}
+		vizinhos[i++]=check_cell_in_board(col.contains(p,y-1),p);
 		p.setX(x-1);p.setY(y-1);//NO
-		if(col.contains(p, y-1)){
-			vizinhos[i++]=new Cell(1, p);
-		}
+		vizinhos[i++]=check_cell_in_board(col.contains(p, y-1),p);
 		p.setX(x-1);p.setY(y);//N
-		if(col.contains(p, y)){
-			vizinhos[i++]=new Cell(1,p);
-		}
+		vizinhos[i++] = check_cell_in_board(col.contains(p, y),p);
 		p.setX(x-1);p.setY(y+1);//NE
-		if(col.contains(p, y+1)){
-			vizinhos[i++]=new Cell(1, p);
-		}
+		vizinhos[i++]= check_cell_in_board(col.contains(p, y+1),p);
 
 
 
