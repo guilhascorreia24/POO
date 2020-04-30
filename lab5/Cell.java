@@ -83,7 +83,7 @@ public class Cell {
     }
 
     public void setVizinhos(int v) {
-        this.vizinhos+=v;
+        this.vizinhos=v;
     }
 
     public int getVizinhos(){
@@ -116,6 +116,7 @@ public class Cell {
 
     public boolean isBorn(){
         if(vizinhos==3){
+            this.STATE=1;
             return true;
         }
         return false;
@@ -123,7 +124,7 @@ public class Cell {
 
 
     public String toString() {
-        return p.toString()+" "+vizinhos+" "+STATE;
+        return p.toString()+" "+STATE+" "+vizinhos;
     }
 
     public boolean equals(Cell c) {

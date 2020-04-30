@@ -1,68 +1,74 @@
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Board implements iMatrix {
-	private LinkedListCircular<Ponto> row = new LinkedListCircular<Ponto>(true);
-	private LinkedListCircular<Ponto> col = new LinkedListCircular<Ponto>(false);
+	private LinkedListCircular<Ponto> row = new LinkedListCircular<Ponto>();
+	private LinkedListCircular<Ponto> col=new LinkedListCircular<Ponto>();
 
 	public void child() {
-		LinkedListCircular<Ponto> row1=new LinkedListCircular<Ponto>(true);
-		LinkedListCircular<Ponto> col1 = new LinkedListCircular<Ponto>(false);
-		createsentinels(row.size(),col.size(),row1,col1);
+		LinkedListCircular<Ponto> row1=new LinkedListCircular<Ponto>();
+		LinkedListCircular<Ponto> col1 =new LinkedListCircular<Ponto>();
+		Set<Cell> myline=new HashSet<Cell>(),nextline=new HashSet<Cell>(),lastline=new HashSet<Cell>();
+		createsentinels(row.size(), col.size(), row1,col1);
 		for(int i=0;i<row.size();i++){
-			Cell c1=(Cell)row.getfirstCellE(i),last;
-			LinkedListCircular<Cell> linha=new LinkedListCircular<Cell>(true);
-			LinkedListCircular<Cell> coluna=new LinkedListCircular<Cell>(false);
-			createsentinels(2,col.size(), linha, coluna);
+			Cell c1=(Cell)row.getfirstElementOf(i),last;
 			while(c1.getState()!=0){
 				Ponto pc1=c1.getPonto();
-				c1.setNE(new Cell(0,new Ponto(pc1.getX()-1,pc1.getY()+1)));
-				c1.getNE().setVizinhos(1);
-				if(c1.getNE().isSurvive() || c1.getNE().isBorn()){
-					row1.associateTo(c1.getNE().getPonto().getX(),c1.getNE().getPonto().getY(),col1,c1.getNE().getPonto());}
-				else { 
-					row1.removeAssociation(c1.getNE().getPonto(),c1.getNE().getPonto().getX());}
-				c1.setN(new Cell(0,new Ponto(pc1.getX()-1,pc1.getY())));
-				c1.getN().setVizinhos(1);
-				if(c1.getN().isSurvive() || c1.getN().isBorn()){
-					row1.associateTo(c1.getN().getPonto().getX(),c1.getN().getPonto().getY(),col1,c1.getN().getPonto());}
-				else { 
-					row1.removeAssociation(c1.getN().getPonto(),c1.getN().getPonto().getX());}
-				c1.setNO(new Cell(0,new Ponto(pc1.getX()-1,pc1.getY()-1)));
-				c1.getNO().setVizinhos(1);
-				if(c1.getNO().isSurvive() || c1.getNO().isBorn()){
-					row1.associateTo(c1.getNO().getPonto().getX(),c1.getNO().getPonto().getY(),col1,c1.getNO().getPonto());}
-				else { 
-					row1.removeAssociation(c1.getNO().getPonto(),c1.getNO().getPonto().getX());}
-				c1.setE(new Cell(0,new Ponto(pc1.getX(),pc1.getY()+1)));
-				c1.getE().setVizinhos(1);
-				if(c1.getE().isSurvive() || c1.getE().isBorn()){
-					row1.associateTo(c1.getE().getPonto().getX(),c1.getE().getPonto().getY(),col1,c1.getE().getPonto());}
-				else { 
-					row1.removeAssociation(c1.getE().getPonto(),c1.getE().getPonto().getX());}
-				c1.setSO(new Cell(0,new Ponto(pc1.getX()+1,pc1.getY()-1)));c1.getSO().setVizinhos(1);
-				if(c1.getSO().isSurvive() || c1.getSO().isBorn()){
-					row1.associateTo(c1.getSO().getPonto().getX(),c1.getSO().getPonto().getY(),col1,c1.getSO().getPonto());}
-				else {
-					row1.removeAssociation(c1.getSO().getPonto(),c1.getSO().getPonto().getX());}
-				c1.setS(new Cell(0,new Ponto(pc1.getX()+1,pc1.getY())));c1.getS().setVizinhos(1);
-				if(c1.getS().isSurvive() || c1.getS().isBorn()){
-					row1.associateTo(c1.getS().getPonto().getX(),c1.getS().getPonto().getY(),col1,c1.getS().getPonto());}
-				else { 
-					row1.removeAssociation(c1.getS().getPonto(),c1.getS().getPonto().getX());}
-				c1.setSE(new Cell(0,new Ponto(pc1.getX()+1,pc1.getY()+1)));c1.getSE().setVizinhos(1);
-				if(c1.getSE().isSurvive() || c1.getSE().isBorn()){
-					row1.associateTo(c1.getSE().getPonto().getX(),c1.getSE().getPonto().getY(),col1,c1.getSE().getPonto());}
-				else { 
-					row1.removeAssociation(c1.getSE().getPonto(),c1.getSE().getPonto().getX());}
-				c1.setO(new Cell(0,new Ponto(pc1.getX(),pc1.getY()-1)));c1.getO().setVizinhos(1);
-				if(c1.getO().isSurvive() || c1.getO().isBorn()){
-					row1.associateTo(c1.getO().getPonto().getX(),c1.getO().getPonto().getY(),col1,c1.getO().getPonto());}
-				else { 
-					row1.removeAssociation(c1.getO().getPonto(),c1.getO().getPonto().getX());}
+				Cell c2=CellAlreadyExisted(myline, c1);
+				//System.out.println(c2);
+				myline.remove(c2);
+				c1.setVizinhos(c2.getVizinhos());
+				c1.setNE(CellAlreadyExisted(lastline,new Cell(0,new Ponto(pc1.getX()-1,pc1.getY()+1))));//NE
+				c1.getNE().setVizinhos(c1.getNE().getVizinhos()+1);
+				newCells(c1.getNE(), pc1, row1);
+
+				c1.setN(CellAlreadyExisted(lastline,new Cell(0,new Ponto(pc1.getX()-1,pc1.getY()))));//N
+				c1.getN().setVizinhos(c1.getN().getVizinhos()+1);
+				newCells(c1.getN(), pc1, row1);
+
+				c1.setNO(CellAlreadyExisted(lastline,new Cell(0,new Ponto(pc1.getX()-1,pc1.getY()-1))));//NO
+				c1.getNO().setVizinhos(c1.getNO().getVizinhos()+1);
+				newCells(c1.getNO(), pc1, row1);
+
+				c1.setE(CellAlreadyExisted(myline,new Cell(0,new Ponto(pc1.getX(),pc1.getY()+1))));//E
+				c1.getE().setVizinhos(c1.getE().getVizinhos()+1);
+				newCells(c1.getE(), pc1, row1);
+				myline.add(c1.getE());
+				
+
+				c1.setSO(new Cell(0,new Ponto(pc1.getX()+1,pc1.getY()-1)));//SO
+				c1.getSO().setVizinhos(c1.getSO().getVizinhos()+1);
+				newCells(c1.getSO(), pc1, row1);
+				nextline.add(c1.getSO());
+				
+
+				c1.setS(new Cell(0,new Ponto(pc1.getX()+1,pc1.getY())));//S
+				c1.getS().setVizinhos(c1.getS().getVizinhos()+1);
+				newCells(c1.getS(), pc1, row1);
+				nextline.add(c1.getS());
+				
+
+				c1.setSE(new Cell(0,new Ponto(pc1.getX()+1,pc1.getY()+1)));//SE
+				c1.getSE().setVizinhos(c1.getSE().getVizinhos()+1);
+				newCells(c1.getSE(), pc1, row1);
+				nextline.add(c1.getSE());
+				
+
+				c1.setO(CellAlreadyExisted(myline,new Cell(0,new Ponto(pc1.getX(),pc1.getY()-1))));//O
+				c1.getO().setVizinhos(c1.getO().getVizinhos()+1);
+				newCells(c1.getO(), pc1, row1);
+				myline.add(c1.getO());
+				myline.add(c1);
+				newCells(c1, c1.getPonto(), row1);
+				
+
 				pc1= (Ponto) row.nextcellHorizon(pc1, pc1.getX());
-				System.out.println(c1.getO());
-				System.out.println("NO:"+c1.getNO().getVizinhos()+" N:"+c1.getN().getVizinhos()+" NE:"+c1.getNE().getVizinhos()+" O:"+c1.getO().getVizinhos()+" C"+c1.getVizinhos()+" E:"+c1.getE().getVizinhos()+" SO:"+c1.getSO().getVizinhos()+" S:"+c1.getS().getVizinhos()+" SE:"+c1.getSE().getVizinhos());
+				//System.out.println(c1.getO());
+				//System.out.println("NO:"+c1.getNO().getVizinhos()+" N:"+c1.getN().getVizinhos()+" NE:"+c1.getNE().getVizinhos()+" O:"+c1.getO().getVizinhos()+" C"+c1.getVizinhos()+" E:"+c1.getE().getVizinhos()+" SO:"+c1.getSO().getVizinhos()+" S:"+c1.getS().getVizinhos()+" SE:"+c1.getSE().getVizinhos());
 				if(pc1!=null){
 					last=c1;
+					//linha.associateTo(1, last.getPonto().getY(),coluna, last);
 					c1=new Cell(1,pc1);
 					if(pc1.dist(last.getPonto())==1){
 						c1.setVizinhos(last.getE().getVizinhos());
@@ -74,7 +80,14 @@ public class Board implements iMatrix {
 					c1=new Cell(0,pc1);
 				}
 			}
-
+			System.out.println("1:lastline:"+lastline+"\nmyline"+myline+"\nnextline"+nextline+"\n");
+			lastline.clear();
+			lastline.addAll(myline);
+			//System.out.println("2:lastline:"+lastline+"\nmyline"+myline+"\nnextline"+nextline+"\n");
+			myline.clear();
+			myline.addAll(nextline);
+			//System.out.println("3:lastline:"+lastline+"\nmyline"+myline+"\nnextline"+nextline+"\n");
+			nextline.clear();
 		}
 		row=row1;
 		col=col1;
@@ -82,17 +95,25 @@ public class Board implements iMatrix {
 		//col.printListcol();
 	}
 
-
+	private Cell CellAlreadyExisted(Set<Cell> list,Cell c){
+		for(Cell x:list){
+			if(x.getPonto().equals(c.getPonto())){
+				return x;
+			}
+		}
+		return c;
+	}
 
 
 	private void createsentinels(int x,int y,LinkedListCircular<?> a,LinkedListCircular<?> b){
+		a.Col(b);
         int i=0;
         while(i<x){
-			a.add();
+			a.addLine();
             i++;
 		}i=0;
 		while(i<y){
-			b.add();
+			a.getColList().addLine();;
             i++;
 		}
 	}
@@ -108,16 +129,18 @@ public class Board implements iMatrix {
 		for(int i=0;i<rows;i++){
 			for(int j=0;j<cols;j++){
 				if(m[i][j]==1){
+					//System.out.println("sj");
 					Ponto c=new Ponto(i,j);
-					row.associateTo(i,j,col,c);
+					row.associateTo(i,j,(Object)c);
 				}
 			}
 		}
-		//row.printList();
+		//row.printListrow();
 	}
 
 	@Override
 	public int[][] get() {
+		//row.removeAssociationOf((Object)new Ponto(0,0),0);
 		int [][] m=new int[row.size()][col.size()];
 		//System.out.println("get:"+row.size()+":"+col.size());
 		for(int i=0;i<row.size();i++){
@@ -134,6 +157,22 @@ public class Board implements iMatrix {
 		//System.out.println("get before:"+m.length+":"+m[0].length);
 		//System.out.println(m.length);
 		return m;
+	}
+
+	private void newCells(Cell c1,Ponto pc1,LinkedListCircular<?> row1){
+		if(c1.isSurvive() || c1.isBorn()){
+			if(c1.isBorn()){
+				//add linha ou coluna na tabela 
+			}
+			//row1.associateTo(c1.getPonto().getX(),c1.getPonto().getY(),c1.getPonto());
+			System.out.println(c1);
+			row1.associateTo(c1.getPonto().getX(), c1.getPonto().getY(),(Object)c1.getPonto());
+		}
+		else{
+			//row1.printListrow();
+			row1.removeAssociationOf((Object)c1.getPonto(),c1.getPonto().getX());
+			//row1.printListrow();
+		}
 	}
 
 }
