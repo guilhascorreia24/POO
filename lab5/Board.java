@@ -91,7 +91,7 @@ public class Board implements iMatrix {
 		}
 		row=row1;
 		col=col1;
-		row.printListrow();
+		//row.printListrow();
 		//col.printListcol();
 	}
 
