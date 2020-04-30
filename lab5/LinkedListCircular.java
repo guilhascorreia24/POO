@@ -1,6 +1,6 @@
 public class LinkedListCircular<T> {
     private SentinelNode head, last;
-    private int i = 0;
+    private int i,inicial;
     private boolean row;
     private LinkedListCircular<T> col;
 
@@ -112,6 +112,7 @@ public class LinkedListCircular<T> {
         else
             l.setS(l);
         if (head == null) {
+            this.inicial=0;
             head = l;
         } else {
             last.next = l;
@@ -123,12 +124,14 @@ public class LinkedListCircular<T> {
 
     public void addfirstLine() {
         SentinelNode l = new SentinelNode(null, null, null);
-        l.setE(l);
+        if(row) l.setE(l);
+        else l.setS(l);
         last.next = l;
         Node k = head;
         head = l;
         head.next = (SentinelNode) k;
         i++;
+        this.inicial-=1;
     }
 
     /*---------------------------------------------end add----------------------------------------------------*/
@@ -170,6 +173,10 @@ public class LinkedListCircular<T> {
             o++;
         }
         return curr;
+    }
+
+    public int getfirstIndex(){
+        return inicial;
     }
 
     @SuppressWarnings("rawtypes")
@@ -238,7 +245,7 @@ public class LinkedListCircular<T> {
     @SuppressWarnings("unchecked")
     public void associateTo(int i, int j,Object p) {
         //System.out.println(i + " " + j);
-        if (i < size() && i >= 0 && j < col.size() && j >= 0) {
+        if (i < size() && i >= inicial && j < col.size() && j >= col.inicial) {
             //System.out.println(i + " " + j + " " + size());
             Node s = getLinha(i);
             Node h = s;
@@ -288,14 +295,14 @@ public class LinkedListCircular<T> {
 
     public boolean contains(Object p, int lineIndex) {
         // System.out.println(lineIndex);
-        if (lineIndex < 0 || lineIndex >= i) {
+        if (lineIndex < inicial || lineIndex >= i) {
             return false;
         }
         SentinelNode n = (SentinelNode) getLinha(lineIndex);
         Node n1 = n.getE();
         // System.out.println(n1 instanceof DataNode);
         while (n1 instanceof DataNode) {
-            // System.out.println(p.toString().equals(n1.toString()));
+           // System.out.println(p.toString().equals(n1.toString())+" "+p.toString()+" "+n1.toString());
             if (p.toString().equals(n1.toString())) {
                 return true;
             }

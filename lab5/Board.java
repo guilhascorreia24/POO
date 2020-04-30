@@ -64,7 +64,7 @@ public class Board implements iMatrix {
 				
 
 				pc1= (Ponto) row.nextcellHorizon(pc1, pc1.getX());
-				//System.out.println(c1.getO());
+				//System.out.println(pc1);
 				//System.out.println("NO:"+c1.getNO().getVizinhos()+" N:"+c1.getN().getVizinhos()+" NE:"+c1.getNE().getVizinhos()+" O:"+c1.getO().getVizinhos()+" C"+c1.getVizinhos()+" E:"+c1.getE().getVizinhos()+" SO:"+c1.getSO().getVizinhos()+" S:"+c1.getS().getVizinhos()+" SE:"+c1.getSE().getVizinhos());
 				if(pc1!=null){
 					last=c1;
@@ -91,7 +91,7 @@ public class Board implements iMatrix {
 		}
 		row=row1;
 		col=col1;
-		//row.printListrow();
+		row.printListrow();
 		//col.printListcol();
 	}
 
@@ -141,16 +141,19 @@ public class Board implements iMatrix {
 	@Override
 	public int[][] get() {
 		//row.removeAssociationOf((Object)new Ponto(0,0),0);
+		//System.out.println(row.size()+" "+col.size()+" "+row.getfirstIndex());
 		int [][] m=new int[row.size()][col.size()];
+		int l=Math.abs(row.getfirstIndex());
+		int k=Math.abs(col.getfirstIndex());
 		//System.out.println("get:"+row.size()+":"+col.size());
-		for(int i=0;i<row.size();i++){
-			for(int j=0;j<col.size();j++){
+		for(int i=row.getfirstIndex();i<row.size()-l;i++){
+			for(int j=col.getfirstIndex();j<col.size()-k;j++){
 				Ponto p=new Ponto(i,j);
-				//System.out.println(p+":"+col.contains(p,j));
+				//System.out.println((i+l)+" "+(j+k));
 				if(row.contains(p,i))
-					m[i][j]=1;
+					m[i+l][j+k]=1;
 				else{
-					m[i][j]=0;
+					m[i+l][j+k]=0;
 				}
 			}
 		}
@@ -161,17 +164,31 @@ public class Board implements iMatrix {
 
 	private void newCells(Cell c1,LinkedListCircular<?> row1){
 		if(c1.isSurvive() || c1.isBorn()){
-			if(c1.isBorn() && (c1.getPonto().getX()<0 || c1.getPonto().getX()>row.size())){
-				//add linha ou coluna na tabela 
+			if(c1.isBorn()){
+				if(c1.getPonto().getX()<0){
+					row1.addfirstLine();
+				}
+				if(c1.getPonto().getX()>=row.size()){
+					row1.addLine();
+				}
+				if(c1.getPonto().getY()<0){
+					row1.getColList().addfirstLine();
+				}
+				if(c1.getPonto().getY()>=col.size()){
+					row1.getColList().addLine();
+				} 
 			}
 			//row1.associateTo(c1.getPonto().getX(),c1.getPonto().getY(),c1.getPonto());
 			//System.out.println(c1);
-			row1.associateTo(c1.getPonto().getX(), c1.getPonto().getY(),(Object)c1.getPonto());
+			if(!row1.contains(c1.getPonto(),c1.getPonto().getX()))
+				row1.associateTo(c1.getPonto().getX(), c1.getPonto().getY(),(Object)c1.getPonto());
 		}
-		else{
+		if(c1.getVizinhos()>3 || c1.getVizinhos()<2 && c1.isAlive()){
 			//row1.printListrow();
 			row1.removeAssociationOf((Object)c1.getPonto(),c1.getPonto().getX());
+			//System.out.println(c1+" "+row1.contains(c1.getPonto(),c1.getPonto().getX()));
 			//row1.printListrow();
+			//System.out.println(c1);
 		}
 	}
 
