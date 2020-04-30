@@ -1,7 +1,11 @@
-public class LinkedListCircular {
+public class LinkedListCircular<T> {
     private SentinelNode head, last;
     private int i = 0;
-    private Cell Scell,eCell;
+    private boolean row;
+
+    public LinkedListCircular(boolean row){
+        this.row=row;
+    }
 
     /*-----------------------------------------Nodes----------------------*/
     public static class Node {
@@ -73,6 +77,10 @@ public class LinkedListCircular {
             return this.value;
         }
 
+        public void setValue(T value){
+            this.value=value;
+        }
+
         @Override
         public Node getE() {
             return super.E;
@@ -86,7 +94,7 @@ public class LinkedListCircular {
     }
     /*---------------------------------------------end Nodes-----------------------------------*/
 
-    public void add(boolean row) {
+    public void add() {
         SentinelNode l = new SentinelNode(null,null,null);
         if(row) l.setE(l);
         else l.setS(l);
@@ -100,11 +108,13 @@ public class LinkedListCircular {
         i++;
     }
 
-    public void addfirst(SentinelNode SN) {
-        SentinelNode l = SN;
-        last.next = l;
-        l.next = head;
-        head = l;
+    public void addfirst() {
+        SentinelNode l = new SentinelNode(null, null, null);
+        l.setE(l);
+        last.next=l;
+        Node k=head;
+        head=l;
+        head.next= (SentinelNode) k;
         i++;
     }
 
@@ -150,11 +160,11 @@ public class LinkedListCircular {
     }
     
     @SuppressWarnings("rawtypes")
-    public Cell getfirstCellE(int i) {
+    public Object getfirstCellE(int i) {
         Node n=get(i);
         if(n.getE() instanceof DataNode){
             DataNode o= (DataNode) get(i).getE();
-            Scell=new Cell(1,(Ponto)o.getvalue());
+            Cell Scell=new Cell(1,(Ponto)o.getvalue());
             return Scell;
         }
         return new Cell(0,new Ponto(-1,-1));
@@ -189,14 +199,28 @@ public class LinkedListCircular {
         prev.next=last.next;
     }
 
-    public void associateTo(Ponto p,LinkedListCircular col){
-        int i=p.getX(),j=p.getY();
+    @SuppressWarnings("rawtypes")
+    public void removeAssociation(T p,int i){
+        if(contains(p,i)){
+            Node n=get(i).getE();
+            while(n instanceof DataNode){
+                Node o=n.getE();
+                if(o instanceof DataNode){
+                    if(((DataNode) o).getvalue().equals(p)) 
+                        n.setE(o.getE());
+                }
+                n=n.getE();
+            }
+        }
+    }
+
+    public void associateTo(int i,int j,LinkedListCircular<T> col,T p){
         Node s=get(i);
         Node h=s;
             while(h.getE()!=s){
                 h=h.getE();
             }
-            Node o=new DataNode<Ponto>(get(i), null, p);
+            Node o=new DataNode<T>(get(i), null, p);
             h.setE(o);
         s=col.get(j);
         h=s;
@@ -204,30 +228,44 @@ public class LinkedListCircular {
                 h=h.getS();
             }
             o.setS(col.get(j));
+            //System.out.println(o);
             h.setS(o);  
     }
 
-    @SuppressWarnings("rawtypes")
-    public Ponto nextcellHorizon(Ponto x,int i){
+    @SuppressWarnings({"rawtypes","unchecked"})
+    public T nextcellHorizon(T x,int i){
         Node n=get(i).getE();
         while(n instanceof DataNode){
             DataNode n1= (DataNode) n;
             if(n1.getvalue().equals(x) && n1.getE() instanceof DataNode){
                 n1=(DataNode)n1.getE();
-                return (Ponto)n1.getvalue();
+                return (T)n1.getvalue();
             }
             n=n.getE();
         }
         return null; 
     }
+    @SuppressWarnings({"rawtypes","unchecked"})
+    public T nextcellvertical(T x,int i){
+        Node n=get(i).getS();
+        while(n instanceof DataNode){
+            DataNode n1= (DataNode) n;
+            if(n1.getvalue().equals(x) && n1.getS() instanceof DataNode){
+                n1=(DataNode)n1.getS();
+                return (T)n1.getvalue();
+            }
+            n=n.getS();
+        }
+        return null; 
+    }
 
-    public boolean contains(Ponto p,int lineIndex){
+    public boolean contains(T p,int lineIndex){
        // System.out.println(lineIndex);
         if(lineIndex<0 || lineIndex>=i){
             return false;
         }
         SentinelNode n=(SentinelNode) get(lineIndex);
-        Node n1=n.getS();
+        Node n1=n.getE();
        //System.out.println(n1 instanceof DataNode);
         while(n1 instanceof DataNode){
             //System.out.println(p.toString().equals(n1.toString()));
@@ -235,7 +273,7 @@ public class LinkedListCircular {
                 if(p.toString().equals(n1.toString())){
                     return true;
                 }
-            n1=n1.getS();
+            n1=n1.getE();
         }
         return false;
     }
