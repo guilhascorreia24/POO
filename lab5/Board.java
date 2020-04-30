@@ -21,46 +21,46 @@ public class Board implements iMatrix {
 				c1.setVizinhos(c2.getVizinhos());
 				c1.setNE(CellAlreadyExisted(lastline,new Cell(0,new Ponto(pc1.getX()-1,pc1.getY()+1))));//NE
 				c1.getNE().setVizinhos(c1.getNE().getVizinhos()+1);
-				newCells(c1.getNE(), pc1, row1);
+				newCells(c1.getNE(), row1);
 
 				c1.setN(CellAlreadyExisted(lastline,new Cell(0,new Ponto(pc1.getX()-1,pc1.getY()))));//N
 				c1.getN().setVizinhos(c1.getN().getVizinhos()+1);
-				newCells(c1.getN(), pc1, row1);
+				newCells(c1.getN(), row1);
 
 				c1.setNO(CellAlreadyExisted(lastline,new Cell(0,new Ponto(pc1.getX()-1,pc1.getY()-1))));//NO
 				c1.getNO().setVizinhos(c1.getNO().getVizinhos()+1);
-				newCells(c1.getNO(), pc1, row1);
+				newCells(c1.getNO(), row1);
 
 				c1.setE(CellAlreadyExisted(myline,new Cell(0,new Ponto(pc1.getX(),pc1.getY()+1))));//E
 				c1.getE().setVizinhos(c1.getE().getVizinhos()+1);
-				newCells(c1.getE(), pc1, row1);
+				newCells(c1.getE(), row1);
 				myline.add(c1.getE());
 				
 
 				c1.setSO(new Cell(0,new Ponto(pc1.getX()+1,pc1.getY()-1)));//SO
 				c1.getSO().setVizinhos(c1.getSO().getVizinhos()+1);
-				newCells(c1.getSO(), pc1, row1);
+				newCells(c1.getSO(), row1);
 				nextline.add(c1.getSO());
 				
 
 				c1.setS(new Cell(0,new Ponto(pc1.getX()+1,pc1.getY())));//S
 				c1.getS().setVizinhos(c1.getS().getVizinhos()+1);
-				newCells(c1.getS(), pc1, row1);
+				newCells(c1.getS(), row1);
 				nextline.add(c1.getS());
 				
 
 				c1.setSE(new Cell(0,new Ponto(pc1.getX()+1,pc1.getY()+1)));//SE
 				c1.getSE().setVizinhos(c1.getSE().getVizinhos()+1);
-				newCells(c1.getSE(), pc1, row1);
+				newCells(c1.getSE(), row1);
 				nextline.add(c1.getSE());
 				
 
 				c1.setO(CellAlreadyExisted(myline,new Cell(0,new Ponto(pc1.getX(),pc1.getY()-1))));//O
 				c1.getO().setVizinhos(c1.getO().getVizinhos()+1);
-				newCells(c1.getO(), pc1, row1);
+				newCells(c1.getO(), row1);
 				myline.add(c1.getO());
 				myline.add(c1);
-				newCells(c1, c1.getPonto(), row1);
+				newCells(c1, row1);
 				
 
 				pc1= (Ponto) row.nextcellHorizon(pc1, pc1.getX());
@@ -80,7 +80,7 @@ public class Board implements iMatrix {
 					c1=new Cell(0,pc1);
 				}
 			}
-			System.out.println("1:lastline:"+lastline+"\nmyline"+myline+"\nnextline"+nextline+"\n");
+			//System.out.println("1:lastline:"+lastline+"\nmyline"+myline+"\nnextline"+nextline+"\n");
 			lastline.clear();
 			lastline.addAll(myline);
 			//System.out.println("2:lastline:"+lastline+"\nmyline"+myline+"\nnextline"+nextline+"\n");
@@ -159,13 +159,13 @@ public class Board implements iMatrix {
 		return m;
 	}
 
-	private void newCells(Cell c1,Ponto pc1,LinkedListCircular<?> row1){
+	private void newCells(Cell c1,LinkedListCircular<?> row1){
 		if(c1.isSurvive() || c1.isBorn()){
-			if(c1.isBorn()){
+			if(c1.isBorn() && (c1.getPonto().getX()<0 || c1.getPonto().getX()>row.size())){
 				//add linha ou coluna na tabela 
 			}
 			//row1.associateTo(c1.getPonto().getX(),c1.getPonto().getY(),c1.getPonto());
-			System.out.println(c1);
+			//System.out.println(c1);
 			row1.associateTo(c1.getPonto().getX(), c1.getPonto().getY(),(Object)c1.getPonto());
 		}
 		else{
