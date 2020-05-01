@@ -84,7 +84,8 @@ public class List<T> implements MyList, Cloneable{
         return sb.toString();
     }
 
-    public boolean contains(T o) {
+    @Override
+    public boolean contains(Object o,int i) {
         for (Object x : eleObjects) {
             if (x.equals(o)) {
                 return true;
