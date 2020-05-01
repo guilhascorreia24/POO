@@ -1,4 +1,4 @@
-
+//falta exeptions
 
 public class Board implements iMatrix {
 	private LinkedListCircular<Ponto> row = new LinkedListCircular<Ponto>();
