@@ -1,4 +1,4 @@
-public class LinkedListCircular<T> {
+public class LinkedListCircular<T> implements MyList{
     private SentinelNode head, last;
     private int i,inicial;
     private boolean row;
@@ -178,7 +178,7 @@ public class LinkedListCircular<T> {
     public int getfirstIndex(){
         return inicial;
     }
-
+    @Override
     @SuppressWarnings("rawtypes")
     public Object getfirstElementOf(int i) {
         Node n = getLinha(i);
@@ -213,7 +213,7 @@ public class LinkedListCircular<T> {
         return i;
     }
     /*------------------------------------------------------end size-------------------------------------------*/
-
+    @Override
     public void clear() {
         SentinelNode g = (SentinelNode) head.getnext();
         while (g != head) {

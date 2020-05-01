@@ -1,6 +1,4 @@
 
-import java.util.HashSet;
-import java.util.Set;
 
 public class Board implements iMatrix {
 	private LinkedListCircular<Ponto> row = new LinkedListCircular<Ponto>();
@@ -9,7 +7,7 @@ public class Board implements iMatrix {
 	public void child() {
 		LinkedListCircular<Ponto> row1=new LinkedListCircular<Ponto>();
 		LinkedListCircular<Ponto> col1 =new LinkedListCircular<Ponto>();
-		Set<Cell> myline=new HashSet<Cell>(),nextline=new HashSet<Cell>(),lastline=new HashSet<Cell>();
+		List<Cell> myline=new List<Cell>(),nextline=new List<Cell>(),lastline=new List<Cell>();
 		createsentinels(row.size(), col.size(), row1,col1);
 		for(int i=0;i<row.size();i++){
 			Cell c1=(Cell)row.getfirstElementOf(i),last;
@@ -82,10 +80,10 @@ public class Board implements iMatrix {
 			}
 			//System.out.println("1:lastline:"+lastline+"\nmyline"+myline+"\nnextline"+nextline+"\n");
 			lastline.clear();
-			lastline.addAll(myline);
+			lastline=myline.clone();
 			//System.out.println("2:lastline:"+lastline+"\nmyline"+myline+"\nnextline"+nextline+"\n");
 			myline.clear();
-			myline.addAll(nextline);
+			myline=nextline.clone();
 			//System.out.println("3:lastline:"+lastline+"\nmyline"+myline+"\nnextline"+nextline+"\n");
 			nextline.clear();
 		}
@@ -95,9 +93,11 @@ public class Board implements iMatrix {
 		//col.printListcol();
 	}
 
-	private Cell CellAlreadyExisted(Set<Cell> list,Cell c){
-		for(Cell x:list){
+	private Cell CellAlreadyExisted(List<Cell> list,Cell c){
+		for(int i=0;i<list.size();i++){
+			Cell x= (Cell) list.getfirstElementOf(i);
 			if(x.getPonto().equals(c.getPonto())){
+				System.out.println(c+" "+x);
 				return x;
 			}
 		}
