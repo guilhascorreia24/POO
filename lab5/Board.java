@@ -16,6 +16,7 @@ public class Board implements iMatrix {
 				Cell c2=CellAlreadyExisted(myline, c1);
 				//System.out.println(c2);
 				myline.remove(c2);
+				//System.out.println(myline);
 				c1.setVizinhos(c2.getVizinhos());
 				c1.setNE(CellAlreadyExisted(lastline,new Cell(0,new Ponto(pc1.getX()-1,pc1.getY()+1))));//NE
 				c1.getNE().setVizinhos(c1.getNE().getVizinhos()+1);
@@ -97,7 +98,6 @@ public class Board implements iMatrix {
 		for(int i=0;i<list.size();i++){
 			Cell x= (Cell) list.getfirstElementOf(i);
 			if(x.getPonto().equals(c.getPonto())){
-				System.out.println(c+" "+x);
 				return x;
 			}
 		}

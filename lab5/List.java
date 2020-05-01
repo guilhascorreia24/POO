@@ -1,4 +1,4 @@
-import java.util.Arrays;
+
 
 public class List<T> implements MyList, Cloneable{
     private int size = 0;
@@ -29,7 +29,8 @@ public class List<T> implements MyList, Cloneable{
         while (i < size && !getfirstElementOf(i).equals(o)) {
             i++;
         }
-        if (i > size)
+        //System.out.println(i+" "+this);
+        if (i < size)
             removeindex(i);
     }
 
@@ -59,7 +60,13 @@ public class List<T> implements MyList, Cloneable{
 
     private void ensureCapacity() {
         int newSize = eleObjects.length * 2;
-        eleObjects = Arrays.copyOf(eleObjects, newSize);
+        for(int i=0;i<newSize;i++){
+            if(i<size)
+                eleObjects[i]=eleObjects[i];
+            else
+                eleObjects[i]=null;
+        }
+        //eleObjects = Arrays.copyOf(eleObjects, newSize);
     }
 
     @Override
