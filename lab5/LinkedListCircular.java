@@ -244,9 +244,10 @@ public class LinkedListCircular<T> implements MyList{
     // associar um objecto a uma linha e a uma coluna que exista
     @SuppressWarnings("unchecked")
     public void associateTo(int i, int j,Object p) {
-        //System.out.println(i + " " + j);
+        if(i>=size() || j>=col.size() || i<inicial || j< col.inicial){
+            throw new IndexOutOfBoundsException();
+        }
         if (i < size() && i >= inicial && j < col.size() && j >= col.inicial) {
-            //System.out.println(i + " " + j + " " + size());
             Node s = getLinha(i);
             Node h = s;
             while (h.getE() != s) {
@@ -260,13 +261,15 @@ public class LinkedListCircular<T> implements MyList{
                 h = h.getS();
             }
             o.setS(col.getLinha(j));
-            // System.out.println(o);
             h.setS(o);
         }
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public Object nextcellHorizon(T x, int i) {
+        if(i>=size() ||  i<inicial ){
+            throw new IndexOutOfBoundsException();
+        }
         Node n = getLinha(i).getE();
         while (n instanceof DataNode) {
             DataNode n1 = (DataNode) n;
@@ -281,6 +284,9 @@ public class LinkedListCircular<T> implements MyList{
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public Object nextcellvertical(T x, int i) {
+        if(i>=col.size() || i< col.inicial){
+            throw new IndexOutOfBoundsException();
+        }
         Node n = getLinha(i).getS();
         while (n instanceof DataNode) {
             DataNode n1 = (DataNode) n;
@@ -294,15 +300,12 @@ public class LinkedListCircular<T> implements MyList{
     }
 
     public boolean contains(Object p, int lineIndex) {
-        // System.out.println(lineIndex);
         if (lineIndex < inicial || lineIndex >= i) {
             return false;
         }
         SentinelNode n = (SentinelNode) getLinha(lineIndex);
         Node n1 = n.getE();
-        // System.out.println(n1 instanceof DataNode);
         while (n1 instanceof DataNode) {
-           // System.out.println(p.toString().equals(n1.toString())+" "+p.toString()+" "+n1.toString());
             if (p.toString().equals(n1.toString())) {
                 return true;
             }
@@ -334,14 +337,11 @@ public class LinkedListCircular<T> implements MyList{
         }
         System.out.println();
         last = last.next;
-        // Traverse through the LinkedList
         while (last != head) {
-            // Print the data at current node
             System.out.print(last + " ");
             if (last.getE() instanceof DataNode) {
                 printDataNodesrow();
             }
-            // Go to next node
             last = last.next;
             System.out.println();
         }
@@ -370,14 +370,11 @@ public class LinkedListCircular<T> implements MyList{
         }
         System.out.println();
         last = last.next;
-        // Traverse through the LinkedList
         while (last != head) {
-            // Print the data at current node
             System.out.print(last + " ");
             if (last.getS() instanceof DataNode) {
                 printDataNodescol();
             }
-            // Go to next node
             last = last.next;
             System.out.println();
         }

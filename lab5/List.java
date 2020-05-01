@@ -7,26 +7,33 @@ public class List<T> implements MyList, Cloneable{
     }
 
     @Override
-    public int size() {
+    public int size() throws IllegalArgumentException{
+        if(size<0){
+            throw new IllegalArgumentException();
+        }
         return size;
     }
 
     @Override
     public void clear() {
         int i = size - 1;
+        if(size<0){
+            throw new IllegalArgumentException();
+        }
         while (i >= 0) {
-            // System.out.println(size+" "+i);
             removeindex(i);
             i--;
         }
     }
 
-    public void remove(T o) {
+    public void remove(T o) throws IllegalArgumentException {
         int i = 0;
+        if(o.equals(null)){
+            throw new IllegalArgumentException();
+        }
         while (i < size && !getfirstElementOf(i).equals(o)) {
             i++;
         }
-        //System.out.println(i+" "+this);
         if (i < size)
             removeindex(i);
     }
@@ -34,12 +41,15 @@ public class List<T> implements MyList, Cloneable{
     @Override
     public Object getfirstElementOf(int i) {
         if (i >= size || i < 0) {
-            throw new IndexOutOfBoundsException("Index: " + i + ", Size " + i);
+            throw new IndexOutOfBoundsException("Index: " + i + ", Size " + size);
         }
         return eleObjects[i];
     }
 
     public void add(T o) {
+        if(o.equals(null)){
+            throw new IllegalArgumentException();
+        }
         if (size == eleObjects.length) {
             ensureCapacity();
         }
@@ -48,7 +58,7 @@ public class List<T> implements MyList, Cloneable{
 
     private void removeindex(int i) {
         if (i >= size || i < 0) {
-            throw new IndexOutOfBoundsException("Index: " + i + ", Size " + i);
+            throw new IndexOutOfBoundsException("Index: " + i + ", Size " + size);
         }
         int numElts = eleObjects.length - (i + 1);
         System.arraycopy(eleObjects, i + 1, eleObjects, i, numElts);
@@ -67,12 +77,10 @@ public class List<T> implements MyList, Cloneable{
         eleObjects=new Object[newSize];
         eleObjects=newarr;
         
-        //eleObjects = Arrays.copyOf(eleObjects, newSize);
     }
 
     @Override
     public String toString() {
-        // System.out.println(size);
         StringBuilder sb = new StringBuilder();
         sb.append('[');
         for (int i = 0; i < size; i++) {

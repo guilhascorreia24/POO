@@ -5,7 +5,10 @@ public class Cell {
     private int vizinhos = 0;
     private Cell N, NE, NO, O, E, SO, S, SE;
 
-    public Cell(int state, Ponto p) {
+    public Cell(int state, Ponto p) throws IllegalArgumentException{
+        if(state<0 || state>1){
+            throw new IllegalArgumentException();
+        }
         this.STATE = state;
         this.p = p;
     }
