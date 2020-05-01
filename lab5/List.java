@@ -60,12 +60,16 @@ public class List<T> implements MyList, Cloneable{
 
     private void ensureCapacity() {
         int newSize = eleObjects.length * 2;
+        Object[] newarr=new Object[newSize];
         for(int i=0;i<newSize;i++){
-            if(i<size)
-                eleObjects[i]=eleObjects[i];
+            if(i<eleObjects.length)
+                newarr[i]=eleObjects[i];
             else
-                eleObjects[i]=null;
+                newarr[i]=null;
         }
+        eleObjects=new Object[newSize];
+        eleObjects=newarr;
+        
         //eleObjects = Arrays.copyOf(eleObjects, newSize);
     }
 
