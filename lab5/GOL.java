@@ -1,16 +1,16 @@
-import java.util.List;
-
 public class GOL{
     private int[][] m;
     private int times;
 	public GOL(List<String> l,int times) {
         this.times=times;
-        int n=l.get(0).split("").length;
+        String n1=(String)l.getfirstElementOf(0);
+        int n=n1.split("").length;
         //System.out.println(n+":"+l.size());
         m=new int[l.size()][n];
         for(int i=0;i<l.size();i++){
             for(int j=0;j<n;j++){
-                String s=l.get(i).split("")[j];
+                String s=(String)l.getfirstElementOf(i);
+                s=s.split("")[j];
                 m[i][j]=Integer.parseInt(s);
             }
         }
