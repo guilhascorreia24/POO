@@ -1,5 +1,3 @@
-
-
 public class List<T> implements MyList, Cloneable{
     private int size = 0;
     private Object[] eleObjects;

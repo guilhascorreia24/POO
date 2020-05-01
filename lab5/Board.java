@@ -79,7 +79,7 @@ public class Board implements iMatrix {
 					c1=new Cell(0,pc1);
 				}
 			}
-			//System.out.println("1:lastline:"+lastline+"\nmyline"+myline+"\nnextline"+nextline+"\n");
+			System.out.println("1:lastline:"+lastline+"\nmyline"+myline+"\nnextline"+nextline+"\n");
 			lastline.clear();
 			lastline=myline.clone();
 			//System.out.println("2:lastline:"+lastline+"\nmyline"+myline+"\nnextline"+nextline+"\n");
@@ -95,13 +95,14 @@ public class Board implements iMatrix {
 	}
 
 	private Cell CellAlreadyExisted(List<Cell> list,Cell c){
+		Cell f=c;
 		for(int i=0;i<list.size();i++){
 			Cell x= (Cell) list.getfirstElementOf(i);
 			if(x.getPonto().equals(c.getPonto())){
-				return x;
+				f=x;
 			}
 		}
-		return c;
+		return f;
 	}
 
 
