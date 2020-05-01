@@ -8,7 +8,6 @@ public class List<T> implements MyList, Cloneable{
 
     @Override
     public int size() {
-        // TODO Auto-generated method stub
         return size;
     }
 

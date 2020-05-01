@@ -79,7 +79,7 @@ public class Board implements iMatrix {
 					c1=new Cell(0,pc1);
 				}
 			}
-			System.out.println("1:lastline:"+lastline+"\nmyline"+myline+"\nnextline"+nextline+"\n");
+			//System.out.println("1:lastline:"+lastline+"\nmyline"+myline+"\nnextline"+nextline+"\n");
 			lastline.clear();
 			lastline=myline.clone();
 			//System.out.println("2:lastline:"+lastline+"\nmyline"+myline+"\nnextline"+nextline+"\n");
