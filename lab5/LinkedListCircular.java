@@ -184,10 +184,9 @@ public class LinkedListCircular<T> implements MyList{
         Node n = getLinha(i);
         if (n.getE() instanceof DataNode) {
             DataNode o = (DataNode) getLinha(i).getE();
-            Cell Scell = new Cell(1, (Ponto) o.getvalue());
-            return Scell;
+            return o.getvalue();
         }
-        return new Cell(0, new Ponto(-1, -1));
+        return n;
     }
 
     @SuppressWarnings("unchecked")
@@ -279,7 +278,7 @@ public class LinkedListCircular<T> implements MyList{
             }
             n = n.getE();
         }
-        return null;
+        return n;
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
