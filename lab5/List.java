@@ -104,7 +104,7 @@ public class List<T> implements MyList, Cloneable{
     }
 
     /**
-     * 
+     * adciona capacidade ao array
      */
     private void ensureCapacity() {
         int newSize = eleObjects.length * 2;
