@@ -3,8 +3,8 @@ import java.util.Scanner;
 public class Client {
     public static void main(String[] args) throws Exception {
         long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
-        List<String> l=new List<String>();
         Scanner sc=new Scanner(System.in);
+        List<String> l=new List<String>();
         int times=Integer.parseInt(sc.nextLine());
         while(sc.hasNextLine()){
             String s=sc.nextLine();

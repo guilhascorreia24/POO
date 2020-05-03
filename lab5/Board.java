@@ -1,5 +1,3 @@
-//falta exeptions
-
 public class Board implements iMatrix {
 	private LinkedListCircular<Ponto> row = new LinkedListCircular<Ponto>();
 	private LinkedListCircular<Ponto> col = new LinkedListCircular<Ponto>();
@@ -12,49 +10,69 @@ public class Board implements iMatrix {
 		createsentinels(row.size(), col.size(), row1, col1);
 		for (int i = 0; i < row.size(); i++) {
 			Object c = row.getfirstElementOf(i);
+			Cell NE = new Cell(0, null), E = new Cell(0, null), O = new Cell(0, null), N = new Cell(0, null),
+					S = new Cell(0, null), NO = new Cell(0, null), SO = new Cell(0, null), SE = new Cell(0, null);
 			if (c instanceof Ponto) {
 				Ponto pc1 = (Ponto) c;
-				c1=new Cell(1,pc1);
+				c1 = new Cell(1, pc1);
 				while (c instanceof Ponto) {
 					Cell c2 = CellAlreadyExisted(myline, c1);
 					myline.remove(c2);
 					c1.setVizinhos(c2.getVizinhos());
-					c1.setNE(CellAlreadyExisted(lastline, new Cell(0, new Ponto(pc1.getX() - 1, pc1.getY() + 1))));// NE
-					c1.getNE().setVizinhos(c1.getNE().getVizinhos() + 1);
-					newCells(c1.getNE(), row1);
+					if (NE.getVizinhos() == 0)
+						NE = CellAlreadyExisted(lastline, new Cell(0, new Ponto(pc1.getX() - 1, pc1.getY() + 1)));
+					// c1.setNE(NE);// NE
+					NE.setVizinhos(NE.getVizinhos() + 1);
+					newCells(NE, row1);
 
-					c1.setN(CellAlreadyExisted(lastline, new Cell(0, new Ponto(pc1.getX() - 1, pc1.getY()))));// N
-					c1.getN().setVizinhos(c1.getN().getVizinhos() + 1);
-					newCells(c1.getN(), row1);
+					//neighboors_cell(NE, lastline,new Ponto(pc1.getX() - 1, pc1.getY() + 1), row1);
 
-					c1.setNO(CellAlreadyExisted(lastline, new Cell(0, new Ponto(pc1.getX() - 1, pc1.getY() - 1))));// NO
-					c1.getNO().setVizinhos(c1.getNO().getVizinhos() + 1);
-					newCells(c1.getNO(), row1);
+					if (N.getVizinhos() == 0)
+						N = CellAlreadyExisted(lastline, new Cell(0, new Ponto(pc1.getX() - 1, pc1.getY())));
+					// c1.setN(N);// N
+					N.setVizinhos(N.getVizinhos() + 1);
+					newCells(N, row1);
 
-					c1.setE(CellAlreadyExisted(myline, new Cell(0, new Ponto(pc1.getX(), pc1.getY() + 1))));// E
-					c1.getE().setVizinhos(c1.getE().getVizinhos() + 1);
-					newCells(c1.getE(), row1);
-					myline.add(c1.getE());
+					if (NO.getVizinhos() == 0)
+						NO = CellAlreadyExisted(lastline, new Cell(0, new Ponto(pc1.getX() - 1, pc1.getY() - 1)));
+					// c1.setNO(NO);// NO
+					NO.setVizinhos(NO.getVizinhos() + 1);
+					newCells(NO, row1);
 
-					c1.setSO(new Cell(0, new Ponto(pc1.getX() + 1, pc1.getY() - 1)));// SO
-					c1.getSO().setVizinhos(c1.getSO().getVizinhos() + 1);
-					newCells(c1.getSO(), row1);
-					nextline.add(c1.getSO());
+					if (E.getVizinhos() == 0)
+						E = CellAlreadyExisted(myline, new Cell(0, new Ponto(pc1.getX(), pc1.getY() + 1)));
+					// c1.setE(E);// E
+					E.setVizinhos(E.getVizinhos() + 1);
+					newCells(E, row1);
+					myline.add(E);
 
-					c1.setS(new Cell(0, new Ponto(pc1.getX() + 1, pc1.getY())));// S
-					c1.getS().setVizinhos(c1.getS().getVizinhos() + 1);
-					newCells(c1.getS(), row1);
-					nextline.add(c1.getS());
+					if (SO.getVizinhos() == 0)
+						SO = new Cell(0, new Ponto(pc1.getX() + 1, pc1.getY() - 1));
+					// c1.setSO(SO);// SO
+					SO.setVizinhos(SO.getVizinhos() + 1);
+					newCells(SO, row1);
+					nextline.add(SO);
 
-					c1.setSE(new Cell(0, new Ponto(pc1.getX() + 1, pc1.getY() + 1)));// SE
-					c1.getSE().setVizinhos(c1.getSE().getVizinhos() + 1);
-					newCells(c1.getSE(), row1);
-					nextline.add(c1.getSE());
+					if (S.getVizinhos() == 0)
+						S = new Cell(0, new Ponto(pc1.getX() + 1, pc1.getY()));
+					// c1.setS(S);// S
+					S.setVizinhos(S.getVizinhos() + 1);
+					newCells(S, row1);
+					nextline.add(S);
 
-					c1.setO(CellAlreadyExisted(myline, new Cell(0, new Ponto(pc1.getX(), pc1.getY() - 1))));// O
-					c1.getO().setVizinhos(c1.getO().getVizinhos() + 1);
-					newCells(c1.getO(), row1);
-					myline.add(c1.getO());
+					if (SE.getVizinhos() == 0)
+						SE = new Cell(0, new Ponto(pc1.getX() + 1, pc1.getY() + 1));
+					// c1.setSE(SE);// SE
+					SE.setVizinhos(SE.getVizinhos() + 1);
+					newCells(SE, row1);
+					nextline.add(SE);
+
+					if (O.getVizinhos() == 0)
+						O = CellAlreadyExisted(myline, new Cell(0, new Ponto(pc1.getX(), pc1.getY() - 1)));
+					// c1.setO(O);// O
+					O.setVizinhos(O.getVizinhos() + 1);
+					newCells(O, row1);
+					myline.add(O);
 					myline.add(c1);
 					newCells(c1, row1);
 
@@ -64,17 +82,36 @@ public class Board implements iMatrix {
 						last = c1;
 						c1 = new Cell(1, pc1);
 						if (pc1.dist(last.getPonto()) == 1) {
-							c1.setVizinhos(last.getE().getVizinhos());
-							c1.setN(last.getNE());
-							c1.setNO(last.getN());
-							c1.setO(last);
-							c1.setSO(last.getS());
-							c1.setS(last.getSE());
+							c1.setVizinhos(E.getVizinhos());
+							NO = N;N=new Cell(0,null);
+							N = NE;NE= new Cell(0,null);
+							O = last;
+							SO = S;S=new Cell(0,null);
+							S = SE;SE=new Cell(0,null);
+							E=new Cell(0,null);
+							/*
+							 * c1.setN(last.getNE());//N=NE c1.setNO(last.getN());//NO=N
+							 * c1.setO(last);//O=last c1.setSO(last.getS()); c1.setS(last.getSE());
+							 */
 						} else if (pc1.dist(last.getPonto()) == 2) {
-							c1.setNO(last.getNE());
-							c1.setO(last.getE());
-							c1.setSO(last.getSE());
+							NO = NE;NE=new Cell(0,null);
+							O = E;E=new Cell(0,null);
+							SO = SE;SE=new Cell(0,null);
+							N=new Cell(0,null);S=new Cell(0,null);
+							/*
+							 * c1.setNO(last.getNE()); c1.setO(last.getE()); c1.setSO(last.getSE());
+							 */
+						} else {
+							NE = new Cell(0, null);
+							E = new Cell(0, null);
+							O = new Cell(0, null);
+							N = new Cell(0, null);
+							S = new Cell(0, null);
+							NO = new Cell(0, null);
+							SO = new Cell(0, null);
+							SE = new Cell(0, null);
 						}
+						//System.out.println(NO.getVizinhos()+" "+O.getVizinhos()+" "+SO.getVizinhos()+" "+N.getVizinhos()+" "+c1.getVizinhos()+" "+S.getVizinhos()+" "+NE.getVizinhos()+" "+E.getVizinhos()+" "+SE.getVizinhos());
 					}
 				}
 			}
@@ -90,7 +127,15 @@ public class Board implements iMatrix {
 		col = col1;
 	}
 
-	private Cell CellAlreadyExisted(List<Cell> list, Cell c) {
+	public void neighboors_cell(Cell neighboor, List<Cell> lastline, Ponto pc1, LinkedListCircular<?> row1) {
+	if (neighboor.getVizinhos() == 0)
+		neighboor = CellAlreadyExisted(lastline, new Cell(0, pc1));
+	// c1.setNE(NE);// NE
+	neighboor.setVizinhos(neighboor.getVizinhos() + 1);
+	newCells(neighboor, row1);
+	}
+
+	public Cell CellAlreadyExisted(List<Cell> list, Cell c) {
 		Cell f = c;
 		for (int i = 0; i < list.size(); i++) {
 			Cell x = (Cell) list.getfirstElementOf(i);
@@ -101,7 +146,7 @@ public class Board implements iMatrix {
 		return f;
 	}
 
-	private void createsentinels(int x, int y, LinkedListCircular<?> a, LinkedListCircular<?> b) {
+	public void createsentinels(int x, int y, LinkedListCircular<?> a, LinkedListCircular<?> b) {
 		a.Col(b);
 		int i = 0;
 		while (i < x) {
@@ -152,7 +197,8 @@ public class Board implements iMatrix {
 		return m;
 	}
 
-	private void newCells(Cell c1, LinkedListCircular<?> row1) {
+	public void newCells(Cell c1, LinkedListCircular<?> row1) {
+	//System.out.println(c1);
 		if (c1.isSurvive() || c1.isBorn()) {
 			if (c1.isBorn()) {
 				if (c1.getPonto().getX() < row1.getfirstIndex()) {
@@ -170,8 +216,7 @@ public class Board implements iMatrix {
 			}
 			if (!row1.contains(c1.getPonto(), c1.getPonto().getX()))
 				row1.associateTo(c1.getPonto().getX(), c1.getPonto().getY(), (Object) c1.getPonto());
-		}
-		if (c1.getVizinhos() > 3 || c1.getVizinhos() < 2 && c1.isAlive()) {
+		} else {
 			row1.removeAssociationOf((Object) c1.getPonto(), c1.getPonto().getX());
 		}
 	}
