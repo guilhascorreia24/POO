@@ -30,7 +30,8 @@ public class List<T> implements MyList, Cloneable{
     }
 
     /**
-     * faz clear a lista
+     * limpa a lista
+     * @throws lancada quando o tamanho da lista e menor que 0
      */
     @Override
     public void clear() {

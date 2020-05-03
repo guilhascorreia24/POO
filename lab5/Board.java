@@ -9,14 +9,16 @@ public class Board implements iMatrix {
 	private LinkedListCircular<Ponto> col = new LinkedListCircular<Ponto>();
 
 	/**
+	 * @inv row LinkedListCircular que representa as linhas da matriz esparsa
+	 * @inv col LinkedListCircular que representa as colunas da matriz esparsa
 	 * Criar a nova board da iteracao
-	 * adiciona +1 vizinhos a todas a celulas que se encontram em volta de uma celula viva
+	 * adiciona mais 1 vizinhos a todas a celulas que se encontram em volta de uma celula viva
 	 * Deseguida verifica a distancia da proxima celula viva que esta na mesma linha 
 	 * e translaciona as celulas da Este para Oeste da proxima celula viva e no caso de
-	 *  estar longo ao lado mete o Norte e Sul com celulas NE e SE, respectivamente
+	 *  estar longo ao lado mete o Norte e Sul com celulas NE e SE respectivamente
 	 * enquanto ocorre isso e adcionado em 2 listas de Cells que serviram para verificar a parte norte e 
 	 * Este e Oeste das celulas que estao abaixo da linha.
-	 * Por fim é, enviado a matriz final para as LinkedListCircular row e col
+	 * Por fim e enviado a matriz final para as LinkedListCircular row e col
 	 */
 	public void child() {
 		LinkedListCircular<Ponto> row1 = new LinkedListCircular<Ponto>();
@@ -150,8 +152,8 @@ public class Board implements iMatrix {
 
 	
 	/**
-	 * 
-	 * @param m matriz que é recebida no inicio da iteracao
+	 * cria a matriz esparsa
+	 * @param m matriz que e recebida no inicio da iteracao
 	 */
 	@Override
 	public void set(int[][] m) {
@@ -172,6 +174,7 @@ public class Board implements iMatrix {
 	}
 
 	/**
+	 * transforma a matriz esparsa da iteracao em mariz normal
 	 * esta funcao da o resultado da iteracao
 	 */
 	@Override
@@ -193,7 +196,7 @@ public class Board implements iMatrix {
 	}
 
 	/**
-	 * Verifica se a celula tem condiçoes para sobreviver,morrer ou nascer e
+	 * Verifica se a celula tem condiçoes para sobreviver morrer ou nascer e
 	 * dependente duma das ocasioes adiciona/remove da matriz esparsa 
 	 * @param c1 celula que queremos adicionar ou remover
 	 * @param row1 lista das linhas da matriz esparsa

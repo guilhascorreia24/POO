@@ -8,12 +8,12 @@ public class GOL{
     private int[][] m;
     private int times;
     /**
+     * este construtor transforma a lista em uma matriz composta por 0 e 1 identico ao input
+     * no fim limpa a lista usada
      * @pre o input nao pode ser vazio e o numero de itercoes nao pode ser menor ou igual a 0
      * @param l lista das linhas lidas no input (tipo String)
      * @param times numero lido no input (tipo int)
      * @throws Exception lancada quando nao é respeitado um todos inputs
-     * este construtor transforma a lista em uma matriz composta por 0 e 1, identico ao input
-     * no fim limpa a lista usada
      */
 	public GOL(List<String> l,int times) throws Exception {
         if(l.size()==0){
@@ -30,7 +30,6 @@ public class GOL{
             String[] s=((String) l.getfirstElementOf(i)).split("");
             if(s.length>n) throw new IllegalArgumentException();
             for(int j=0;j<n;j++){
-                //System.out.println(s[j]);
                 m[i][j]=Integer.parseInt(s[j]);
             }
         }
@@ -38,7 +37,7 @@ public class GOL{
     }
 
     /**
-     * esta funcao, indica o decorrer do jogo, em que cada iteraçao imprimir o estado do jogo
+     * esta funcao, indica o decorrer do jogo em que cada iteracao imprimir o estado do jogo
      */
     public void run(){
         Board g=new Board();
@@ -56,7 +55,7 @@ public class GOL{
     }
 
     /**
-     * esta funcao imprimir o estado do jogo numa certeza itercao
+     * esta funcao imprimir o estado do jogo numa certeza iteracao
      * @param g1 matriz do estado do jogo
      */
     private void printBoards(int[][] g1) {
