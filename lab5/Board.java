@@ -9,8 +9,8 @@ public class Board implements iMatrix {
 	private LinkedListCircular<Ponto> col = new LinkedListCircular<Ponto>();
 
 	/**
-	 * @inv row LinkedListCircular que representa as linhas da matriz esparsa
-	 * @inv col LinkedListCircular que representa as colunas da matriz esparsa
+	 * @inv this.row LinkedListCircular que representa as linhas da matriz esparsa
+	 * @inv this.col LinkedListCircular que representa as colunas da matriz esparsa
 	 * Criar a nova board da iteracao
 	 * adiciona mais 1 vizinhos a todas a celulas que se encontram em volta de uma celula viva
 	 * Deseguida verifica a distancia da proxima celula viva que esta na mesma linha 
@@ -98,6 +98,7 @@ public class Board implements iMatrix {
 	}
 	
 	/**
+	 * Atualiza ou adciona a celula vizinha 
 	 * @param neighboor celula que queremos identificar
 	 * @param lastline lista a qual queremos adiconar a celula
 	 * @param pc1 coordenadas da celula
