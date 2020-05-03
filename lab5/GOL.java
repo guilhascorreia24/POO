@@ -24,13 +24,12 @@ public class GOL{
         }
         this.times=times;
         String n1=(String)l.getfirstElementOf(0);
-        int n=n1.split("").length;
+        int n=n1.split("(\\s+)|").length;
         m=new int[l.size()][n];
         for(int i=0;i<l.size();i++){
+            String s=(String)l.getfirstElementOf(i);
             for(int j=0;j<n;j++){
-                String s=(String)l.getfirstElementOf(i);
-                s=s.split("")[j];
-                m[i][j]=Integer.parseInt(s);
+                m[i][j]=Character.digit(s.charAt(j),10);
             }
         }
         l.clear();
