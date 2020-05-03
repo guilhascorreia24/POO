@@ -10,12 +10,15 @@ public class Client {
         //long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
         Scanner sc=new Scanner(System.in);
         List<String> l=new List<String>();
-        int times=Integer.parseInt(sc.nextLine());
+        int times = Integer.parseInt(sc.nextLine().replace("\\D+",""));
         while(sc.hasNextLine()){
             String s=sc.nextLine();
+            s = s.replaceAll("\\D+","");
             l.add(s);
+            //System.out.println(s);
         }
         sc.close();
+       // System.out.print(l);
         //long startTime = System.nanoTime();
         GOL gol=new GOL(l,times);
         gol.run();
