@@ -1,3 +1,9 @@
+/**
+ * @version 2.4
+ * @author Guilherme Correia 61098
+ * @author David Fernandes 58604
+ * @author Bruno Susana 61024
+ */
 public class LinkedListCircular<T> implements MyList{
     private SentinelNode head, last;
     private int i,inicial;
