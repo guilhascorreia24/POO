@@ -1,7 +1,6 @@
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
-import LinkedListCircular.DataNode;
 
 public class Tests {
     	//-----------------------Teste connstrutor Ponto------------------------------
@@ -42,7 +41,7 @@ public class Tests {
 
     //------------------------------------------------test contrutor Cell-------------------------
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testCell(){
         Ponto p=new Ponto(1,1);
         new Cell(0,p);
@@ -54,7 +53,7 @@ public class Tests {
         new Cell(-1,p);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testCell2(){
         Ponto p=new Ponto(0,0);
         new Cell(1,p);
@@ -222,7 +221,7 @@ public class Tests {
     }
 
     //-----------------------------------------test equals Cell------------------------------
-    @Test
+    @Test(expected=NullPointerException.class)
     public void testequals(){
         Ponto p=new Ponto(1,1);
         Cell c=new Cell(1,p);
@@ -230,12 +229,12 @@ public class Tests {
         assertEquals(false, c.equals(null));
 
         Ponto p1=new Ponto(1,1);
-        Cell c1=new Cell(0,p);
+        Cell c1=new Cell(0,p1);
          c1.setVizinhos(0);
         assertEquals(false, c.equals(c));
 
         Ponto p3=new Ponto(1,1);
-        Cell c3=new Cell(1,p);
+        Cell c3=new Cell(1,p3);
          c3.setVizinhos(3);
         assertEquals(true, c.equals(c3));
     }
@@ -274,9 +273,8 @@ public class Tests {
         List<Cell> l = new List<Cell>();l.add(c);
         p=new Ponto(1,2);
         LinkedListCircular<Ponto> llc1 = new LinkedListCircular<Ponto>();
-        r=new Cell(0, new Ponto(1,1));r.setVizinhos(1);
+        r=new Cell(0, new Ponto(1,2));r.setVizinhos(1);
         assertEquals(r,b.neighboors_cell(c, l, p, llc1));
-
 
     }
     //----------------------------------------test Col-----------------------------------------
@@ -291,4 +289,75 @@ public class Tests {
         LinkedListCircular<Ponto> l2=new LinkedListCircular<Ponto>();
         l2.Col(new LinkedListCircular<Cell>());
     }
+    //----------------------------------------test CellAlreadyExist--------------------------
+    @Test
+    public void TestCellAlreadyExist(){
+        Board b=new Board();
+        List<Cell> l=new List<Cell>();
+        Cell c=new Cell(1,new Ponto(1,1));
+        assertEquals(c,b.CellAlreadyExisted(l, c));
+
+        l.add(c);
+        Cell c1=new Cell(0,new Ponto(1,1));
+        assertEquals(c, b.CellAlreadyExisted(l, c1));
+
+        Cell c2=new Cell(0,new Ponto(1,2));
+        assertEquals(c2, b.CellAlreadyExisted(l, c2));
+    }
+
+    //------------------------------------test createsentinels------------------------------
+    @Test
+    public void Testcreatesentinels(){
+        Board b=new Board();
+        LinkedListCircular<Ponto> h=new LinkedListCircular<Ponto>();
+        LinkedListCircular<Ponto> hcol=new LinkedListCircular<Ponto>();
+        b.createsentinels(5, 5, h, hcol);
+        assertEquals(5, h.size());assertEquals(5, hcol.size());
+
+        LinkedListCircular<Cell> h1=new LinkedListCircular<Cell>();
+        LinkedListCircular<Cell> hcol1=new LinkedListCircular<Cell>();
+        b.createsentinels(10, 5, h1, hcol1);
+        assertEquals(10, h1.size());assertEquals(5, hcol1.size());
+
+        LinkedListCircular<String> h2=new LinkedListCircular<String>();
+        LinkedListCircular<String> hcol2=new LinkedListCircular<String>();
+        b.createsentinels(1, 5, h2, hcol2);
+        assertEquals(1, h2.size());assertEquals(5, hcol2.size());
+    }
+
+    //----------------------------test newCells (Board)--------------------------------------
+
+    @Test
+    public void TestnewCells(){
+        Board b=new Board();
+        LinkedListCircular<Ponto> g=new LinkedListCircular<Ponto>();
+        LinkedListCircular<Ponto> g1=new LinkedListCircular<Ponto>();g.Col(g1);
+        Cell c=new Cell(1,new Ponto(0,0));c.setVizinhos(3);
+        b.newCells(c,g);
+        assertEquals(1, g.size());assertEquals(1, g1.size());
+
+        c=new Cell(0,new Ponto(-1,-1));c.setVizinhos(3);
+        b.newCells(c,g);
+        assertEquals(2, g1.size());assertEquals(2, g.size());
+
+        c=new Cell(0,new Ponto(0,0));c.setVizinhos(4);
+        b.newCells(c,g);
+        assertEquals(2, g1.size());assertEquals(2, g.size());
+    }
+
+    //----------------------------test set (board)---------------------------------------
+    @Test
+    public void testsetBoard(){
+        Board b=new Board();
+        int[][] n=new int[][]{
+            {0,1},
+            {1,0}
+        };
+        b.set(n);
+        System.out.println(b.getrow().getElementof(0, 1));
+        assertEquals(new Ponto(0,1),b.getrow().getElementof(0, 1));
+        assertEquals(new Ponto(1,0),b.getrow().getElementof(1, 0));
+
+    }
+
 }

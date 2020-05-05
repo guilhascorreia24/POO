@@ -329,7 +329,7 @@ public class LinkedListCircular<T> implements MyList{
     public Object getElementof(int i, int j) {
         Object o = getfirstElementOf(i);
         int k = 0;
-        while (k < j) {
+        while (k <= j) {
             if (k == j) {
                 return o;
             }

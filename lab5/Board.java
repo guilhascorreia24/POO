@@ -142,6 +142,13 @@ public class Board implements iMatrix {
 		return f;
 	}
 
+	public LinkedListCircular<?> getrow(){
+		return row;
+	}
+	public LinkedListCircular<?> getcol(){
+		return col;
+	}
+
 	/**
 	 * Cria a estrutura da matriz esparsa (linhas e colunas) sem dados
 	 * 
