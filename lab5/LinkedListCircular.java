@@ -489,79 +489,82 @@ public class LinkedListCircular<T> implements MyList{
     /**
      * imprime a LinkedListCircular de orientacao horizontal de nos existentes 
      */
-    private void printDataNodesrow() {
+    private String printDataNodesrow() {
         Node g = last.getE();
-        System.out.print("[ ");
+        String s="[ ";
         while (g instanceof DataNode) {
-            System.out.print(g + " ");
+            s+=g + " ";
             g = g.getE();
         }
-        System.out.print(" ]");
+        return s+" ]";
     }
 
     /**
      * imprime a LinkedListCircular de orientacao horizontal de nos existentes 
      */
-    public void printListrow() {
+    public String printListrow() {
         last = head;
 
-        System.out.print("LinkedListRow:\n");
+        String s="LinkedListRow:\n";
 
-        System.out.print(last + " ");
+        s+=last + " ";
         if (last.getE() instanceof DataNode) {
-            printDataNodesrow();
+            s+=printDataNodesrow();
         }
-        System.out.println();
+        s+="\n";
         last = last.next;
         while (last != head) {
-            System.out.print(last + " ");
+            s+=last + " ";
             if (last.getE() instanceof DataNode) {
-                printDataNodesrow();
+                s+=printDataNodesrow();
             }
             last = last.next;
-            System.out.println();
+            s+="\n";
         }
 
-        System.out.println();
+        s+="\n";
+        return s;
     }
 
     /**
      * imprime a LinkedListCircular de orientacao vertical de nos existentes 
      */
-    private void printDataNodescol() {
+    private String printDataNodescol() {
         Node g = last.getS();
-        System.out.print("[ ");
+        String s="[ ";
         while (g instanceof DataNode) {
-            System.out.print(g + " ");
+            s+=g + " ";
             g = g.getS();
         }
-        System.out.print(" ]");
+        s+=" ]";
+        return s;
     }
 
     /**
      * imprime a LinkedListCircular de orientacao vertical de nos existentes 
      */
-    public void printListcol() {
+    public String printListcol() {
         last = head;
 
-        System.out.print("LinkedListCol:\n");
+        String s="LinkedListCol:\n";
 
-        System.out.print(last + " ");
+        s+=last + " ";
         if (last.getS() instanceof DataNode) {
-            printDataNodescol();
+            s+=printDataNodescol();
         }
-        System.out.println();
+        s+="\n";
         last = last.next;
         while (last != head) {
-            System.out.print(last + " ");
+            s+=last + " ";
             if (last.getS() instanceof DataNode) {
-                printDataNodescol();
+                s+=printDataNodescol();
             }
             last = last.next;
-            System.out.println();
+            s+="\n";
         }
 
-        System.out.println();
+        s+="\n";
+        return s;
     }
     /*------------------------------------------------------------print---------------------------------------*/
 
