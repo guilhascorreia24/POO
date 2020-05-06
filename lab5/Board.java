@@ -11,14 +11,15 @@ public class Board implements iMatrix {
 	/**
 	 * @inv this.row LinkedListCircular que representa as linhas da matriz esparsa
 	 * @inv this.col LinkedListCircular que representa as colunas da matriz esparsa
-	 * Criar a nova board da iteracao
-	 * adiciona mais 1 vizinhos a todas a celulas que se encontram em volta de uma celula viva
-	 * Deseguida verifica a distancia da proxima celula viva que esta na mesma linha 
-	 * e translaciona as celulas da Este para Oeste da proxima celula viva e no caso de
-	 *  estar longo ao lado mete o Norte e Sul com celulas NE e SE respectivamente
-	 * enquanto ocorre isso e adcionado em 2 listas de Cells que serviram para verificar a parte norte e 
-	 * Este e Oeste das celulas que estao abaixo da linha.
-	 * Por fim e enviado a matriz final para as LinkedListCircular row e col
+	 *      Criar a nova board da iteracao adiciona mais 1 vizinhos a todas a
+	 *      celulas que se encontram em volta de uma celula viva Deseguida verifica
+	 *      a distancia da proxima celula viva que esta na mesma linha e
+	 *      translaciona as celulas da Este para Oeste da proxima celula viva e no
+	 *      caso de estar longo ao lado mete o Norte e Sul com celulas NE e SE
+	 *      respectivamente enquanto ocorre isso e adcionado em 2 listas de Cells
+	 *      que serviram para verificar a parte norte e Este e Oeste das celulas que
+	 *      estao abaixo da linha. Por fim e enviado a matriz final para as
+	 *      LinkedListCircular row e col
 	 */
 	public void child() {
 		LinkedListCircular<Ponto> row1 = new LinkedListCircular<Ponto>();
@@ -37,18 +38,18 @@ public class Board implements iMatrix {
 					Cell c2 = CellAlreadyExisted(myline, c1);
 					myline.remove(c2);
 					c1.setVizinhos(c2.getVizinhos());
-					NE=neighboors_cell(NE, lastline,new Ponto(pc1.getX() - 1, pc1.getY() + 1), row1);
-					N=neighboors_cell(N, lastline, new Ponto(pc1.getX() - 1, pc1.getY()), row1);
-					NO=neighboors_cell(NO, lastline, new Ponto(pc1.getX() - 1, pc1.getY() - 1), row1);
-					E=neighboors_cell(E, myline,new Ponto(pc1.getX(), pc1.getY() + 1), row1);
+					NE = neighboors_cell(NE, lastline, new Ponto(pc1.getX() - 1, pc1.getY() + 1), row1);
+					N = neighboors_cell(N, lastline, new Ponto(pc1.getX() - 1, pc1.getY()), row1);
+					NO = neighboors_cell(NO, lastline, new Ponto(pc1.getX() - 1, pc1.getY() - 1), row1);
+					E = neighboors_cell(E, myline, new Ponto(pc1.getX(), pc1.getY() + 1), row1);
 					myline.add(E);
-					SO=neighboors_cell(SO, nextline, new Ponto(pc1.getX() + 1, pc1.getY() - 1), row1);
+					SO = neighboors_cell(SO, nextline, new Ponto(pc1.getX() + 1, pc1.getY() - 1), row1);
 					nextline.add(SO);
-					S=neighboors_cell(S, nextline, new Ponto(pc1.getX() + 1, pc1.getY()), row1);
+					S = neighboors_cell(S, nextline, new Ponto(pc1.getX() + 1, pc1.getY()), row1);
 					nextline.add(S);
-					SE=neighboors_cell(SE, nextline, new Ponto(pc1.getX() + 1, pc1.getY() + 1), row1);
+					SE = neighboors_cell(SE, nextline, new Ponto(pc1.getX() + 1, pc1.getY() + 1), row1);
 					nextline.add(SE);
-					O=neighboors_cell(O, myline, new Ponto(pc1.getX(), pc1.getY() - 1), row1);
+					O = neighboors_cell(O, myline, new Ponto(pc1.getX(), pc1.getY() - 1), row1);
 					newCells(O, row1);
 					myline.add(O);
 					myline.add(c1);
@@ -61,17 +62,25 @@ public class Board implements iMatrix {
 						c1 = new Cell(1, pc1);
 						if (pc1.dist(last.getPonto()) == 1) {
 							c1.setVizinhos(E.getVizinhos());
-							NO = N;N=new Cell(0,null);
-							N = NE;NE= new Cell(0,null);
+							NO = N;
+							N = new Cell(0, null);
+							N = NE;
+							NE = new Cell(0, null);
 							O = last;
-							SO = S;S=new Cell(0,null);
-							S = SE;SE=new Cell(0,null);
-							E=new Cell(0,null);
+							SO = S;
+							S = new Cell(0, null);
+							S = SE;
+							SE = new Cell(0, null);
+							E = new Cell(0, null);
 						} else if (pc1.dist(last.getPonto()) == 2) {
-							NO = NE;NE=new Cell(0,null);
-							O = E;E=new Cell(0,null);
-							SO = SE;SE=new Cell(0,null);
-							N=new Cell(0,null);S=new Cell(0,null);
+							NO = NE;
+							NE = new Cell(0, null);
+							O = E;
+							E = new Cell(0, null);
+							SO = SE;
+							SE = new Cell(0, null);
+							N = new Cell(0, null);
+							S = new Cell(0, null);
 						} else {
 							NE = new Cell(0, null);
 							E = new Cell(0, null);
@@ -96,27 +105,30 @@ public class Board implements iMatrix {
 		row = row1;
 		col = col1;
 	}
-	
+
 	/**
-	 * Atualiza ou adciona a celula vizinha 
+	 * Atualiza ou adciona a celula vizinha
+	 * 
 	 * @param neighboor celula que queremos identificar
-	 * @param lastline lista a qual queremos adiconar a celula
-	 * @param pc1 coordenadas da celula
-	 * @param row1 matriz esparsa que queremos calcular
+	 * @param lastline  lista a qual queremos adiconar a celula
+	 * @param pc1       coordenadas da celula
+	 * @param row1      matriz esparsa que queremos calcular
 	 * @return devolve a celula
 	 */
 	public Cell neighboors_cell(Cell neighboor, List<Cell> lastline, Ponto pc1, LinkedListCircular<?> row1) {
-	if (neighboor.getVizinhos() == 0)
-		neighboor = CellAlreadyExisted(lastline, new Cell(0, pc1));
-	neighboor.setVizinhos(neighboor.getVizinhos() + 1);
-	newCells(neighboor, row1);
-	return neighboor;
+		if (neighboor.getVizinhos() == 0)
+			neighboor = CellAlreadyExisted(lastline, new Cell(0, pc1));
+		neighboor.setVizinhos(neighboor.getVizinhos() + 1);
+		newCells(neighboor, row1);
+		return neighboor;
 	}
 
 	/**
 	 * verifica a existencia da celula c
-	 * @param list lista onde vamos verificar a existencia da coordenadas da celula c
-	 * @param c celula que queremos comparar
+	 * 
+	 * @param list lista onde vamos verificar a existencia da coordenadas da celula
+	 *             c
+	 * @param c    celula que queremos comparar
 	 * @return devolve a celula fincal
 	 */
 	public Cell CellAlreadyExisted(List<Cell> list, Cell c) {
@@ -130,8 +142,16 @@ public class Board implements iMatrix {
 		return f;
 	}
 
+	public LinkedListCircular<?> getrow(){
+		return row;
+	}
+	public LinkedListCircular<?> getcol(){
+		return col;
+	}
+
 	/**
 	 * Cria a estrutura da matriz esparsa (linhas e colunas) sem dados
+	 * 
 	 * @param x numero de linha da matriz atual
 	 * @param y numero de colunas da matriz atual
 	 * @param a LinkedListCircular (linhas) da matriz esparsa
@@ -151,9 +171,9 @@ public class Board implements iMatrix {
 		}
 	}
 
-	
 	/**
 	 * cria a matriz esparsa
+	 * 
 	 * @param m matriz que e recebida no inicio da iteracao
 	 */
 	@Override
@@ -175,8 +195,8 @@ public class Board implements iMatrix {
 	}
 
 	/**
-	 * transforma a matriz esparsa da iteracao em mariz normal
-	 * esta funcao da o resultado da iteracao
+	 * transforma a matriz esparsa da iteracao em mariz normal esta funcao da o
+	 * resultado da iteracao
 	 */
 	@Override
 	public int[][] get() {
@@ -198,8 +218,9 @@ public class Board implements iMatrix {
 
 	/**
 	 * Verifica se a celula tem condiçoes para sobreviver morrer ou nascer e
-	 * dependente duma das ocasioes adiciona/remove da matriz esparsa 
-	 * @param c1 celula que queremos adicionar ou remover
+	 * dependente duma das ocasioes adiciona/remove da matriz esparsa
+	 * 
+	 * @param c1   celula que queremos adicionar ou remover
 	 * @param row1 lista das linhas da matriz esparsa
 	 */
 	public void newCells(Cell c1, LinkedListCircular<?> row1) {

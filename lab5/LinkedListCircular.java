@@ -40,6 +40,8 @@ public class LinkedListCircular<T> implements MyList{
          * inicializa o no
          * @inv E no de Este
          * @inv S no de Sul
+         * @param E no Este
+         * @param S no Sul
          */
         public Node(Node E, Node S) {
             this.E = E;
@@ -137,6 +139,10 @@ public class LinkedListCircular<T> implements MyList{
         public Node getS() {
             return super.S;
         }
+
+		public void setnext(SentinelNode e) {
+            this.next=e;
+		}
     }
 
     public static class DataNode<T> extends Node {
@@ -323,7 +329,7 @@ public class LinkedListCircular<T> implements MyList{
     public Object getElementof(int i, int j) {
         Object o = getfirstElementOf(i);
         int k = 0;
-        while (k < j) {
+        while (k <= j) {
             if (k == j) {
                 return o;
             }
