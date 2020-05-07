@@ -46,8 +46,9 @@ public class List<T> implements MyList, Cloneable{
     }
 
     /**
-     * @param o Objecto queremos eliminar
      * remove o Objecto o da lista
+     * @param o Objecto queremos eliminar
+     * 
      */
     public void remove(T o) throws IllegalArgumentException {
         int i = 0;
@@ -62,6 +63,7 @@ public class List<T> implements MyList, Cloneable{
     }
 
     /**
+     * returna objeto com o index selecionado
      * @pre o index i tem de ser entre 0 e o tamanho maximo da lista
      * @param i index na lista
      * @return return objecto com index i

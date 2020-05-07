@@ -27,7 +27,7 @@ public class Cell {
     }
 
     /**
-     * 
+     * numero de vizinhos vivos
      * @param v numero de vizinhos vivos
      */
     public void setVizinhos(int v) {
@@ -35,7 +35,7 @@ public class Cell {
     }
 
     /**
-     * 
+     * devolve o numero de vizinhos vivos
      * @return devolve o numero de vizinhos vivos
      */
     public int getVizinhos(){
@@ -43,7 +43,7 @@ public class Cell {
     }
 
     /**
-     * 
+     * devolve o estado da celula
      * @return devolve o estado da celula
      */
     public int getState() {
@@ -52,6 +52,7 @@ public class Cell {
 
     /**
      * alterar o estado da celula
+     * @param i estado da celula
      */
     public void setState(int i) {
         this.STATE = i;
@@ -66,7 +67,7 @@ public class Cell {
     }
 
     /**
-     * 
+     * devolve as coordenadas da celula
      * @return devolve as coordenadas da celula
      */
     public Ponto getPonto() {
@@ -98,6 +99,7 @@ public class Cell {
     }
 
     /**
+     * devolve o formato de impressao da celula
      * @return String devolve o formato de impressao da celula
      */
     public String toString() {

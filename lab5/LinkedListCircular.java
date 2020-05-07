@@ -140,6 +140,10 @@ public class LinkedListCircular<T> implements MyList{
             return super.S;
         }
 
+        /**
+         * devolve proximo sentinel node
+         * @param e sentinel node
+         */
 		public void setnext(SentinelNode e) {
             this.next=e;
 		}
