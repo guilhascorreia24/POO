@@ -146,15 +146,29 @@ public class Board implements iMatrix {
 	 * devolve a LinkedList das linhas
 	 * @return row LinkedListCircular devolve a LinkedList
 	 */
-	public LinkedListCircular<?> getrow(){
+	public LinkedListCircular<Ponto> getrow(){
 		return row;
 	}
 	/**
 	 * devolve a LinkedList das colunas
 	 * @return col LinkedListCircular devolve a LinkedList
 	 */
-	public LinkedListCircular<?> getcol(){
+	public LinkedListCircular<Ponto> getcol(){
 		return col;
+	}
+	/**
+	 * Altera a LinkedList das linhas
+	 * 
+	 */
+	public void setrow(LinkedListCircular<Ponto> row){
+		this.row=  row;
+	}
+	/**
+	 * Altera a LinkedList das colunas
+	 * 
+	 */
+	public void setcol(LinkedListCircular<Ponto> col){
+		this.col=  col;
 	}
 
 	/**

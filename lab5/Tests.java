@@ -576,16 +576,59 @@ public class Tests {
     //-----------------------------------test child-------------------------------
     @Test
     public void testchild(){
+        Board b=new Board();
         LinkedListCircular<Ponto> g=new LinkedListCircular<Ponto>();
         LinkedListCircular<Ponto> g1=new LinkedListCircular<Ponto>();
         g.Col(g1);
         g.addLine();g.addLine();g1.addLine();g1.addLine();
-        //g.associateTo(i, j, p);
-        
+        Ponto p=new Ponto(0,1);Ponto p1=new Ponto(1,0);
+        g.associateTo(0, 1, p);g.associateTo(1, 0, p1);
+        b.setcol(g1);b.setrow(g);
+        b.child();
+        g=b.getrow();g1=b.getcol();
+        assertEquals(false,g.getfirstElementOf(0) instanceof Ponto);
+        assertEquals(false,g.getfirstElementOf(1) instanceof Ponto);
+
+         g=new LinkedListCircular<Ponto>();
+         g1=new LinkedListCircular<Ponto>();
+        g.Col(g1);
+        g.addLine();g.addLine();g1.addLine();g1.addLine();
+         p=new Ponto(0,0); p1=new Ponto(0,1);
+        g.associateTo(0, 0, p);g.associateTo(0, 1, p1);
+        b.setcol(g1);b.setrow(g);
+        b.child();
+        g=b.getrow();g1=b.getcol();
+        assertEquals(false,g.getfirstElementOf(0) instanceof Ponto);
+
     }
     //-----------------------------------test getboard----------------------------
     @Test
     public void testgetboard(){
-
+        Board b=new Board();
+        LinkedListCircular<Ponto> g=new LinkedListCircular<Ponto>();
+        LinkedListCircular<Ponto> g1=new LinkedListCircular<Ponto>();
+        g.Col(g1);
+        g.addLine();g.addLine();g1.addLine();g1.addLine();
+        Ponto p=new Ponto(0,1);Ponto p1=new Ponto(1,0);
+        g.associateTo(0, 1, p);g.associateTo(1, 0, p1);
+        b.setcol(g1);b.setrow(g);
+        b.child();
+        int[][] r=new int[][]{
+            {0,0},
+            {0,0}
+        };
+        assertEquals(false,b.get().equals(r));
+         g=new LinkedListCircular<Ponto>();
+         g1=new LinkedListCircular<Ponto>();
+        g.Col(g1);
+        g.addLine();g.addLine();g1.addLine();g1.addLine();
+         p=new Ponto(0,0); p1=new Ponto(0,1);
+        g.associateTo(0, 0, p);g.associateTo(0, 1, p1);
+        b.setcol(g1);b.setrow(g);
+        b.child();
+        r=new int[][]{
+            {0,0}
+        };
+        assertEquals(false,b.get().equals(r));
     }
 }
