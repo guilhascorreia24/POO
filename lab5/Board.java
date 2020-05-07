@@ -9,9 +9,7 @@ public class Board implements iMatrix {
 	private LinkedListCircular<Ponto> col = new LinkedListCircular<Ponto>();
 
 	/**
-	 * @inv this.row LinkedListCircular que representa as linhas da matriz esparsa
-	 * @inv this.col LinkedListCircular que representa as colunas da matriz esparsa
-	 *      Criar a nova board da iteracao adiciona mais 1 vizinhos a todas a
+	 * 	     Criar a nova board da iteracao adiciona mais 1 vizinhos a todas a
 	 *      celulas que se encontram em volta de uma celula viva Deseguida verifica
 	 *      a distancia da proxima celula viva que esta na mesma linha e
 	 *      translaciona as celulas da Este para Oeste da proxima celula viva e no
@@ -20,7 +18,8 @@ public class Board implements iMatrix {
 	 *      que serviram para verificar a parte norte e Este e Oeste das celulas que
 	 *      estao abaixo da linha. Por fim e enviado a matriz final para as
 	 *      LinkedListCircular row e col
-	 * 
+	 * @inv this.row LinkedListCircular que representa as linhas da matriz esparsa
+	 * @inv this.col LinkedListCircular que representa as colunas da matriz esparsa
 	 * 
 	 */
 	public void child() {
@@ -143,10 +142,17 @@ public class Board implements iMatrix {
 		}
 		return f;
 	}
-
+	/**
+	 * devolve a LinkedList das linhas
+	 * @return row LinkedListCircular devolve a LinkedList
+	 */
 	public LinkedListCircular<?> getrow(){
 		return row;
 	}
+	/**
+	 * devolve a LinkedList das colunas
+	 * @return col LinkedListCircular devolve a LinkedList
+	 */
 	public LinkedListCircular<?> getcol(){
 		return col;
 	}
