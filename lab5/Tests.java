@@ -22,8 +22,8 @@ public class Tests {
     @Test(expected = IllegalArgumentException.class)
     public void testGOL1() throws Exception {
         List<String> s=new List<String>();
-        s.add("01010");s.add("10000");
-        new GOL(s,5);
+        s.add("01010");s.add("01010");
+        new GOL(s,-1);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -354,10 +354,209 @@ public class Tests {
             {1,0}
         };
         b.set(n);
-        System.out.println(b.getrow().getElementof(0, 1));
-        assertEquals(new Ponto(0,1),b.getrow().getElementof(0, 1));
-        assertEquals(new Ponto(1,0),b.getrow().getElementof(1, 0));
-
+        //assertEquals("", actual);
     }
 
+    //------------------------test size & add------------------------------------
+    @Test
+    public void testaddandsize(){
+        List<String> h=new List<String>();
+        assertEquals(0, h.size());
+        h.add("d");
+        assertEquals(1, h.size());
+        h.add("d");
+        assertEquals(2, h.size());
+    }
+
+    //-----------------------------test clear------------------------------
+    @Test
+    public void testclear(){
+        List<String> h=new List<String>();
+        h.add("d");
+        h.add("d");
+        h.clear();
+        assertEquals(0,h.size());
+        h.clear();
+        assertEquals(0,h.size());
+        h.add("d");
+        h.clear();
+        assertEquals(0,h.size());
+    }
+    //----------------------------test remove---------------------------
+    @Test
+    public void testremove(){
+        List<String> h=new List<String>();
+        h.add("a");
+        h.add("b");
+        h.add("c");
+        h.remove("a");
+        assertEquals(2,h.size());
+        h.remove("b");
+        assertEquals(1, h.size());
+        h.remove("c");
+        assertEquals(0,h.size());
+    }
+
+    @Test
+    public void testremoveindex(){
+        List<String> h=new List<String>();
+        h.add("a");
+        h.add("b");
+        h.add("c");
+        h.removeindex(1);
+        assertEquals(2,h.size());
+        h.removeindex(0);
+        assertEquals(1, h.size());
+        h.removeindex(0);;
+        assertEquals(0,h.size());
+    }
+
+    //------------------------------------test contains-------------------------------
+    @Test
+    public void testcontains(){
+        List<Integer> g=new List<Integer>();
+        g.add(1);
+        g.add(2);
+        //System.out.println(g.contains("f", 1));
+        assertEquals(true,g.contains(1,0));
+        assertEquals(false,g.contains(3, 1));
+        assertEquals(true,g.contains(2, 1));
+    }
+    //-----------------------------------test clone---------------------------
+    @Test
+    public void testclone(){
+        List<String> g=new List<String>();
+        List<String> g1=new List<String>();
+        g.add("skajhsa");
+        g.add("f");
+        g1=g.clone();
+        assertEquals(true,g.toString().equals(g1.toString()));
+        g.clear();
+        g.add("f");
+        assertEquals(false,g.toString().equals(g1.toString()));
+        g.clear();g1.clear();
+        assertEquals(true, g.toString().equals(g1.toString()));
+    }
+    //------------------------------------test addline & addfirstline & size ------------------
+    @Test
+    public void testaddline(){
+        LinkedListCircular<Ponto> p=new LinkedListCircular<Ponto>();
+        assertEquals(0, p.size());
+        p.addLine();
+        p.addLine();
+        assertEquals(2, p.size());
+        p.addfirstLine();
+        assertEquals(3,p.size());
+    }
+
+    //-----------------------------------test getlasline & getLinha---------------------------
+    @Test
+    public void testgetlastline(){
+        LinkedListCircular<Ponto> p=new LinkedListCircular<Ponto>();
+        p.addLine();
+        assertEquals(true,p.getlastLine().equals(p.getLinha(0)));
+        p.addLine();
+        assertEquals(false,p.getlastLine().equals(p.getLinha(0)));
+        assertEquals(true,p.getlastLine().equals(p.getLinha(1)));
+    }
+    //------------------------------------test getfirstLine & getLinha-------------------------
+    @Test
+    public void testgetfirstline(){
+        LinkedListCircular<Ponto> p=new LinkedListCircular<Ponto>();
+        p.addLine();
+        assertEquals(true,p.getfirstLine().equals(p.getLinha(0)));
+        p.addLine();
+        assertEquals(false,p.getfirstLine().equals(p.getLinha(1)));
+        assertEquals(false,p.getfirstLine().equals(p.getLinha(1)));
+    }
+    //----------------------------------test getfirstindex && associateTo-------------------------
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testgetfirstindex(){
+        LinkedListCircular<Ponto> k=new LinkedListCircular<Ponto>();
+        LinkedListCircular<Ponto> k1=new LinkedListCircular<Ponto>();
+        k.Col(k1);
+        k.addLine();k1.addLine();
+        k.associateTo(0, 0, new Ponto(0,0));
+        assertEquals(0, k.getfirstIndex());
+        k1.addfirstLine();
+        k.associateTo(1, 0, new Ponto(0,1));
+        assertEquals(-1, k.getfirstIndex());
+    }
+    //--------------------------------test clear-------------------------
+    @Test
+    public void testclearLinkedList(){
+        LinkedListCircular<Ponto> k=new LinkedListCircular<Ponto>();
+        LinkedListCircular<Ponto> k1=new LinkedListCircular<Ponto>();
+        k.Col(k1);
+        k.addLine();k1.addLine();
+        k.clear();
+        assertEquals(0,k.size());
+        assertEquals(true, k1.size()==1);
+        k1.clear();
+        assertEquals(true, k1.size()==0);
+    }
+
+    //------------------------------test associationTO & removeassiciationOf & addline---------
+    @Test
+    public void testremoveassociationOf(){
+        LinkedListCircular<Ponto> k=new LinkedListCircular<Ponto>();
+        LinkedListCircular<Ponto> k1=new LinkedListCircular<Ponto>();
+        k.Col(k1);
+        k.addLine();
+        k.addLine();k1.addLine();k.addLine();k1.addLine();
+        k.associateTo(0, 0, new Ponto(0,0));
+        k.associateTo(0, 1, new Ponto(0,1));
+        k.removeAssociationOf(new Ponto(0,1), 0);
+        assertEquals(true,k.getfirstElementOf(0).equals(new Ponto(0,0)));
+        k.associateTo(0, 0, new Ponto(0,0));
+        k.associateTo(0, 0, new Ponto(0,0));
+        k.removeAssociationOf(new Ponto(0,0), 0);
+        assertEquals(new Ponto(0,1),k.getfirstElementOf(0));
+        k.removeAssociationOf(new Ponto(0,1), 0);
+        assertEquals("sent", k.getfirstElementOf(0));
+    }
+    //---------------------------------test nextCellHorizon & association & addline-------------------
+    @Test
+    public void testnextCellhorizon(){
+        LinkedListCircular<Ponto> k=new LinkedListCircular<Ponto>();
+        LinkedListCircular<Ponto> k1=new LinkedListCircular<Ponto>();
+        k.Col(k1);
+        k.addLine();
+        k.addLine();k1.addLine();k1.addLine();
+        k.associateTo(0, 0, new Ponto(0,0));
+        k.associateTo(0, 1, new Ponto(0,1));
+        //System.out.println(k.printListrow());
+        assertEquals(new Ponto(0,1),k.nextcellHorizon(new Ponto(0,0),0));
+        assertEquals(new Ponto(0,1),k.nextcellHorizon(new Ponto(0,0),0));
+        assertEquals(new Ponto(0,1),k.nextcellHorizon(new Ponto(0,0),0));
+    }
+    //-----------------------------------test nextcellVertical-----------------------
+    @Test
+    public void testnextCellvertical(){
+        LinkedListCircular<Ponto> k=new LinkedListCircular<Ponto>();
+        LinkedListCircular<Ponto> k1=new LinkedListCircular<Ponto>();
+        k.Col(k1);
+        k.addLine();
+        k.addLine();k1.addLine();k1.addLine();
+        k1.associateTo(0, 0, new Ponto(0,0));
+        k1.associateTo(0, 1, new Ponto(0,1));
+        //System.out.println(k.printListrow());
+        assertEquals(new Ponto(0,1),k1.nextcellvertical(new Ponto(0,0),0));
+        assertEquals(new Ponto(0,1),k1.nextcellvertical(new Ponto(0,0),0));
+        assertEquals(new Ponto(0,1),k1.nextcellvertical(new Ponto(0,0),0));
+    }
+    //-------------------------------------test contains-----------------------
+    @Test
+    public void testcontainsLinkedList(){
+        LinkedListCircular<Ponto> k=new LinkedListCircular<Ponto>();
+        LinkedListCircular<Ponto> k1=new LinkedListCircular<Ponto>();
+        k.Col(k1);
+        k.addLine();
+        k.addLine();k1.addLine();k1.addLine();
+        k1.associateTo(0, 0, new Ponto(0,0));
+        k1.associateTo(0, 1, new Ponto(0,1));
+        assertEquals(true, k.contains(new Ponto(0,0),0));
+        assertEquals(false, k.contains(new Ponto(1,0),0));
+        assertEquals(true, k.contains(new Ponto(0,1),0));
+    }
 }

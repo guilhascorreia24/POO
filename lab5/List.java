@@ -95,7 +95,7 @@ public class List<T> implements MyList, Cloneable{
      * @pre i tem ser maior 0 e menor que o tamanho maximo da lista
      * @param i index na lista
      */
-    private void removeindex(int i) {
+    public void removeindex(int i) {
         if (i >= size || i < 0) {
             throw new IndexOutOfBoundsException("Index: " + i + ", Size " + size);
         }
@@ -140,10 +140,15 @@ public class List<T> implements MyList, Cloneable{
     /**
      * Procura a existencia de um objecto na lista
      * @return devolve um boolean que indica a existencia do objecto o na lista
+     * @throws lancado quando o index colocado nao esta entre 0 e o tamanho da lista
      */
     @Override
     public boolean contains(Object o,int i) {
-        for (Object x : eleObjects) {
+        if (i>=size() || i<0){
+            throw new IllegalArgumentException();
+        }
+        for (int k=0;k<size();k++) {
+            Object x=eleObjects[k];
             if (x.equals(o)) {
                 return true;
             }

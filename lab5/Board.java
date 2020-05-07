@@ -20,6 +20,8 @@ public class Board implements iMatrix {
 	 *      que serviram para verificar a parte norte e Este e Oeste das celulas que
 	 *      estao abaixo da linha. Por fim e enviado a matriz final para as
 	 *      LinkedListCircular row e col
+	 * 
+	 * 
 	 */
 	public void child() {
 		LinkedListCircular<Ponto> row1 = new LinkedListCircular<Ponto>();

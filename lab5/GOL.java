@@ -20,7 +20,7 @@ public class GOL{
             throw new IllegalArgumentException();
         }
         if(times<=0){
-            throw new IllegalAccessException();
+            throw new IllegalArgumentException();
         }
         this.times=times;
         String n1=(String)l.getfirstElementOf(0);
