@@ -266,7 +266,7 @@ public class Tests {
         List<Cell> myline = new List<Cell>();
         Ponto p=new Ponto(1,2);
         LinkedListCircular<Ponto> llc = new LinkedListCircular<Ponto>();
-        Cell r=new Cell(0, new Ponto(1,1));r.setVizinhos(1);
+        Cell r=new Cell(0, new Ponto(1,2));r.setVizinhos(1);
         assertEquals(r,b.neighboors_cell(c, myline, p, llc));
 
         c = new Cell(0, new Ponto(1,2));
@@ -507,13 +507,14 @@ public class Tests {
         k.associateTo(0, 0, new Ponto(0,0));
         k.associateTo(0, 1, new Ponto(0,1));
         k.removeAssociationOf(new Ponto(0,1), 0);
-        assertEquals(true,k.getfirstElementOf(0).equals(new Ponto(0,0)));
-        k.associateTo(0, 0, new Ponto(0,0));
-        k.associateTo(0, 0, new Ponto(0,0));
+        //System.out.println(((Ponto)k.getfirstElementOf(0)).equals(new Ponto(0,0)));
+        assertEquals(true,((Ponto)k.getfirstElementOf(0)).equals(new Ponto(0,0)));
+        k.associateTo(0, 1, new Ponto(0,1));
         k.removeAssociationOf(new Ponto(0,0), 0);
-        assertEquals(new Ponto(0,1),k.getfirstElementOf(0));
+        System.out.println(k.printListrow());
+        assertEquals(true,((Ponto)k.getfirstElementOf(0)).equals(new Ponto(0,1)));
         k.removeAssociationOf(new Ponto(0,1), 0);
-        assertEquals("sent", k.getfirstElementOf(0));
+        assertEquals(false, k.getfirstElementOf(0).equals(new Ponto(0,0)));
     }
     //---------------------------------test nextCellHorizon & association & addline-------------------
     @Test
@@ -559,4 +560,6 @@ public class Tests {
         assertEquals(false, k.contains(new Ponto(1,0),0));
         assertEquals(true, k.contains(new Ponto(0,1),0));
     }
+    //-----------------------------------test child-------------------------------
+    //-----------------------------------test getboard----------------------------
 }
