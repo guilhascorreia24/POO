@@ -561,5 +561,18 @@ public class Tests {
         assertEquals(true, k.contains(new Ponto(0,1),0));
     }
     //-----------------------------------test child-------------------------------
+    @Test
+    public void testchild(){
+        LinkedListCircular<Ponto> g=new LinkedListCircular<Ponto>();
+        LinkedListCircular<Ponto> g1=new LinkedListCircular<Ponto>();
+        g.Col(g1);
+        g.addLine();g.addLine();g1.addLine();g1.addLine();
+        
+        
+    }
     //-----------------------------------test getboard----------------------------
+    @Test
+    public void testgetboard(){
+
+    }
 }
