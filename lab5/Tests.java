@@ -267,14 +267,18 @@ public class Tests {
         Ponto p=new Ponto(1,2);
         LinkedListCircular<Ponto> llc = new LinkedListCircular<Ponto>();
         Cell r=new Cell(0, new Ponto(1,2));r.setVizinhos(1);
-        assertEquals(r,b.neighboors_cell(c, myline, p, llc));
+        Cell t=(Cell)b.neighboors_cell(c, myline, p, llc);
+       // System.out.println(r.equals(t));
+        assertEquals(true,r.equals(t));
 
-        c = new Cell(0, new Ponto(1,2));
+        c = new Cell(0, new Ponto(1,1));c.setVizinhos(3);
         List<Cell> l = new List<Cell>();l.add(c);
         p=new Ponto(1,2);
         LinkedListCircular<Ponto> llc1 = new LinkedListCircular<Ponto>();
-        r=new Cell(0, new Ponto(1,2));r.setVizinhos(1);
-        assertEquals(r,b.neighboors_cell(c, l, p, llc1));
+        r=new Cell(0, new Ponto(1,1));r.setVizinhos(4);
+         t=(Cell)b.neighboors_cell(c, l, p, llc1);
+        //System.out.println(r.equals(t));
+        assertEquals(true,r.equals(t));
 
     }
     //----------------------------------------test Col-----------------------------------------
@@ -511,7 +515,7 @@ public class Tests {
         assertEquals(true,((Ponto)k.getfirstElementOf(0)).equals(new Ponto(0,0)));
         k.associateTo(0, 1, new Ponto(0,1));
         k.removeAssociationOf(new Ponto(0,0), 0);
-        System.out.println(k.printListrow());
+       // System.out.println(k.printListrow());
         assertEquals(true,((Ponto)k.getfirstElementOf(0)).equals(new Ponto(0,1)));
         k.removeAssociationOf(new Ponto(0,1), 0);
         assertEquals(false, k.getfirstElementOf(0).equals(new Ponto(0,0)));
@@ -524,12 +528,16 @@ public class Tests {
         k.Col(k1);
         k.addLine();
         k.addLine();k1.addLine();k1.addLine();
-        k.associateTo(0, 0, new Ponto(0,0));
-        k.associateTo(0, 1, new Ponto(0,1));
-        //System.out.println(k.printListrow());
-        assertEquals(new Ponto(0,1),k.nextcellHorizon(new Ponto(0,0),0));
-        assertEquals(new Ponto(0,1),k.nextcellHorizon(new Ponto(0,0),0));
-        assertEquals(new Ponto(0,1),k.nextcellHorizon(new Ponto(0,0),0));
+        Ponto p=new Ponto(0,0);Ponto p1=new Ponto(0,1);
+        k.associateTo(0, 0, p);
+        k.associateTo(0, 1, p1);
+        //System.out.println(k.nextcellHorizon(p,0));
+        assertEquals(p1,(Ponto)k.nextcellHorizon(p,0));
+        assertEquals(false,k.nextcellHorizon(p1,0) instanceof Ponto);
+        k1.addLine();
+        Ponto p2=new Ponto(0,2);
+        k.associateTo(0, 2, p2);
+        assertEquals(p2,k.nextcellHorizon(p1,0));
     }
     //-----------------------------------test nextcellVertical-----------------------
     @Test
@@ -538,13 +546,18 @@ public class Tests {
         LinkedListCircular<Ponto> k1=new LinkedListCircular<Ponto>();
         k.Col(k1);
         k.addLine();
-        k.addLine();k1.addLine();k1.addLine();
-        k1.associateTo(0, 0, new Ponto(0,0));
-        k1.associateTo(0, 1, new Ponto(0,1));
-        //System.out.println(k.printListrow());
-        assertEquals(new Ponto(0,1),k1.nextcellvertical(new Ponto(0,0),0));
-        assertEquals(new Ponto(0,1),k1.nextcellvertical(new Ponto(0,0),0));
-        assertEquals(new Ponto(0,1),k1.nextcellvertical(new Ponto(0,0),0));
+        k1.addLine();k.addLine();k1.addLine();
+        Ponto p=new Ponto(0,0);Ponto p1=new Ponto(1,0);
+        k.associateTo(0, 0, p);
+        k.associateTo(1, 0, p1);
+        //System.out.println(k.nextcellvertical(p, 0));
+        assertEquals(p1,(Ponto)k.nextcellvertical(p,0));
+        assertEquals(false,k.nextcellvertical(p1,0) instanceof Ponto);
+        k.addLine();
+        Ponto p2=new Ponto(2,0);
+        k.associateTo(2, 0, p2);
+        //System.out.println(k.nextcellvertical(p1, 0));
+        assertEquals(p2,k.nextcellvertical(p1,0));
     }
     //-------------------------------------test contains-----------------------
     @Test
@@ -554,8 +567,8 @@ public class Tests {
         k.Col(k1);
         k.addLine();
         k.addLine();k1.addLine();k1.addLine();
-        k1.associateTo(0, 0, new Ponto(0,0));
-        k1.associateTo(0, 1, new Ponto(0,1));
+        k.associateTo(0, 0, new Ponto(0,0));
+        k.associateTo(0, 1, new Ponto(0,1));
         assertEquals(true, k.contains(new Ponto(0,0),0));
         assertEquals(false, k.contains(new Ponto(1,0),0));
         assertEquals(true, k.contains(new Ponto(0,1),0));
@@ -567,7 +580,7 @@ public class Tests {
         LinkedListCircular<Ponto> g1=new LinkedListCircular<Ponto>();
         g.Col(g1);
         g.addLine();g.addLine();g1.addLine();g1.addLine();
-        
+        //g.associateTo(i, j, p);
         
     }
     //-----------------------------------test getboard----------------------------

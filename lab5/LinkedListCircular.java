@@ -6,7 +6,7 @@
  */
 public class LinkedListCircular<T> implements MyList{
     private SentinelNode head, last;
-    private int i,inicial;
+    private int i,inicial=0;
     private boolean row;
     private LinkedListCircular<T> col;
 
@@ -404,6 +404,7 @@ public class LinkedListCircular<T> implements MyList{
      */
     @SuppressWarnings("unchecked")
     public void associateTo(int i, int j,Object p) {
+        //System.out.println((i>=size())+" "+(j>=col.size()) +" "+ (i<inicial) +" "+ (j< col.inicial));
         if(i>=size() || j>=col.size() || i<inicial || j< col.inicial){
             throw new IndexOutOfBoundsException();
         }
@@ -461,7 +462,7 @@ public class LinkedListCircular<T> implements MyList{
         if(i>=col.size() || i< col.inicial){
             throw new IndexOutOfBoundsException();
         }
-        Node n = getLinha(i).getS();
+        Node n = col.getLinha(i).getS();
         while (n instanceof DataNode) {
             DataNode n1 = (DataNode) n;
             if (n1.getvalue().equals(x) && n1.getS() instanceof DataNode) {
@@ -470,7 +471,7 @@ public class LinkedListCircular<T> implements MyList{
             }
             n = n.getS();
         }
-        return null;
+        return n;
     }
 
     /**
