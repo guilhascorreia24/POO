@@ -422,9 +422,9 @@ public class Tests {
         g.add(1);
         g.add(2);
         //System.out.println(g.contains("f", 1));
-        assertEquals(true,g.contains(1,0));
-        assertEquals(false,g.contains(3, 1));
-        assertEquals(true,g.contains(2, 1));
+        assertEquals(true,g.contains(1));
+        assertEquals(false,g.contains(3));
+        assertEquals(true,g.contains(2));
     }
     //-----------------------------------test clone---------------------------
     @Test

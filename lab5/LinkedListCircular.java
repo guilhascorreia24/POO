@@ -4,7 +4,7 @@
  * @author David Fernandes 58604
  * @author Bruno Susana 61024
  */
-public class LinkedListCircular<T> implements MyList{
+public class LinkedListCircular<T>{
     private SentinelNode head, last;
     private int i,inicial=0;
     private boolean row;
@@ -312,7 +312,6 @@ public class LinkedListCircular<T> implements MyList{
      * @param i index do no sentinel
      * @return devolve o valor do primeiro no de dados que esta na linha
      */
-    @Override
     @SuppressWarnings("rawtypes")
     public Object getfirstElementOf(int i) {
         Node n = getLinha(i);
@@ -363,7 +362,6 @@ public class LinkedListCircular<T> implements MyList{
     /**
      * Limpa a LinkedListCircular isto é volta a ser nula
      */
-    @Override
     public void clear() {
         SentinelNode g = (SentinelNode) head.getnext();
         while (g != head) {
@@ -577,6 +575,5 @@ public class LinkedListCircular<T> implements MyList{
         s+="\n";
         return s;
     }
-    /*------------------------------------------------------------print---------------------------------------*/
-
+    //------------------------------------------------------------print---------------------------------------
 }

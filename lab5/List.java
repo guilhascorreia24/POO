@@ -4,7 +4,7 @@
  * @author David Fernandes 58604
  * @author Bruno Susana 61024
  */
-public class List<T> implements MyList, Cloneable{
+public class List<T> implements Cloneable{
     private int size = 0;
     private Object[] eleObjects;
 
@@ -21,7 +21,6 @@ public class List<T> implements MyList, Cloneable{
      * @pre o size nao pode ser nulo
      * @return devolve o tamanho 
      */
-    @Override
     public int size() throws IllegalArgumentException{
         if(size<0){
             throw new IllegalArgumentException();
@@ -33,7 +32,6 @@ public class List<T> implements MyList, Cloneable{
      * limpa a lista
      * @throws lancada quando o tamanho da lista e menor que 0
      */
-    @Override
     public void clear() {
         int i = size - 1;
         if(size<0){
@@ -68,7 +66,6 @@ public class List<T> implements MyList, Cloneable{
      * @param i index na lista
      * @return return objecto com index i
      */
-    @Override
     public Object getfirstElementOf(int i) {
         if (i >= size || i < 0) {
             throw new IndexOutOfBoundsException("Index: " + i + ", Size " + size);
@@ -144,11 +141,7 @@ public class List<T> implements MyList, Cloneable{
      * @return devolve um boolean que indica a existencia do objecto o na lista
      * @throws lancado quando o index colocado nao esta entre 0 e o tamanho da lista
      */
-    @Override
-    public boolean contains(Object o,int i) {
-        if (i>=size() || i<0){
-            throw new IllegalArgumentException();
-        }
+    public boolean contains(Object o) {
         for (int k=0;k<size();k++) {
             Object x=eleObjects[k];
             if (x.equals(o)) {
@@ -173,6 +166,4 @@ public class List<T> implements MyList, Cloneable{
             clone.eleObjects[i] = eleObjects[i];
         return clone;
     }
-
-
 }
