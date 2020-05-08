@@ -222,6 +222,7 @@ public class Board implements iMatrix {
 	 */
 	@Override
 	public int[][] get() {
+		child();
 		int[][] m = new int[row.size()][col.size()];
 		int l = Math.abs(row.getfirstIndex());
 		int k = Math.abs(col.getfirstIndex());

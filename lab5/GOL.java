@@ -7,7 +7,7 @@
 public class GOL{
     private int[][] m;
     private int times;
-    private Board g=new Board();
+    private iMatrix g=new Board();
     /**
      * este construtor transforma a lista em uma matriz composta por 0 e 1 identico ao input
      * no fim limpa a lista usada
@@ -44,7 +44,6 @@ public class GOL{
         int i=0;
         while(i<times){
             g.set(m);
-            g.child();
             m=g.get();
             printBoards(m);
             if(i<times-1)

@@ -9,4 +9,5 @@ public interface iMatrix {
 	 * esta funcao da o resultado da iteracao
 	 */
 	public int[][] get();
+	
 }
