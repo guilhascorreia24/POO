@@ -10,6 +10,7 @@ public class Cell {
     private int vizinhos = 0;
 
     /**
+     * 
      * @pre state tem de ser 0 ou 1
      * @param state estado em que a celula se encontra (tipo integer)
      * @param p ponto coordenadas da celula na matriz

@@ -7,6 +7,7 @@
 public class GOL{
     private int[][] m;
     private int times;
+    private Board g=new Board();
     /**
      * este construtor transforma a lista em uma matriz composta por 0 e 1 identico ao input
      * no fim limpa a lista usada
@@ -40,7 +41,6 @@ public class GOL{
      * esta funcao, indica o decorrer do jogo em que cada iteracao imprimir o estado do jogo
      */
     public void run(){
-        Board g=new Board();
         int i=0;
         while(i<times){
             g.set(m);
