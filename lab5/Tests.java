@@ -3,7 +3,7 @@ import org.junit.Test;
 
 
 public class Tests {
-    	//-----------------------Teste connstrutor Ponto------------------------------
+    	//-----------------------Teste construtor Ponto------------------------------
 	@Test 
 	public void testPonto(){
 		new Ponto(0,1);
