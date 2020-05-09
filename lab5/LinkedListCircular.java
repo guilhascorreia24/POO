@@ -257,6 +257,10 @@ public class LinkedListCircular<T>{
         return last;
     }
 
+    /**
+     * Cabeça da LinkedListCircular
+     * @return devolve a Node da cabeca da LinkedListCircular
+     */
     public Node getfirstLine() {
         return head;
     }

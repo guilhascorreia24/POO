@@ -75,6 +75,7 @@ public class Ponto {
     }
 
     /**
+     * Impressao do formato do ponto
      * @return devolve o formato da impressao do ponto
      */
     public String toString(){

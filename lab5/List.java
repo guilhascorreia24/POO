@@ -18,6 +18,7 @@ public class List<T> implements Cloneable{
     }
 
     /**
+     * Tamanho da lista
      * @pre o size nao pode ser nulo
      * @return devolve o tamanho 
      */
@@ -120,6 +121,7 @@ public class List<T> implements Cloneable{
     }
 
     /**
+     * Impressao da Lista
      * @return String devolve a impressao da lista
      */
     @Override

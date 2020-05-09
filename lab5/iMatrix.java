@@ -1,7 +1,7 @@
 public interface iMatrix {
 	/**
-	 * 
-	 * @param m matriz que é recebida no inicio da iteracao
+	 * recebe a matriz incial da iteracao
+	 * @param m matriz que e recebida no inicio da iteracao
 	 */
 	public void set(int[][] m);
 
