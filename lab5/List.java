@@ -154,7 +154,7 @@ public class List<T> implements Cloneable{
     }
 
     /**
-     *Cloniza a lista 
+     *Clona a lista 
      * @return devolve uma lista igual a original
      */
     @Override
